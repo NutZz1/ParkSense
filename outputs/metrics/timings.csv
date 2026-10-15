@@ -1,0 +1,30 @@
+job,label,ms,recorded_at_utc
+RddPipeline,"count input lines",657,2026-10-15T04:40:56.811182Z
+RddPipeline,"count exploded lot records (materialises lots cache)",1364,2026-10-15T04:40:58.176321Z
+RddPipeline,"count clean lot records (materialises cleaned cache)",421,2026-10-15T04:40:58.598922Z
+RddPipeline,"join: shuffle leftOuterJoin with metadata",2073,2026-10-15T04:41:02.540971Z
+RddPipeline,"join: broadcast map-side join with metadata",968,2026-10-15T04:41:03.595173Z
+RddPipeline,"write occupancy Parquet (partitioned by dt)",8297,2026-10-15T04:41:16.405892Z
+RddPipeline,"write aggregate Parquet files",3973,2026-10-15T04:41:20.379499Z
+SparkConcepts,"partitions=1 mean occupancy per carpark-hour",653,2026-10-15T04:42:57.708453Z
+SparkConcepts,"partitions=2 mean occupancy per carpark-hour",435,2026-10-15T04:42:58.770886Z
+SparkConcepts,"partitions=4 mean occupancy per carpark-hour",329,2026-10-15T04:42:59.522563Z
+SparkConcepts,"partitions=8 mean occupancy per carpark-hour",529,2026-10-15T04:43:00.603923Z
+SparkConcepts,"partitions=16 mean occupancy per carpark-hour",499,2026-10-15T04:43:01.630710Z
+SparkConcepts,"partitions=32 mean occupancy per carpark-hour",611,2026-10-15T04:43:02.781318Z
+SparkConcepts,"no_cache action 1 (count)",730,2026-10-15T04:43:07.521592Z
+SparkConcepts,"no_cache action 2 (mean occupancy)",734,2026-10-15T04:43:08.257034Z
+SparkConcepts,"no_cache action 3 (count again)",557,2026-10-15T04:43:08.814814Z
+SparkConcepts,"cache_MEMORY_ONLY action 1 (count)",943,2026-10-15T04:43:09.789984Z
+SparkConcepts,"cache_MEMORY_ONLY action 2 (mean occupancy)",34,2026-10-15T04:43:09.825151Z
+SparkConcepts,"cache_MEMORY_ONLY action 3 (count again)",29,2026-10-15T04:43:09.854832Z
+SparkConcepts,"persist_MEMORY_AND_DISK action 1 (count)",944,2026-10-15T04:43:10.833721Z
+SparkConcepts,"persist_MEMORY_AND_DISK action 2 (mean occupancy)",32,2026-10-15T04:43:10.866534Z
+SparkConcepts,"persist_MEMORY_AND_DISK action 3 (count again)",25,2026-10-15T04:43:10.891890Z
+SparkConcepts,"persist_MEMORY_ONLY_SER action 1 (count)",779,2026-10-15T04:43:11.705080Z
+SparkConcepts,"persist_MEMORY_ONLY_SER action 2 (mean occupancy)",82,2026-10-15T04:43:11.787399Z
+SparkConcepts,"persist_MEMORY_ONLY_SER action 3 (count again)",78,2026-10-15T04:43:11.866488Z
+SparkConcepts,"shuffle: reduceByKey",295,2026-10-15T04:43:12.166375Z
+SparkConcepts,"shuffle: groupByKey",436,2026-10-15T04:43:12.853946Z
+SparkConcepts,"shuffle: shuffle join",476,2026-10-15T04:43:13.592879Z
+SparkConcepts,"shuffle: broadcast join",136,2026-10-15T04:43:13.997441Z

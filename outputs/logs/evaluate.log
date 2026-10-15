@@ -1,0 +1,4 @@
+2026-10-15 04:51:38,802 INFO evaluate: Persistence                        acc 0.9843 P 0.830 R 0.808 F1 0.819 PR-AUC 0.694
+2026-10-15 04:51:38,812 INFO evaluate: Historical                         acc 0.9573 P 0.897 R 0.028 F1 0.055 PR-AUC 0.710
+2026-10-15 04:51:44,083 INFO evaluate: Random Forest                      acc 0.9625 P 0.539 R 0.978 F1 0.695 PR-AUC 0.903
+2026-10-15 04:51:46,032 INFO evaluate: Gradient-Boosted Trees             acc 0.9680 P 0.583 R 0.941 F1 0.720 PR-AUC 0.858

@@ -1,0 +1,8 @@
+operation,value
+textFile (one split per small file),193
+"coalesce(32) (narrow, no shuffle)",32
+"repartition(16) (wide, full shuffle)",16
+coalesce(4) (narrow),4
+reduceByKey(samePartitioner) stages,1
+reduceByKey(samePartitioner) shuffle_write_bytes,0
+coalesce32 skew max/min,1.167

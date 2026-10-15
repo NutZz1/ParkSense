@@ -1,0 +1,5 @@
+mode,storage_level,action1_ms,action2_ms,action3_ms,mem_bytes,disk_bytes
+no_cache,NONE,730,734,557,0,0
+cache_MEMORY_ONLY,Memory Deserialized 1x Replicated,943,34,29,49932272,0
+persist_MEMORY_AND_DISK,Disk Memory Deserialized 1x Replicated,944,32,25,49932272,0
+persist_MEMORY_ONLY_SER,Memory Serialized 1x Replicated,779,82,78,18021502,0

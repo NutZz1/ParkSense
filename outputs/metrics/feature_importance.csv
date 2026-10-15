@@ -1,0 +1,87 @@
+model,feature,importance
+Gradient-Boosted Trees,te_chd,0.86672
+Gradient-Boosted Trees,occupancy,0.045778
+Gradient-Boosted Trees,te_ch,0.019963
+Gradient-Boosted Trees,avail_ratio,0.014915
+Gradient-Boosted Trees,ratio_1d,0.005415
+Gradient-Boosted Trees,dow,0.004725
+Gradient-Boosted Trees,full_now,0.004497
+Gradient-Boosted Trees,hour_sin,0.00403
+Gradient-Boosted Trees,minute_of_day,0.003908
+Gradient-Boosted Trees,hour_cos,0.003739
+Gradient-Boosted Trees,total_lots,0.003401
+Gradient-Boosted Trees,ratio_lag30,0.002981
+Gradient-Boosted Trees,ratio_lag15,0.002871
+Gradient-Boosted Trees,roll_mean_3h,0.002451
+Gradient-Boosted Trees,ratio_lag60,0.002378
+Gradient-Boosted Trees,roll_std_3h,0.002314
+Gradient-Boosted Trees,delta_60,0.002
+Gradient-Boosted Trees,ratio_lag120,0.001754
+Gradient-Boosted Trees,roll_mean_1h,0.001633
+Gradient-Boosted Trees,delta_15,0.00159
+Gradient-Boosted Trees,roll_std_1h,0.001505
+Gradient-Boosted Trees,car_park_type_ohe_SURFACE/MULTI-STOREY CAR PARK,0.000472
+Gradient-Boosted Trees,car_park_decks,0.000283
+Gradient-Boosted Trees,night_parking_flag,0.000267
+Gradient-Boosted Trees,free_parking_flag,0.000128
+Gradient-Boosted Trees,car_park_type_ohe_MULTI-STOREY CAR PARK,9.9e-05
+Gradient-Boosted Trees,has_1d,7.8e-05
+Gradient-Boosted Trees,car_park_type_ohe_BASEMENT CAR PARK,6.9e-05
+Gradient-Boosted Trees,car_park_type_ohe_SURFACE CAR PARK,3.3e-05
+Gradient-Boosted Trees,ratio_7d,0.0
+Gradient-Boosted Trees,has_7d,0.0
+Gradient-Boosted Trees,is_weekend,0.0
+Gradient-Boosted Trees,is_holiday,0.0
+Gradient-Boosted Trees,basement_flag,0.0
+Gradient-Boosted Trees,car_park_type_ohe_COVERED CAR PARK,0.0
+Gradient-Boosted Trees,car_park_type_ohe_UNKNOWN,0.0
+Gradient-Boosted Trees,car_park_type_ohe_MECHANISED AND SURFACE CAR PARK,0.0
+Gradient-Boosted Trees,car_park_type_ohe_MECHANISED CAR PARK,0.0
+Gradient-Boosted Trees,car_park_type_ohe___unknown,0.0
+Gradient-Boosted Trees,type_of_parking_system_ohe_ELECTRONIC PARKING,0.0
+Gradient-Boosted Trees,type_of_parking_system_ohe_COUPON PARKING,0.0
+Gradient-Boosted Trees,type_of_parking_system_ohe_UNKNOWN,0.0
+Gradient-Boosted Trees,type_of_parking_system_ohe___unknown,0.0
+Random Forest,te_chd,0.222187
+Random Forest,avail_ratio,0.139983
+Random Forest,te_ch,0.10982
+Random Forest,ratio_lag30,0.102786
+Random Forest,ratio_lag15,0.087595
+Random Forest,roll_mean_1h,0.082441
+Random Forest,occupancy,0.074923
+Random Forest,ratio_lag60,0.066007
+Random Forest,roll_mean_3h,0.025477
+Random Forest,ratio_lag120,0.024738
+Random Forest,full_now,0.017756
+Random Forest,roll_std_1h,0.008257
+Random Forest,car_park_type_ohe_MULTI-STOREY CAR PARK,0.007792
+Random Forest,roll_std_3h,0.005652
+Random Forest,car_park_decks,0.004302
+Random Forest,car_park_type_ohe_SURFACE CAR PARK,0.003882
+Random Forest,total_lots,0.003477
+Random Forest,delta_15,0.002705
+Random Forest,delta_60,0.00178
+Random Forest,minute_of_day,0.00155
+Random Forest,hour_cos,0.001385
+Random Forest,ratio_1d,0.001302
+Random Forest,hour_sin,0.001178
+Random Forest,free_parking_flag,0.001018
+Random Forest,has_1d,0.000858
+Random Forest,dow,0.000751
+Random Forest,night_parking_flag,0.000151
+Random Forest,type_of_parking_system_ohe_ELECTRONIC PARKING,6.1e-05
+Random Forest,car_park_type_ohe_UNKNOWN,5.1e-05
+Random Forest,type_of_parking_system_ohe_UNKNOWN,4.5e-05
+Random Forest,car_park_type_ohe_BASEMENT CAR PARK,3.5e-05
+Random Forest,car_park_type_ohe_SURFACE/MULTI-STOREY CAR PARK,2.1e-05
+Random Forest,basement_flag,1.8e-05
+Random Forest,car_park_type_ohe_COVERED CAR PARK,1.4e-05
+Random Forest,car_park_type_ohe_MECHANISED AND SURFACE CAR PARK,1e-06
+Random Forest,ratio_7d,0.0
+Random Forest,has_7d,0.0
+Random Forest,is_weekend,0.0
+Random Forest,is_holiday,0.0
+Random Forest,car_park_type_ohe_MECHANISED CAR PARK,0.0
+Random Forest,car_park_type_ohe___unknown,0.0
+Random Forest,type_of_parking_system_ohe_COUPON PARKING,0.0
+Random Forest,type_of_parking_system_ohe___unknown,0.0

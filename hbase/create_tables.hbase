@@ -1,0 +1,26 @@
+# ParkSense HBase schema (idempotent). Run: hbase shell -n hbase/create_tables.hbase
+# Families: short names (s/p/m/a/v) because every family/qualifier name is stored with every cell.
+begin
+  create_namespace 'parksense'
+rescue => e
+  puts "namespace parksense exists"
+end
+have = list_namespace_tables('parksense').to_a
+unless have.include?('carpark_live')
+  # s = state (rewritten every minute) · p = prediction (every ~5 min, other process) · m = static metadata
+  create 'parksense:carpark_live', {NAME => 's', VERSIONS => 1}, {NAME => 'p', VERSIONS => 1}, {NAME => 'm', VERSIONS => 1}
+end
+unless have.include?('carpark_history')
+  # row key carpark_no#<Long.MAX_VALUE - epoch_ms, 19 digits> -> newest first; TTL 14 days
+  create 'parksense:carpark_history', {NAME => 's', VERSIONS => 1, TTL => 1209600}
+end
+unless have.include?('predictions_log')
+  # row key carpark_no#<target_epoch_ms>; p written at prediction time, a written later by the verifier
+  create 'parksense:predictions_log', {NAME => 'p', VERSIONS => 1}, {NAME => 'a', VERSIONS => 1}
+end
+unless have.include?('metrics')
+  create 'parksense:metrics', {NAME => 'v', VERSIONS => 1}
+end
+puts list_namespace_tables('parksense').to_a.inspect
+describe 'parksense:carpark_history'
+exit

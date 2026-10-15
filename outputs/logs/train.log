@@ -1,0 +1,15 @@
+2026-10-15 04:47:29,540 INFO train: train rows=219101 pos=0.0453 days=2 2026-10-13 04:00 UTC .. 2026-10-14 12:45 UTC
+2026-10-15 04:47:29,540 INFO train: val   rows=44866 pos=0.0509 days=2 2026-10-14 13:30 UTC .. 2026-10-14 20:15 UTC
+2026-10-15 04:47:29,540 INFO train: test  rows=49039 pos=0.0438 days=1 2026-10-14 21:00 UTC .. 2026-10-15 04:00 UTC
+2026-10-15 04:47:54,784 INFO train: train rows=219101 pos=0.0453 days=2 2026-10-13 04:00 UTC .. 2026-10-14 12:45 UTC
+2026-10-15 04:47:54,785 INFO train: val   rows=44866 pos=0.0509 days=2 2026-10-14 13:30 UTC .. 2026-10-14 20:15 UTC
+2026-10-15 04:47:54,785 INFO train: test  rows=49039 pos=0.0438 days=1 2026-10-14 21:00 UTC .. 2026-10-15 04:00 UTC
+2026-10-15 04:48:52,944 INFO train: train rows=219101 pos=0.0453 days=2 2026-10-13 04:00 UTC .. 2026-10-14 12:45 UTC
+2026-10-15 04:48:52,944 INFO train: val   rows=44866 pos=0.0509 days=2 2026-10-14 13:30 UTC .. 2026-10-14 20:15 UTC
+2026-10-15 04:48:52,944 INFO train: test  rows=49039 pos=0.0438 days=1 2026-10-14 21:00 UTC .. 2026-10-15 04:00 UTC
+2026-10-15 04:49:00,990 INFO train: rf {'numTrees': 60, 'maxDepth': 10} fit 7s: val PR-AUC 0.902, best F1 0.830 @ 0.06 (P 0.764 R 0.909)
+2026-10-15 04:49:08,952 INFO train: rf {'numTrees': 60, 'maxDepth': 14} fit 7s: val PR-AUC 0.838, best F1 0.816 @ 0.06 (P 0.779 R 0.857)
+2026-10-15 04:49:25,269 INFO train: gbt {'maxIter': 40, 'maxDepth': 6} fit 16s: val PR-AUC 0.771, best F1 0.793 @ 0.10 (P 0.812 R 0.775)
+2026-10-15 04:49:55,448 INFO train: gbt {'maxIter': 80, 'maxDepth': 6} fit 29s: val PR-AUC 0.691, best F1 0.788 @ 0.05 (P 0.811 R 0.766)
+2026-10-15 04:50:08,467 INFO train: refit rf on train+val in 13s -> /home/hduser/parksense-sg/models/rf_30
+2026-10-15 04:50:36,499 INFO train: refit gbt on train+val in 28s -> /home/hduser/parksense-sg/models/gbt_30

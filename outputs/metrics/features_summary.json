@@ -1,0 +1,65 @@
+{
+  "horizons_min": [
+    15,
+    30,
+    60
+  ],
+  "full_ratio": 0.1,
+  "numeric_features": [
+    "avail_ratio",
+    "occupancy",
+    "full_now",
+    "total_lots",
+    "ratio_lag15",
+    "ratio_lag30",
+    "ratio_lag60",
+    "ratio_lag120",
+    "delta_15",
+    "delta_60",
+    "roll_mean_1h",
+    "roll_std_1h",
+    "roll_mean_3h",
+    "roll_std_3h",
+    "ratio_1d",
+    "ratio_7d",
+    "has_1d",
+    "has_7d",
+    "hour_sin",
+    "hour_cos",
+    "minute_of_day",
+    "dow",
+    "is_weekend",
+    "is_holiday",
+    "free_parking_flag",
+    "night_parking_flag",
+    "basement_flag",
+    "car_park_decks",
+    "te_chd",
+    "te_ch"
+  ],
+  "categorical_features": [
+    "car_park_type",
+    "type_of_parking_system"
+  ],
+  "filters": {
+    "lot_type": "C",
+    "min_total_lots": 10,
+    "excluded": "always-zero / never-changing carparks (RddPipeline)"
+  },
+  "counts": {
+    "occupancy_rows": 460643,
+    "car_rows": 379780,
+    "excluded_carparks": 212,
+    "slot_rows": 329836,
+    "feature_rows": 329836,
+    "carparks": 1739,
+    "rows_with_label_15": 322368,
+    "positive_rate_15": 0.0461,
+    "rows_with_label_30": 319861,
+    "positive_rate_30": 0.0459,
+    "rows_with_label_60": 317295,
+    "positive_rate_60": 0.0459,
+    "dropped_no_future_30": 9975
+  },
+  "elapsed_s": 26.2
+}

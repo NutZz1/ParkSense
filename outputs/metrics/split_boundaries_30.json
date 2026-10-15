@@ -1,0 +1,44 @@
+{
+  "horizon_min": 30,
+  "boundary_slots": [
+    1991094,
+    1991124
+  ],
+  "mode": "timeline-quantiles (fewer than 10 days available)",
+  "splits": [
+    {
+      "split": "train",
+      "rows": 219101,
+      "positive_rate": 0.0453,
+      "days": 2,
+      "weekend_share": 0.0,
+      "start": "2026-10-13 04:00 UTC",
+      "end": "2026-10-14 12:45 UTC"
+    },
+    {
+      "split": "val",
+      "rows": 44866,
+      "positive_rate": 0.0509,
+      "days": 2,
+      "weekend_share": 0.0,
+      "start": "2026-10-14 13:30 UTC",
+      "end": "2026-10-14 20:15 UTC"
+    },
+    {
+      "split": "test",
+      "rows": 49039,
+      "positive_rate": 0.0438,
+      "days": 1,
+      "weekend_share": 0.0,
+      "start": "2026-10-14 21:00 UTC",
+      "end": "2026-10-15 04:00 UTC"
+    }
+  ],
+  "class_weights": {
+    "w_pos": 11.03672174088253,
+    "w_neg": 0.5237265447591729,
+    "train_rows": 219101,
+    "train_pos": 9926.0
+  },
+  "target_encoding_global_rate": 0.04530330760699403
+}

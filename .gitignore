@@ -1,0 +1,13 @@
+data/
+models/
+.env
+outputs/spark-events/
+outputs/logs/*.pid
+outputs/logs/*.out
+spark-scala/target/
+spark-scala/project/target/
+spark-scala/project/project/
+ui/**/node_modules/
+ui/client/dist/
+__pycache__/
+*.pyc

@@ -1,0 +1,6 @@
+free_parking,night_parking,carparks,evening_mean_occupancy,evening_nearly_full_rate
+SUN & PH FR 7AM-10.30PM,NO,110,0.6458,0.1138
+SUN & PH FR 1PM-10.30PM,YES,11,0.6275,0.1015
+NO,NO,157,0.5999,0.2027
+NO,YES,282,0.481,0.0611
+SUN & PH FR 7AM-10.30PM,YES,1218,0.4509,0.0244

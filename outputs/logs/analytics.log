@@ -1,0 +1,8 @@
+2026-10-15 04:44:08,389 INFO analytics: q1_occupancy_by_hour_weekday_weekend: 24 rows in 2.77s
+2026-10-15 04:44:10,125 INFO analytics: q2_top20_most_often_full: 20 rows in 1.73s
+2026-10-15 04:44:11,556 INFO analytics: q3_full_rate_by_type_and_system: 10 rows in 1.43s
+2026-10-15 04:44:12,543 INFO analytics: q4_policy_effect_evening: 5 rows in 0.99s
+2026-10-15 04:44:13,499 INFO analytics: q5_busiest_day_per_type: 8 rows in 0.95s
+2026-10-15 04:44:14,352 INFO analytics: q6_daily_citywide_full_rate: 3 rows in 0.85s
+2026-10-15 04:44:15,129 INFO analytics: q7_evening_vs_morning_swing: 30 rows in 0.78s
+2026-10-15 04:44:16,565 INFO analytics: q8_data_quality_per_day: 3 rows in 1.43s

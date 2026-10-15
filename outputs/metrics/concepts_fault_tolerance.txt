@@ -1,0 +1,38 @@
+Fault-tolerance demo, master=local[4,3]
+
+Task attempts for partition 2:
+  stage 64 partition 2 attempt 0 -> FAILED SIMULATED executor failure in partition 2, attempt 0
+  stage 64 partition 2 attempt 1 -> SUCCESS 
+
+Tasks in the job: 33 (1 failed, 32 succeeded)
+Expected sum(occupancy) without failure: 172094.606523
+Result with a failed + retried task:     172094.606523
+Identical: true
+
+Partition 2 was recomputed from its lineage (cached blocks of `car`, or the textFile split if evicted), so the job succeeded with the same result.
+
+--- Checkpoint ---
+isCheckpointed = true
+
+BEFORE (17 lines):
+(32) MapPartitionsRDD[155] at filter at SparkConcepts.scala:226 []
+ |   MapPartitionsRDD[154] at mapValues at SparkConcepts.scala:226 []
+ |   ShuffledRDD[153] at reduceByKey at SparkConcepts.scala:226 []
+ +-(32) MapPartitionsRDD[152] at map at SparkConcepts.scala:226 []
+    |   MapPartitionsRDD[21] at map at SparkConcepts.scala:20 []
+    |       CachedPartitions: 32; MemorySize: 17.2 MiB; DiskSize: 0.0 B
+    |   MapPartitionsRDD[20] at filter at SparkConcepts.scala:19 []
+    |   MapPartitionsRDD[19] at map at SparkConcepts.scala:18 []
+    |   MapPartitionsRDD[18] at filter at SparkConcepts.scala:18 []
+    |   MapPartitionsRDD[17] at flatMap at SparkConcepts.scala:18 []
+    |   MapPartitionsRDD[16] at map at SparkConcepts.scala:17 []
+    |   MapPartitionsRDD[15] at filter at SparkConcepts.scala:17 []
+    |   MapPartitionsRDD[14] at map at SparkConcepts.scala:17 []
+    |   CoalescedRDD[2] at coalesce at SparkConcepts.scala:48 []
+    |       CachedPartitions: 32; MemorySize: 21.0 MiB; DiskSize: 0.0 B
+    |   hdfs://localhost:9000/parksense/raw/flat/*/*.txt MapPartitionsRDD[1] at textFile at SparkConcepts.scala:47 []
+    |   hdfs://localhost:9000/parksense/raw/flat/*/*.txt HadoopRDD[0] at textFile at SparkConcepts.scala:47 []
+
+AFTER (2 lines):
+(32) MapPartitionsRDD[155] at filter at SparkConcepts.scala:226 []
+ |   ReliableCheckpointRDD[156] at count at SparkConcepts.scala:229 []

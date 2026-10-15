@@ -1,0 +1,5 @@
+algo,params,fit_seconds,tune_rows_share,val_f1_at_0.5,val_pr_auc,val_roc_auc,val_best_f1,val_best_threshold,val_precision,val_recall
+rf,"{""numTrees"": 60, ""maxDepth"": 10}",6.9,0.3,0.8025,0.9018,0.9806,0.8302,0.06,0.7637,0.9094
+rf,"{""numTrees"": 60, ""maxDepth"": 14}",6.6,0.3,0.8029,0.8383,0.9644,0.8162,0.06,0.7791,0.8569
+gbt,"{""maxIter"": 40, ""maxDepth"": 6}",15.6,0.3,0.7196,0.771,0.9684,0.793,0.1,0.8123,0.7746
+gbt,"{""maxIter"": 80, ""maxDepth"": 6}",29.4,0.3,0.7013,0.6909,0.8682,0.788,0.05,0.811,0.7663

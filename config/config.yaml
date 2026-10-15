@@ -1,0 +1,82 @@
+# ParkSense SG — single source of truth. Relative paths resolve against project.root.
+
+project:
+  name: parksense-sg
+  root: /home/hduser/parksense-sg
+  random_seed: 42
+
+api:
+  availability_url: https://api.data.gov.sg/v1/transport/carpark-availability
+  metadata_url: https://data.gov.sg/api/action/datastore_search
+  metadata_resource_id: d_23f946fa557947f93a8043bbef41dd09
+  api_key_header: x-api-key          # value from env DATAGOV_API_KEY (optional)
+  max_requests_per_10s: 5            # safety margin under the 6/10 s no-key limit
+  max_retries: 6
+  backoff_base: 2.0
+  timeout: 60
+  timestamp_tolerance_min: 10        # response items[0].timestamp must be within ± of the request
+
+backfill:
+  days: 30
+  interval_min: 15
+
+live:
+  poll_seconds: 60
+  score_seconds: 300
+  verify_seconds: 300
+  stream_trigger_seconds: 60
+  max_files_per_trigger: 5
+
+time:
+  tz: Asia/Singapore                 # SGT = UTC+8, no DST
+  offset_hours: 8
+
+thresholds:
+  stale_max_min: 30
+  full_ratio: 0.10                   # nearly full = <= 10% of car lots free
+  horizon_min: 30
+  horizons_sensitivity: [15, 30, 60]
+  always_zero_share: 0.95
+  min_total_lots: 10
+  lot_type_ml: C
+
+# Singapore public holidays 2026 (verify against MOM's official list)
+holidays: [2026-01-01, 2026-02-17, 2026-02-18, 2026-03-21, 2026-04-03, 2026-05-01, 2026-05-27, 2026-05-31, 2026-06-01, 2026-08-09, 2026-08-10, 2026-11-08, 2026-11-09, 2026-12-25]
+
+paths:
+  raw: data/raw
+  snapshots: data/raw/snapshots
+  flat: data/raw/flat
+  metadata_csv: data/raw/carpark_info.csv
+  processed: data/processed
+  stream_incoming: data/stream/incoming
+  stream_archive: data/stream/archive
+  stream_checkpoint: data/stream/checkpoint
+  stream_state: data/stream/state.json
+  models: models
+  logs: outputs/logs
+  metrics: outputs/metrics
+  figures: outputs/figures
+  analytics: outputs/analytics
+  lineage: outputs/lineage
+  spark_events: outputs/spark-events
+  checkpoint_dir: data/processed/rdd-checkpoint
+  use_hdfs: true                     # false -> file:// local paths everywhere
+  hdfs_root: hdfs://localhost:9000/parksense
+
+hbase:
+  namespace: parksense
+  thrift_host: localhost
+  thrift_port: 9090
+  rest_url: http://localhost:8085
+  history_ttl_days: 14
+
+spark:
+  master: local[*]
+  default_partitions: 8
+  shuffle_partitions: 16
+  driver_memory: 4g
+
+ui:
+  server_port: 5000
+  client_port: 5173
