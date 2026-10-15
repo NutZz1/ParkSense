@@ -14,3 +14,10 @@
 2026-10-15 18:29:00,402 INFO evaluate: Historical                         acc 0.9734 P 0.754 R 0.733 F1 0.743 PR-AUC 0.783
 2026-10-15 18:29:47,535 INFO evaluate: Random Forest                      acc 0.9852 P 0.855 R 0.866 F1 0.860 PR-AUC 0.943
 2026-10-15 18:30:02,579 INFO evaluate: Gradient-Boosted Trees             acc 0.9847 P 0.866 R 0.840 F1 0.853 PR-AUC 0.932
+2026-10-15 20:17:48,241 INFO evaluate: Persistence                        acc 0.9867 P 0.873 R 0.874 F1 0.873 PR-AUC 0.778
+2026-10-15 20:17:48,647 INFO evaluate: Historical                         acc 0.9734 P 0.754 R 0.733 F1 0.743 PR-AUC 0.783
+2026-10-15 20:19:46,389 INFO evaluate: Random Forest                      acc 0.9852 P 0.855 R 0.866 F1 0.860 PR-AUC 0.943
+2026-10-15 20:20:39,506 INFO evaluate: Gradient-Boosted Trees             acc 0.9847 P 0.866 R 0.840 F1 0.853 PR-AUC 0.932
+2026-10-15 20:24:54,061 INFO evaluate: horizon 15 min: F1 0.890 vs persistence 0.908
+2026-10-15 20:25:10,559 INFO evaluate: horizon 30 min: F1 0.860 vs persistence 0.873
+2026-10-15 20:29:19,374 INFO evaluate: horizon 60 min: F1 0.826 vs persistence 0.825

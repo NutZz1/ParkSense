@@ -9,3 +9,33 @@
 2026-10-15 19:43:03,181 INFO verify_live: verified 1773 (+1773): acc 0.9904 P 0.958 R 0.876 F1 0.915 | persistence F1 0.951 | transitions 10
 2026-10-15 19:48:09,556 INFO verify_live: verified 3547 (+1774): acc 0.9924 P 0.974 R 0.895 F1 0.933 | persistence F1 0.964 | transitions 15
 2026-10-15 19:53:18,230 INFO verify_live: verified 5321 (+1774): acc 0.9923 P 0.972 R 0.895 F1 0.932 | persistence F1 0.964 | transitions 22
+2026-10-15 19:58:24,061 INFO verify_live: verified 7093 (+1772): acc 0.9927 P 0.972 R 0.902 F1 0.935 | persistence F1 0.970 | transitions 25
+2026-10-15 20:03:30,633 INFO verify_live: verified 8865 (+1772): acc 0.9923 P 0.967 R 0.900 F1 0.932 | persistence F1 0.968 | transitions 33
+2026-10-15 20:08:37,348 INFO verify_live: verified 10637 (+1772): acc 0.9921 P 0.962 R 0.900 F1 0.930 | persistence F1 0.964 | transitions 45
+2026-10-15 20:13:45,455 INFO verify_live: verified 12409 (+1772): acc 0.9919 P 0.960 R 0.898 F1 0.928 | persistence F1 0.961 | transitions 56
+2026-10-15 20:19:13,395 ERROR verify_live: verify failed: timed out
+Traceback (most recent call last):
+  File "/home/hduser/parksense-sg/pyspark_jobs/verify_live.py", line 79, in <module>
+    verify_once()
+  File "/home/hduser/parksense-sg/pyspark_jobs/verify_live.py", line 35, in verify_once
+    for key, v in hbase_io.scan_predictions_log(only_unverified=True):
+  File "/home/hduser/parksense-sg/ingest/hbase_io.py", line 160, in scan_predictions_log
+    for k, v in c.table(t("predictions_log")).scan():
+  File "/home/hduser/parksense-venv/lib/python3.12/site-packages/happybase/table.py", line 401, in scan
+    scan_id = self.connection.client.scannerOpenWithScan(
+              ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/home/hduser/parksense-venv/lib/python3.12/site-packages/thriftpy2/thrift.py", line 250, in _req
+    return self._recv(_api)
+           ^^^^^^^^^^^^^^^^
+  File "/home/hduser/parksense-venv/lib/python3.12/site-packages/thriftpy2/thrift.py", line 264, in _recv
+    fname, mtype, rseqid = self._iprot.read_message_begin()
+                           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "thriftpy2/protocol/cybin/cybin.pyx", line 530, in thriftpy2.protocol.cybin.cybin.TCyBinaryProtocol.read_message_begin
+  File "thriftpy2/protocol/cybin/cybin.pyx", line 81, in thriftpy2.protocol.cybin.cybin.read_i32
+  File "thriftpy2/transport/buffered/cybuffered.pyx", line 67, in thriftpy2.transport.buffered.cybuffered.TCyBufferedTransport.c_read
+  File "thriftpy2/transport/buffered/cybuffered.pyx", line 71, in thriftpy2.transport.buffered.cybuffered.TCyBufferedTransport.read_trans
+  File "thriftpy2/transport/cybase.pyx", line 63, in thriftpy2.transport.cybase.TCyBuffer.read_trans
+  File "/home/hduser/parksense-venv/lib/python3.12/site-packages/thriftpy2/transport/socket.py", line 112, in read
+    buff = sock.recv(sz)
+           ^^^^^^^^^^^^^
+TimeoutError: timed out

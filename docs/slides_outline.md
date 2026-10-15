@@ -66,6 +66,7 @@ Figures are in `outputs/figures/`; numbers come from `outputs/metrics/` and `out
   - GBT 0.985 / 0.866 / 0.840 / 0.853 / 0.932
 * Honest result: the model does **not** beat persistence on F1 — only 1.39% of rows change state in 30 min
 * Transitions (10,757 test rows that change): persistence **0%** correct, model **31.8%** (40.0% of "becomes full")
+* Horizons: F1 15 min 0.890 vs 0.908 · 30 min 0.860 vs 0.873 · **60 min 0.826 vs 0.825** — the model catches up as more states change
 * Visuals: `fig07_model_comparison.png`, `fig08_confusion_best.png`, `fig14_transitions_horizons.png`
 
 ### 10. Visualisation (≥ 3 charts)

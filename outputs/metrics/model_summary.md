@@ -7,3 +7,5 @@ The selected model is **Random Forest** ({"numTrees": 60, "maxDepth": 10}, thres
 Only 1.3% of test rows change state within 30 min. On exactly those transition rows persistence is always wrong (0% correct), while the model gets 31.8% right — this is where prediction adds value over a live count.
 
 Most important features: te_chd, avail_ratio, ratio_lag30, ratio_lag15, te_ch.
+
+Horizon sensitivity (F1 model vs persistence; state-change rate): 15 min: 0.890 vs 0.908 (1.0%); 30 min: 0.860 vs 0.873 (1.3%); 60 min: 0.826 vs 0.825 (1.8%).

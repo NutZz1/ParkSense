@@ -1,0 +1,4 @@
+horizon_min,model,threshold,state_change_rate,accuracy,precision,recall,f1,pr_auc,persistence_accuracy,persistence_precision,persistence_recall,persistence_f1
+15,Random Forest,0.88,0.0097,0.9884,0.8888,0.8913,0.89,0.962,0.9903,0.9079,0.9083,0.9081
+30,Random Forest,0.89,0.0133,0.9852,0.8547,0.8657,0.8602,0.9428,0.9867,0.8728,0.8737,0.8733
+60,Random Forest,0.86,0.0184,0.9806,0.7821,0.8761,0.8265,0.9192,0.9816,0.8244,0.826,0.8252

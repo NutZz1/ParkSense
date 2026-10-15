@@ -108,7 +108,9 @@ Only **1.39%** of rows change state within 30 minutes, so "it will be full if it
 time (test F1 0.873). The Random Forest has F1 0.860 overall — **it does not beat persistence on F1**, which we report
 honestly — but its PR-AUC is far higher (0.943 vs 0.778). On the 10,757 test rows where the state *does* change,
 persistence is 0% correct by definition; the model is right on **31.8%** (40.0% of "becomes full" events). That is the
-value of a prediction over a live count.
+value of a prediction over a live count. The gap also closes with horizon: F1 vs persistence is 0.890 vs 0.908 at
+15 min, 0.860 vs 0.873 at 30 min and **0.826 vs 0.825 at 60 min**, because more states change further ahead
+(0.97% → 1.84% of rows).
 
 **21. Class imbalance?**
 5.47% positives. Inverse-frequency `weightCol` on the training split, PR-AUC as the main ranking metric, and the

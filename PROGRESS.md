@@ -100,7 +100,8 @@ in 1.01% / 1.39% / 1.93% of rows; median staleness 2.35 min; no public holidays 
 5.52% pos), val 4 (661,556), test 5 (807,637, 5.25%). Validation: RF {60 trees, depth 10} F1 0.837 (threshold 0.89) beat
 GBT 0.832. **Test**: persistence F1 0.873 · historical 0.743 · **RF 0.860 (PR-AUC 0.943)** · GBT 0.853. The model does not
 beat persistence on F1; on the 10,757 transition rows persistence is 0% correct and RF 31.8% (40.0% of "becomes full").
-Horizon sensitivity (15/60 min): TBD (`python pyspark_jobs/evaluate.py` without `--skip-horizons`).
+Horizon sensitivity (`horizon_sensitivity.csv`): F1 model vs persistence 15 min 0.890 vs 0.908 · 30 min 0.860 vs 0.873 ·
+**60 min 0.826 vs 0.825** (state-change rate 0.97% / 1.33% / 1.84%) — the gap closes as more states change.
 
 ## Phase 7 — Performance (DONE)
 `perf_system.csv` / `perf_interpretation.txt`: 1 → 16 cores 3.0×; data 25 → 100% = 3.8× rows, 4.2× time; shuffle
@@ -124,6 +125,8 @@ final model went live so the live evaluation only contains final-model predictio
 * HBase RegionServer aborted twice (ZooKeeper session expired under heavy Spark load) → restarted; on a real cluster
   raise `zookeeper.session.timeout` and run HBase on separate nodes.
 * HBase REST: the info UI also defaults to 8085 → `--infoport 8086`.
+* `stop_live.sh` only killed the parent process, leaving the spark-submit/PySpark JVMs orphaned (~2 GB) → it now kills
+  the whole process tree.
 
 ## Rubric coverage
 | Rubric item | Where |
