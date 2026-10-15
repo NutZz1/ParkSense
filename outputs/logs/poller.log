@@ -849,3 +849,18 @@
 2026-10-15 20:30:14,381 WARNING poller: HBase write failed: timed out
 2026-10-15 20:30:14,382 INFO poller: snapshot 2026-10-16T04:28:36+08:00: 2020 carparks, lag 26s, stale 0.6%, HBase 0 rows in 0.0s
 2026-10-15 20:30:16,777 INFO poller: snapshot 2026-10-16T04:29:36+08:00: 2020 carparks, lag 40s, stale 0.6%, HBase 4010 rows in 0.2s
+2026-10-15 20:31:17,341 INFO poller: snapshot 2026-10-16T04:30:36+08:00: 2019 carparks, lag 41s, stale 0.6%, HBase 4010 rows in 0.1s
+2026-10-15 20:32:17,604 INFO poller: snapshot 2026-10-16T04:31:36+08:00: 2019 carparks, lag 41s, stale 0.6%, HBase 4010 rows in 0.1s
+2026-10-15 20:33:17,732 INFO poller: snapshot 2026-10-16T04:32:36+08:00: 2019 carparks, lag 41s, stale 0.6%, HBase 4010 rows in 0.1s
+2026-10-15 20:34:18,327 INFO poller: snapshot 2026-10-16T04:33:36+08:00: 2017 carparks, lag 42s, stale 0.6%, HBase 4010 rows in 0.1s
+2026-10-15 20:35:18,336 INFO poller: snapshot 2026-10-16T04:34:36+08:00: 2018 carparks, lag 42s, stale 0.6%, HBase 4010 rows in 0.1s
+2026-10-15 20:36:18,874 INFO poller: snapshot 2026-10-16T04:35:36+08:00: 2017 carparks, lag 42s, stale 0.6%, HBase 4010 rows in 0.1s
+2026-10-15 20:37:19,061 INFO poller: snapshot 2026-10-16T04:36:36+08:00: 2018 carparks, lag 42s, stale 0.7%, HBase 4010 rows in 0.1s
+2026-10-15 20:38:19,188 INFO poller: snapshot 2026-10-16T04:37:36+08:00: 2016 carparks, lag 43s, stale 0.6%, HBase 4010 rows in 0.1s
+2026-10-15 20:39:20,972 INFO poller: snapshot 2026-10-16T04:38:36+08:00: 2016 carparks, lag 44s, stale 0.6%, HBase 4010 rows in 0.1s
+2026-10-15 20:40:22,012 INFO poller: snapshot 2026-10-16T04:39:36+08:00: 2015 carparks, lag 45s, stale 0.6%, HBase 4010 rows in 0.1s
+2026-10-15 20:41:22,810 INFO poller: snapshot 2026-10-16T04:40:36+08:00: 2017 carparks, lag 46s, stale 0.6%, HBase 4010 rows in 0.2s
+2026-10-15 20:42:23,123 INFO poller: snapshot 2026-10-16T04:41:36+08:00: 2016 carparks, lag 47s, stale 0.6%, HBase 4010 rows in 0.1s
+2026-10-15 20:43:24,387 INFO poller: snapshot 2026-10-16T04:42:36+08:00: 2014 carparks, lag 48s, stale 0.6%, HBase 4010 rows in 0.1s
+2026-10-15 20:44:25,051 INFO poller: snapshot 2026-10-16T04:43:36+08:00: 2014 carparks, lag 48s, stale 0.6%, HBase 4010 rows in 0.1s
+2026-10-15 20:45:25,066 INFO poller: snapshot 2026-10-16T04:44:36+08:00: 2014 carparks, lag 48s, stale 0.6%, HBase 4010 rows in 0.1s

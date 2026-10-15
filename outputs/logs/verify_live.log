@@ -39,3 +39,7 @@ Traceback (most recent call last):
     buff = sock.recv(sz)
            ^^^^^^^^^^^^^
 TimeoutError: timed out
+2026-10-15 20:30:31,655 INFO verify_live: verified 14181 (+1772): acc 0.9918 P 0.961 R 0.897 F1 0.928 | persistence F1 0.960 | transitions 66
+2026-10-15 20:35:39,782 INFO verify_live: verified 15953 (+1772): acc 0.9918 P 0.961 R 0.896 F1 0.927 | persistence F1 0.960 | transitions 74
+2026-10-15 20:40:51,184 INFO verify_live: verified 17725 (+1772): acc 0.9916 P 0.959 R 0.895 F1 0.926 | persistence F1 0.957 | transitions 89
+2026-10-15 20:45:35,956 INFO verify_live: verified 19497 (+1772): acc 0.9915 P 0.960 R 0.893 F1 0.925 | persistence F1 0.957 | transitions 99

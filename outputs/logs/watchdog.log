@@ -1,0 +1,3 @@
+2026-10-15T20:43:25Z watchdog loop started (components: poller stream score verify)
+2026-10-15T20:45:28Z verify down -> restart
+started verify (pid 296145)

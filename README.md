@@ -56,6 +56,7 @@ scripts/start_history_server.sh     # http://localhost:18080 for DAG screenshots
 ```bash
 scripts/start_live.sh               # poller + StreamingJob + score_live (5 min) + verify_live (5 min)
 scripts/stop_live.sh
+scripts/watchdog.sh start      # auto-restarts HDFS/HBase/Thrift/REST and the live jobs if they fail (log: outputs/logs/watchdog.log)
 python pyspark_jobs/verify_live.py && python viz/make_figures.py && python viz/fill_report.py   # refresh live results
 ```
 

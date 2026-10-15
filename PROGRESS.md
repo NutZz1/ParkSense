@@ -147,3 +147,9 @@ final model went live so the live evaluation only contains final-model predictio
 | Preprocessing & EDA | RddPipeline cleaning + `eda.py` + `docs/data_quality_report.md` |
 | Performance analysis | model + transition metrics + `perf_system.csv` + live evaluation |
 | NoSQL backend + full stack | HBase (4 tables, Thrift + REST); UI on hold for design approval |
+
+## Recovery
+`scripts/watchdog.sh start` checks every 60 s and restarts HDFS, HBase master/RegionServer, Thrift, REST and the
+live jobs (poller, stream, score, verify) if they die; heavy Spark jobs wait if < 800 MB is free. Tested: a stopped
+`verify` job was restarted within a minute. After a WSL restart, run `scripts/watchdog.sh start` once (it brings
+everything else back).

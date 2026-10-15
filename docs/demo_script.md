@@ -7,6 +7,7 @@ Run as `hduser` from `/home/hduser/parksense-sg` after `source scripts/env.sh`.
 scripts/02_start_services.sh            # HDFS, HBase, Thrift, REST
 scripts/start_live.sh                   # poller, StreamingJob, score_live, verify_live
 scripts/start_history_server.sh         # http://localhost:18080
+scripts/watchdog.sh start               # restarts anything that fails during the demo
 python pyspark_jobs/verify_live.py && python viz/make_figures.py && python viz/fill_report.py
 ```
 Open: the History Server, `outputs/figures/`, a terminal, the HBase web UI http://localhost:16010.
