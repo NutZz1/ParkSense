@@ -49,3 +49,286 @@
 2026-10-15 05:05:19,004 INFO backfill: progress 800/2880 (saved 792, skipped 0, failed 8) elapsed 2018s ETA 87 min
 2026-10-15 05:06:04,898 ERROR backfill: snapshot 2026-10-07T00:00:00 failed: snapshot without items[0].timestamp
 2026-10-15 05:06:09,256 INFO backfill: progress 820/2880 (saved 811, skipped 0, failed 9) elapsed 2068s ETA 87 min
+2026-10-15 05:06:59,509 INFO backfill: progress 840/2880 (saved 831, skipped 0, failed 9) elapsed 2118s ETA 86 min
+2026-10-15 05:07:45,460 INFO backfill: progress 860/2880 (saved 851, skipped 0, failed 9) elapsed 2164s ETA 85 min
+2026-10-15 05:08:40,010 INFO backfill: progress 880/2880 (saved 871, skipped 0, failed 9) elapsed 2219s ETA 84 min
+2026-10-15 05:09:25,959 INFO backfill: progress 900/2880 (saved 891, skipped 0, failed 9) elapsed 2265s ETA 83 min
+2026-10-15 05:10:04,810 ERROR backfill: snapshot 2026-10-06T00:00:00 failed: snapshot without items[0].timestamp
+2026-10-15 05:10:20,511 INFO backfill: progress 920/2880 (saved 910, skipped 0, failed 10) elapsed 2319s ETA 82 min
+2026-10-15 05:11:10,762 INFO backfill: progress 940/2880 (saved 930, skipped 0, failed 10) elapsed 2369s ETA 81 min
+2026-10-15 05:12:01,012 INFO backfill: progress 960/2880 (saved 950, skipped 0, failed 10) elapsed 2420s ETA 81 min
+2026-10-15 05:12:54,617 INFO backfill: progress 980/2880 (saved 970, skipped 0, failed 10) elapsed 2473s ETA 80 min
+2026-10-15 05:13:41,057 INFO backfill: progress 1000/2880 (saved 990, skipped 0, failed 10) elapsed 2520s ETA 79 min
+2026-10-15 05:14:08,676 ERROR backfill: snapshot 2026-10-05T00:00:00 failed: snapshot without items[0].timestamp
+2026-10-15 05:14:33,986 INFO backfill: progress 1020/2880 (saved 1009, skipped 0, failed 11) elapsed 2573s ETA 78 min
+2026-10-15 05:15:24,236 INFO backfill: progress 1040/2880 (saved 1029, skipped 0, failed 11) elapsed 2623s ETA 77 min
+2026-10-15 05:16:14,488 INFO backfill: progress 1060/2880 (saved 1049, skipped 0, failed 11) elapsed 2673s ETA 76 min
+2026-10-15 05:17:04,739 INFO backfill: progress 1080/2880 (saved 1069, skipped 0, failed 11) elapsed 2723s ETA 76 min
+2026-10-15 05:17:54,990 INFO backfill: progress 1100/2880 (saved 1089, skipped 0, failed 11) elapsed 2774s ETA 75 min
+2026-10-15 05:18:08,593 ERROR backfill: snapshot 2026-10-04T00:00:00 failed: snapshot without items[0].timestamp
+2026-10-15 05:18:45,255 INFO backfill: progress 1120/2880 (saved 1108, skipped 0, failed 12) elapsed 2824s ETA 74 min
+2026-10-15 05:19:35,492 INFO backfill: progress 1140/2880 (saved 1128, skipped 0, failed 12) elapsed 2874s ETA 73 min
+2026-10-15 05:20:25,756 INFO backfill: progress 1160/2880 (saved 1148, skipped 0, failed 12) elapsed 2924s ETA 72 min
+2026-10-15 05:21:16,005 INFO backfill: progress 1180/2880 (saved 1168, skipped 0, failed 12) elapsed 2975s ETA 71 min
+2026-10-15 05:22:06,271 INFO backfill: progress 1200/2880 (saved 1188, skipped 0, failed 12) elapsed 3025s ETA 71 min
+2026-10-15 05:22:11,125 ERROR backfill: snapshot 2026-10-03T00:00:00 failed: snapshot without items[0].timestamp
+2026-10-15 05:22:56,526 INFO backfill: progress 1220/2880 (saved 1207, skipped 0, failed 13) elapsed 3075s ETA 70 min
+2026-10-15 05:23:46,776 INFO backfill: progress 1240/2880 (saved 1227, skipped 0, failed 13) elapsed 3125s ETA 69 min
+2026-10-15 05:24:37,030 INFO backfill: progress 1260/2880 (saved 1247, skipped 0, failed 13) elapsed 3176s ETA 68 min
+2026-10-15 05:25:27,273 INFO backfill: progress 1280/2880 (saved 1267, skipped 0, failed 13) elapsed 3226s ETA 67 min
+2026-10-15 05:26:12,321 ERROR backfill: snapshot 2026-10-02T00:00:00 failed: snapshot without items[0].timestamp
+2026-10-15 05:26:17,550 INFO backfill: progress 1300/2880 (saved 1286, skipped 0, failed 14) elapsed 3276s ETA 66 min
+2026-10-15 05:27:07,777 INFO backfill: progress 1320/2880 (saved 1306, skipped 0, failed 14) elapsed 3326s ETA 66 min
+2026-10-15 05:27:58,025 INFO backfill: progress 1340/2880 (saved 1326, skipped 0, failed 14) elapsed 3377s ETA 65 min
+2026-10-15 05:28:48,253 INFO backfill: progress 1360/2880 (saved 1346, skipped 0, failed 14) elapsed 3427s ETA 64 min
+2026-10-15 05:29:38,533 INFO backfill: progress 1380/2880 (saved 1366, skipped 0, failed 14) elapsed 3477s ETA 63 min
+2026-10-15 05:30:13,536 ERROR backfill: snapshot 2026-10-01T00:00:00 failed: snapshot without items[0].timestamp
+2026-10-15 05:30:28,784 INFO backfill: progress 1400/2880 (saved 1385, skipped 0, failed 15) elapsed 3527s ETA 62 min
+2026-10-15 05:31:19,161 INFO backfill: progress 1420/2880 (saved 1405, skipped 0, failed 15) elapsed 3578s ETA 61 min
+2026-10-15 05:32:09,279 INFO backfill: progress 1440/2880 (saved 1425, skipped 0, failed 15) elapsed 3628s ETA 60 min
+2026-10-15 05:32:59,567 INFO backfill: progress 1460/2880 (saved 1445, skipped 0, failed 15) elapsed 3678s ETA 60 min
+2026-10-15 05:33:49,821 INFO backfill: progress 1480/2880 (saved 1465, skipped 0, failed 15) elapsed 3728s ETA 59 min
+2026-10-15 05:34:14,745 ERROR backfill: snapshot 2026-09-30T00:00:00 failed: snapshot without items[0].timestamp
+2026-10-15 05:34:40,043 INFO backfill: progress 1500/2880 (saved 1484, skipped 0, failed 16) elapsed 3779s ETA 58 min
+2026-10-15 05:35:30,265 INFO backfill: progress 1520/2880 (saved 1504, skipped 0, failed 16) elapsed 3829s ETA 57 min
+2026-10-15 05:36:20,539 INFO backfill: progress 1540/2880 (saved 1524, skipped 0, failed 16) elapsed 3879s ETA 56 min
+2026-10-15 05:37:10,794 INFO backfill: progress 1560/2880 (saved 1544, skipped 0, failed 16) elapsed 3929s ETA 55 min
+2026-10-15 05:38:01,037 INFO backfill: progress 1580/2880 (saved 1564, skipped 0, failed 16) elapsed 3980s ETA 55 min
+2026-10-15 05:38:15,948 ERROR backfill: snapshot 2026-09-29T00:00:00 failed: snapshot without items[0].timestamp
+2026-10-15 05:38:51,299 INFO backfill: progress 1600/2880 (saved 1583, skipped 0, failed 17) elapsed 4030s ETA 54 min
+2026-10-15 05:39:41,544 INFO backfill: progress 1620/2880 (saved 1603, skipped 0, failed 17) elapsed 4080s ETA 53 min
+2026-10-15 05:40:31,802 INFO backfill: progress 1640/2880 (saved 1623, skipped 0, failed 17) elapsed 4130s ETA 52 min
+2026-10-15 05:41:22,049 INFO backfill: progress 1660/2880 (saved 1643, skipped 0, failed 17) elapsed 4181s ETA 51 min
+2026-10-15 05:42:12,271 INFO backfill: progress 1680/2880 (saved 1663, skipped 0, failed 17) elapsed 4231s ETA 50 min
+2026-10-15 05:42:17,140 ERROR backfill: snapshot 2026-09-28T00:00:00 failed: snapshot without items[0].timestamp
+2026-10-15 05:43:02,548 INFO backfill: progress 1700/2880 (saved 1682, skipped 0, failed 18) elapsed 4281s ETA 50 min
+2026-10-15 05:43:51,291 INFO backfill: progress 1720/2880 (saved 1702, skipped 0, failed 18) elapsed 4330s ETA 49 min
+2026-10-15 05:44:43,025 INFO backfill: progress 1740/2880 (saved 1722, skipped 0, failed 18) elapsed 4382s ETA 48 min
+2026-10-15 05:45:58,868 INFO backfill: progress 1760/2880 (saved 1742, skipped 0, failed 18) elapsed 4457s ETA 47 min
+2026-10-15 05:46:38,327 ERROR backfill: snapshot 2026-09-27T00:00:00 failed: snapshot without items[0].timestamp
+2026-10-15 05:46:39,746 INFO backfill: progress 1780/2880 (saved 1761, skipped 0, failed 19) elapsed 4498s ETA 46 min
+2026-10-15 05:47:30,730 INFO backfill: progress 1800/2880 (saved 1781, skipped 0, failed 19) elapsed 4549s ETA 45 min
+2026-10-15 05:48:23,250 INFO backfill: progress 1820/2880 (saved 1801, skipped 0, failed 19) elapsed 4602s ETA 45 min
+2026-10-15 05:49:15,787 INFO backfill: progress 1840/2880 (saved 1821, skipped 0, failed 19) elapsed 4654s ETA 44 min
+2026-10-15 05:50:06,035 INFO backfill: progress 1860/2880 (saved 1841, skipped 0, failed 19) elapsed 4705s ETA 43 min
+2026-10-15 05:50:39,436 ERROR backfill: snapshot 2026-09-26T00:00:00 failed: snapshot without items[0].timestamp
+2026-10-15 05:50:56,260 INFO backfill: progress 1880/2880 (saved 1860, skipped 0, failed 20) elapsed 4755s ETA 42 min
+2026-10-15 05:51:46,541 INFO backfill: progress 1900/2880 (saved 1880, skipped 0, failed 20) elapsed 4805s ETA 41 min
+2026-10-15 05:52:36,784 INFO backfill: progress 1920/2880 (saved 1900, skipped 0, failed 20) elapsed 4855s ETA 40 min
+2026-10-15 05:53:25,327 INFO backfill: progress 1940/2880 (saved 1920, skipped 0, failed 20) elapsed 4904s ETA 40 min
+2026-10-15 05:54:17,288 INFO backfill: progress 1960/2880 (saved 1940, skipped 0, failed 20) elapsed 4956s ETA 39 min
+2026-10-15 05:54:40,642 ERROR backfill: snapshot 2026-09-25T00:00:00 failed: snapshot without items[0].timestamp
+2026-10-15 05:55:07,573 INFO backfill: progress 1980/2880 (saved 1959, skipped 0, failed 21) elapsed 5006s ETA 38 min
+2026-10-15 05:55:57,792 INFO backfill: progress 2000/2880 (saved 1979, skipped 0, failed 21) elapsed 5056s ETA 37 min
+2026-10-15 05:56:55,337 WARNING backfill: GET failed (https://api.data.gov.sg/v1/transport/carpark-availability, attempt 1/6): ('Connection aborted.', RemoteDisconnected('Remote end closed connection without response')); sleeping 2s
+2026-10-15 05:57:01,960 WARNING backfill: GET failed (https://api.data.gov.sg/v1/transport/carpark-availability, attempt 1/6): ('Connection aborted.', RemoteDisconnected('Remote end closed connection without response')); sleeping 2s
+2026-10-15 05:57:39,226 WARNING backfill: GET failed (https://api.data.gov.sg/v1/transport/carpark-availability, attempt 1/6): HTTPSConnectionPool(host='api.data.gov.sg', port=443): Read timed out. (read timeout=60); sleeping 2s
+2026-10-15 05:57:50,524 INFO backfill: progress 2020/2880 (saved 1999, skipped 0, failed 21) elapsed 5169s ETA 37 min
+2026-10-15 05:57:50,529 INFO backfill: progress 2040/2880 (saved 2019, skipped 0, failed 21) elapsed 5169s ETA 35 min
+2026-10-15 05:58:42,016 INFO backfill: progress 2060/2880 (saved 2039, skipped 0, failed 21) elapsed 5221s ETA 35 min
+2026-10-15 05:58:59,628 ERROR backfill: snapshot 2026-09-24T00:00:00 failed: snapshot without items[0].timestamp
+2026-10-15 05:59:31,070 INFO backfill: progress 2080/2880 (saved 2058, skipped 0, failed 22) elapsed 5270s ETA 34 min
+2026-10-15 06:00:21,283 INFO backfill: progress 2100/2880 (saved 2078, skipped 0, failed 22) elapsed 5320s ETA 33 min
+2026-10-15 06:01:12,772 INFO backfill: progress 2120/2880 (saved 2098, skipped 0, failed 22) elapsed 5371s ETA 32 min
+2026-10-15 06:02:01,782 INFO backfill: progress 2140/2880 (saved 2118, skipped 0, failed 22) elapsed 5420s ETA 31 min
+2026-10-15 06:02:52,064 INFO backfill: progress 2160/2880 (saved 2138, skipped 0, failed 22) elapsed 5471s ETA 30 min
+2026-10-15 06:03:02,014 ERROR backfill: snapshot 2026-09-23T00:00:00 failed: snapshot without items[0].timestamp
+2026-10-15 06:03:43,503 INFO backfill: progress 2180/2880 (saved 2157, skipped 0, failed 23) elapsed 5522s ETA 30 min
+2026-10-15 06:04:32,559 INFO backfill: progress 2200/2880 (saved 2177, skipped 0, failed 23) elapsed 5571s ETA 29 min
+2026-10-15 06:05:24,002 INFO backfill: progress 2220/2880 (saved 2197, skipped 0, failed 23) elapsed 5623s ETA 28 min
+2026-10-15 06:06:13,045 INFO backfill: progress 2240/2880 (saved 2217, skipped 0, failed 23) elapsed 5672s ETA 27 min
+2026-10-15 06:07:03,219 ERROR backfill: snapshot 2026-09-22T00:00:00 failed: snapshot without items[0].timestamp
+2026-10-15 06:07:03,272 INFO backfill: progress 2260/2880 (saved 2236, skipped 0, failed 24) elapsed 5722s ETA 26 min
+2026-10-15 06:07:54,754 INFO backfill: progress 2280/2880 (saved 2256, skipped 0, failed 24) elapsed 5773s ETA 25 min
+2026-10-15 06:08:45,008 INFO backfill: progress 2300/2880 (saved 2276, skipped 0, failed 24) elapsed 5824s ETA 24 min
+2026-10-15 06:09:34,057 INFO backfill: progress 2320/2880 (saved 2296, skipped 0, failed 24) elapsed 5873s ETA 24 min
+2026-10-15 06:10:25,530 INFO backfill: progress 2340/2880 (saved 2316, skipped 0, failed 24) elapsed 5924s ETA 23 min
+2026-10-15 06:11:03,252 ERROR backfill: snapshot 2026-09-21T00:00:00 failed: snapshot without items[0].timestamp
+2026-10-15 06:11:15,762 INFO backfill: progress 2360/2880 (saved 2335, skipped 0, failed 25) elapsed 5974s ETA 22 min
+2026-10-15 06:12:04,802 INFO backfill: progress 2380/2880 (saved 2355, skipped 0, failed 25) elapsed 6023s ETA 21 min
+2026-10-15 06:12:56,293 INFO backfill: progress 2400/2880 (saved 2375, skipped 0, failed 25) elapsed 6075s ETA 20 min
+2026-10-15 06:13:46,514 INFO backfill: progress 2420/2880 (saved 2395, skipped 0, failed 25) elapsed 6125s ETA 19 min
+2026-10-15 06:14:36,850 INFO backfill: progress 2440/2880 (saved 2415, skipped 0, failed 25) elapsed 6175s ETA 19 min
+2026-10-15 06:15:05,632 ERROR backfill: snapshot 2026-09-20T00:00:00 failed: snapshot without items[0].timestamp
+2026-10-15 06:15:35,837 WARNING backfill: GET failed (https://api.data.gov.sg/v1/transport/carpark-availability, attempt 1/6): HTTPSConnectionPool(host='api.data.gov.sg', port=443): Max retries exceeded with url: /v1/transport/carpark-availability?date_time=2026-09-19T22%3A30%3A00 (Caused by NameResolutionError("HTTPSConnection(host='api.data.gov.sg', port=443): Failed to resolve 'api.data.gov.sg' ([Errno -3] Temporary failure in name resolution)")); sleeping 2s
+2026-10-15 06:15:57,861 WARNING backfill: GET failed (https://api.data.gov.sg/v1/transport/carpark-availability, attempt 2/6): HTTPSConnectionPool(host='api.data.gov.sg', port=443): Max retries exceeded with url: /v1/transport/carpark-availability?date_time=2026-09-19T22%3A30%3A00 (Caused by NameResolutionError("HTTPSConnection(host='api.data.gov.sg', port=443): Failed to resolve 'api.data.gov.sg' ([Errno -3] Temporary failure in name resolution)")); sleeping 4s
+2026-10-15 06:16:11,872 WARNING backfill: GET failed (https://api.data.gov.sg/v1/transport/carpark-availability, attempt 3/6): HTTPSConnectionPool(host='api.data.gov.sg', port=443): Max retries exceeded with url: /v1/transport/carpark-availability?date_time=2026-09-19T22%3A30%3A00 (Caused by NameResolutionError("HTTPSConnection(host='api.data.gov.sg', port=443): Failed to resolve 'api.data.gov.sg' ([Errno -3] Temporary failure in name resolution)")); sleeping 8s
+2026-10-15 06:16:14,185 WARNING backfill: GET failed (https://api.data.gov.sg/v1/transport/carpark-availability, attempt 1/6): HTTPSConnectionPool(host='api.data.gov.sg', port=443): Read timed out.; sleeping 2s
+2026-10-15 06:16:14,500 WARNING backfill: GET failed (https://api.data.gov.sg/v1/transport/carpark-availability, attempt 1/6): HTTPSConnectionPool(host='api.data.gov.sg', port=443): Read timed out. (read timeout=60); sleeping 2s
+2026-10-15 06:16:26,195 WARNING backfill: GET failed (https://api.data.gov.sg/v1/transport/carpark-availability, attempt 2/6): HTTPSConnectionPool(host='api.data.gov.sg', port=443): Max retries exceeded with url: /v1/transport/carpark-availability?date_time=2026-09-19T23%3A00%3A00 (Caused by NameResolutionError("HTTPSConnection(host='api.data.gov.sg', port=443): Failed to resolve 'api.data.gov.sg' ([Errno -3] Temporary failure in name resolution)")); sleeping 4s
+2026-10-15 06:16:26,504 WARNING backfill: GET failed (https://api.data.gov.sg/v1/transport/carpark-availability, attempt 2/6): HTTPSConnectionPool(host='api.data.gov.sg', port=443): Max retries exceeded with url: /v1/transport/carpark-availability?date_time=2026-09-19T22%3A45%3A00 (Caused by NameResolutionError("HTTPSConnection(host='api.data.gov.sg', port=443): Failed to resolve 'api.data.gov.sg' ([Errno -3] Temporary failure in name resolution)")); sleeping 4s
+2026-10-15 06:16:29,884 WARNING backfill: GET failed (https://api.data.gov.sg/v1/transport/carpark-availability, attempt 4/6): HTTPSConnectionPool(host='api.data.gov.sg', port=443): Max retries exceeded with url: /v1/transport/carpark-availability?date_time=2026-09-19T22%3A30%3A00 (Caused by NameResolutionError("HTTPSConnection(host='api.data.gov.sg', port=443): Failed to resolve 'api.data.gov.sg' ([Errno -3] Temporary failure in name resolution)")); sleeping 16s
+2026-10-15 06:16:40,202 WARNING backfill: GET failed (https://api.data.gov.sg/v1/transport/carpark-availability, attempt 3/6): HTTPSConnectionPool(host='api.data.gov.sg', port=443): Max retries exceeded with url: /v1/transport/carpark-availability?date_time=2026-09-19T23%3A00%3A00 (Caused by NameResolutionError("HTTPSConnection(host='api.data.gov.sg', port=443): Failed to resolve 'api.data.gov.sg' ([Errno -3] Temporary failure in name resolution)")); sleeping 8s
+2026-10-15 06:16:40,515 WARNING backfill: GET failed (https://api.data.gov.sg/v1/transport/carpark-availability, attempt 3/6): HTTPSConnectionPool(host='api.data.gov.sg', port=443): Max retries exceeded with url: /v1/transport/carpark-availability?date_time=2026-09-19T22%3A45%3A00 (Caused by NameResolutionError("HTTPSConnection(host='api.data.gov.sg', port=443): Failed to resolve 'api.data.gov.sg' ([Errno -3] Temporary failure in name resolution)")); sleeping 8s
+2026-10-15 06:16:55,936 WARNING backfill: GET failed (https://api.data.gov.sg/v1/transport/carpark-availability, attempt 5/6): HTTPSConnectionPool(host='api.data.gov.sg', port=443): Max retries exceeded with url: /v1/transport/carpark-availability?date_time=2026-09-19T22%3A30%3A00 (Caused by NameResolutionError("HTTPSConnection(host='api.data.gov.sg', port=443): Failed to resolve 'api.data.gov.sg' ([Errno -3] Temporary failure in name resolution)")); sleeping 32s
+2026-10-15 06:17:36,099 INFO backfill: progress 2460/2880 (saved 2434, skipped 0, failed 26) elapsed 6355s ETA 18 min
+2026-10-15 06:17:56,205 INFO backfill: progress 2480/2880 (saved 2454, skipped 0, failed 26) elapsed 6375s ETA 17 min
+2026-10-15 06:18:46,447 INFO backfill: progress 2500/2880 (saved 2474, skipped 0, failed 26) elapsed 6425s ETA 16 min
+2026-10-15 06:19:36,730 INFO backfill: progress 2520/2880 (saved 2494, skipped 0, failed 26) elapsed 6475s ETA 15 min
+2026-10-15 06:20:26,954 INFO backfill: progress 2540/2880 (saved 2514, skipped 0, failed 26) elapsed 6526s ETA 15 min
+2026-10-15 06:20:46,925 ERROR backfill: snapshot 2026-09-19T00:00:00 failed: snapshot without items[0].timestamp
+2026-10-15 06:21:17,235 INFO backfill: progress 2560/2880 (saved 2533, skipped 0, failed 27) elapsed 6576s ETA 14 min
+2026-10-15 06:22:07,467 INFO backfill: progress 2580/2880 (saved 2553, skipped 0, failed 27) elapsed 6626s ETA 13 min
+2026-10-15 06:22:57,712 INFO backfill: progress 2600/2880 (saved 2573, skipped 0, failed 27) elapsed 6676s ETA 12 min
+2026-10-15 06:23:47,955 INFO backfill: progress 2620/2880 (saved 2593, skipped 0, failed 27) elapsed 6727s ETA 11 min
+2026-10-15 06:24:38,215 INFO backfill: progress 2640/2880 (saved 2613, skipped 0, failed 27) elapsed 6777s ETA 10 min
+2026-10-15 06:24:48,132 ERROR backfill: snapshot 2026-09-18T00:00:00 failed: snapshot without items[0].timestamp
+2026-10-15 06:25:28,455 INFO backfill: progress 2660/2880 (saved 2632, skipped 0, failed 28) elapsed 6827s ETA 9 min
+2026-10-15 06:26:18,706 INFO backfill: progress 2680/2880 (saved 2652, skipped 0, failed 28) elapsed 6877s ETA 9 min
+2026-10-15 06:27:08,970 INFO backfill: progress 2700/2880 (saved 2672, skipped 0, failed 28) elapsed 6928s ETA 8 min
+2026-10-15 06:27:59,222 INFO backfill: progress 2720/2880 (saved 2692, skipped 0, failed 28) elapsed 6978s ETA 7 min
+2026-10-15 06:28:49,336 ERROR backfill: snapshot 2026-09-17T00:00:00 failed: snapshot without items[0].timestamp
+2026-10-15 06:28:49,460 INFO backfill: progress 2740/2880 (saved 2711, skipped 0, failed 29) elapsed 7028s ETA 6 min
+2026-10-15 06:29:39,715 INFO backfill: progress 2760/2880 (saved 2731, skipped 0, failed 29) elapsed 7078s ETA 5 min
+2026-10-15 06:30:29,969 INFO backfill: progress 2780/2880 (saved 2751, skipped 0, failed 29) elapsed 7129s ETA 4 min
+2026-10-15 06:31:20,230 INFO backfill: progress 2800/2880 (saved 2771, skipped 0, failed 29) elapsed 7179s ETA 3 min
+2026-10-15 06:32:10,463 INFO backfill: progress 2820/2880 (saved 2791, skipped 0, failed 29) elapsed 7229s ETA 3 min
+2026-10-15 06:32:50,542 ERROR backfill: snapshot 2026-09-16T00:00:00 failed: snapshot without items[0].timestamp
+2026-10-15 06:33:00,745 INFO backfill: progress 2840/2880 (saved 2810, skipped 0, failed 30) elapsed 7279s ETA 2 min
+2026-10-15 06:33:50,964 INFO backfill: progress 2860/2880 (saved 2830, skipped 0, failed 30) elapsed 7330s ETA 1 min
+2026-10-15 06:34:35,142 INFO backfill: progress 2880/2880 (saved 2850, skipped 0, failed 30) elapsed 7374s ETA 0 min
+2026-10-15 06:35:41,443 INFO backfill: backfill 2880 snapshots: 2026-09-15T12:45:00 .. 2026-10-15T12:30:00
+2026-10-15 06:35:41,513 INFO backfill: progress 20/2880 (saved 0, skipped 20, failed 0) elapsed 0s ETA 0 min
+2026-10-15 06:35:41,545 INFO backfill: progress 40/2880 (saved 0, skipped 40, failed 0) elapsed 0s ETA 0 min
+2026-10-15 06:35:51,686 INFO backfill: progress 60/2880 (saved 1, skipped 59, failed 0) elapsed 10s ETA 8 min
+2026-10-15 06:35:51,687 INFO backfill: progress 80/2880 (saved 1, skipped 79, failed 0) elapsed 10s ETA 6 min
+2026-10-15 06:35:51,687 INFO backfill: progress 100/2880 (saved 1, skipped 99, failed 0) elapsed 10s ETA 5 min
+2026-10-15 06:35:51,687 INFO backfill: progress 120/2880 (saved 1, skipped 119, failed 0) elapsed 10s ETA 4 min
+2026-10-15 06:35:51,687 INFO backfill: progress 140/2880 (saved 1, skipped 139, failed 0) elapsed 10s ETA 3 min
+2026-10-15 06:36:01,779 INFO backfill: progress 160/2880 (saved 2, skipped 158, failed 0) elapsed 20s ETA 6 min
+2026-10-15 06:36:01,780 INFO backfill: progress 180/2880 (saved 2, skipped 178, failed 0) elapsed 20s ETA 5 min
+2026-10-15 06:36:01,780 INFO backfill: progress 200/2880 (saved 2, skipped 198, failed 0) elapsed 20s ETA 5 min
+2026-10-15 06:36:01,780 INFO backfill: progress 220/2880 (saved 2, skipped 218, failed 0) elapsed 20s ETA 4 min
+2026-10-15 06:36:01,780 INFO backfill: progress 240/2880 (saved 2, skipped 238, failed 0) elapsed 20s ETA 4 min
+2026-10-15 06:36:01,780 INFO backfill: progress 260/2880 (saved 3, skipped 257, failed 0) elapsed 20s ETA 3 min
+2026-10-15 06:36:01,781 INFO backfill: progress 280/2880 (saved 3, skipped 277, failed 0) elapsed 20s ETA 3 min
+2026-10-15 06:36:01,781 INFO backfill: progress 300/2880 (saved 3, skipped 297, failed 0) elapsed 20s ETA 3 min
+2026-10-15 06:36:01,781 INFO backfill: progress 320/2880 (saved 3, skipped 317, failed 0) elapsed 20s ETA 3 min
+2026-10-15 06:36:01,781 INFO backfill: progress 340/2880 (saved 4, skipped 336, failed 0) elapsed 20s ETA 3 min
+2026-10-15 06:36:01,781 INFO backfill: progress 360/2880 (saved 4, skipped 356, failed 0) elapsed 20s ETA 2 min
+2026-10-15 06:36:01,782 INFO backfill: progress 380/2880 (saved 4, skipped 376, failed 0) elapsed 20s ETA 2 min
+2026-10-15 06:36:01,782 INFO backfill: progress 400/2880 (saved 4, skipped 396, failed 0) elapsed 20s ETA 2 min
+2026-10-15 06:36:01,782 INFO backfill: progress 420/2880 (saved 4, skipped 416, failed 0) elapsed 20s ETA 2 min
+2026-10-15 06:36:11,796 INFO backfill: progress 440/2880 (saved 5, skipped 435, failed 0) elapsed 30s ETA 3 min
+2026-10-15 06:36:11,796 INFO backfill: progress 460/2880 (saved 5, skipped 455, failed 0) elapsed 30s ETA 3 min
+2026-10-15 06:36:11,797 INFO backfill: progress 480/2880 (saved 5, skipped 475, failed 0) elapsed 30s ETA 3 min
+2026-10-15 06:36:11,797 INFO backfill: progress 500/2880 (saved 5, skipped 495, failed 0) elapsed 30s ETA 2 min
+2026-10-15 06:36:11,797 INFO backfill: progress 520/2880 (saved 5, skipped 515, failed 0) elapsed 30s ETA 2 min
+2026-10-15 06:36:13,383 INFO backfill: progress 540/2880 (saved 6, skipped 534, failed 0) elapsed 32s ETA 2 min
+2026-10-15 06:36:13,384 INFO backfill: progress 560/2880 (saved 6, skipped 554, failed 0) elapsed 32s ETA 2 min
+2026-10-15 06:36:13,385 INFO backfill: progress 580/2880 (saved 6, skipped 574, failed 0) elapsed 32s ETA 2 min
+2026-10-15 06:36:13,385 INFO backfill: progress 600/2880 (saved 6, skipped 594, failed 0) elapsed 32s ETA 2 min
+2026-10-15 06:36:13,386 INFO backfill: progress 620/2880 (saved 6, skipped 614, failed 0) elapsed 32s ETA 2 min
+2026-10-15 06:36:13,386 INFO backfill: progress 640/2880 (saved 7, skipped 633, failed 0) elapsed 32s ETA 2 min
+2026-10-15 06:36:13,387 INFO backfill: progress 660/2880 (saved 7, skipped 653, failed 0) elapsed 32s ETA 2 min
+2026-10-15 06:36:13,387 INFO backfill: progress 680/2880 (saved 7, skipped 673, failed 0) elapsed 32s ETA 2 min
+2026-10-15 06:36:13,388 INFO backfill: progress 700/2880 (saved 7, skipped 693, failed 0) elapsed 32s ETA 2 min
+2026-10-15 06:36:13,388 INFO backfill: progress 720/2880 (saved 7, skipped 713, failed 0) elapsed 32s ETA 2 min
+2026-10-15 06:36:21,906 INFO backfill: progress 740/2880 (saved 8, skipped 732, failed 0) elapsed 40s ETA 2 min
+2026-10-15 06:36:21,907 INFO backfill: progress 760/2880 (saved 8, skipped 752, failed 0) elapsed 40s ETA 2 min
+2026-10-15 06:36:21,907 INFO backfill: progress 780/2880 (saved 8, skipped 772, failed 0) elapsed 40s ETA 2 min
+2026-10-15 06:36:21,907 INFO backfill: progress 800/2880 (saved 8, skipped 792, failed 0) elapsed 40s ETA 2 min
+2026-10-15 06:36:32,206 INFO backfill: progress 820/2880 (saved 9, skipped 811, failed 0) elapsed 51s ETA 2 min
+2026-10-15 06:36:32,207 INFO backfill: progress 840/2880 (saved 9, skipped 831, failed 0) elapsed 51s ETA 2 min
+2026-10-15 06:36:32,207 INFO backfill: progress 860/2880 (saved 9, skipped 851, failed 0) elapsed 51s ETA 2 min
+2026-10-15 06:36:32,208 INFO backfill: progress 880/2880 (saved 9, skipped 871, failed 0) elapsed 51s ETA 2 min
+2026-10-15 06:36:32,209 INFO backfill: progress 900/2880 (saved 9, skipped 891, failed 0) elapsed 51s ETA 2 min
+2026-10-15 06:36:33,461 INFO backfill: progress 920/2880 (saved 10, skipped 910, failed 0) elapsed 52s ETA 2 min
+2026-10-15 06:36:33,462 INFO backfill: progress 940/2880 (saved 10, skipped 930, failed 0) elapsed 52s ETA 2 min
+2026-10-15 06:36:33,462 INFO backfill: progress 960/2880 (saved 10, skipped 950, failed 0) elapsed 52s ETA 2 min
+2026-10-15 06:36:33,462 INFO backfill: progress 980/2880 (saved 10, skipped 970, failed 0) elapsed 52s ETA 2 min
+2026-10-15 06:36:33,463 INFO backfill: progress 1000/2880 (saved 10, skipped 990, failed 0) elapsed 52s ETA 2 min
+2026-10-15 06:36:33,464 INFO backfill: progress 1020/2880 (saved 11, skipped 1009, failed 0) elapsed 52s ETA 2 min
+2026-10-15 06:36:33,465 INFO backfill: progress 1040/2880 (saved 11, skipped 1029, failed 0) elapsed 52s ETA 2 min
+2026-10-15 06:36:33,465 INFO backfill: progress 1060/2880 (saved 11, skipped 1049, failed 0) elapsed 52s ETA 1 min
+2026-10-15 06:36:33,465 INFO backfill: progress 1080/2880 (saved 11, skipped 1069, failed 0) elapsed 52s ETA 1 min
+2026-10-15 06:36:33,466 INFO backfill: progress 1100/2880 (saved 11, skipped 1089, failed 0) elapsed 52s ETA 1 min
+2026-10-15 06:36:41,991 INFO backfill: progress 1120/2880 (saved 12, skipped 1108, failed 0) elapsed 61s ETA 2 min
+2026-10-15 06:36:41,991 INFO backfill: progress 1140/2880 (saved 12, skipped 1128, failed 0) elapsed 61s ETA 2 min
+2026-10-15 06:36:41,991 INFO backfill: progress 1160/2880 (saved 12, skipped 1148, failed 0) elapsed 61s ETA 1 min
+2026-10-15 06:36:41,992 INFO backfill: progress 1180/2880 (saved 12, skipped 1168, failed 0) elapsed 61s ETA 1 min
+2026-10-15 06:36:41,992 INFO backfill: progress 1200/2880 (saved 12, skipped 1188, failed 0) elapsed 61s ETA 1 min
+2026-10-15 06:36:52,058 INFO backfill: progress 1220/2880 (saved 13, skipped 1207, failed 0) elapsed 71s ETA 2 min
+2026-10-15 06:36:52,059 INFO backfill: progress 1240/2880 (saved 13, skipped 1227, failed 0) elapsed 71s ETA 2 min
+2026-10-15 06:36:52,059 INFO backfill: progress 1260/2880 (saved 13, skipped 1247, failed 0) elapsed 71s ETA 2 min
+2026-10-15 06:36:52,059 INFO backfill: progress 1280/2880 (saved 13, skipped 1267, failed 0) elapsed 71s ETA 1 min
+2026-10-15 06:36:53,182 INFO backfill: progress 1300/2880 (saved 14, skipped 1286, failed 0) elapsed 72s ETA 1 min
+2026-10-15 06:36:53,183 INFO backfill: progress 1320/2880 (saved 14, skipped 1306, failed 0) elapsed 72s ETA 1 min
+2026-10-15 06:36:53,183 INFO backfill: progress 1340/2880 (saved 14, skipped 1326, failed 0) elapsed 72s ETA 1 min
+2026-10-15 06:36:53,183 INFO backfill: progress 1360/2880 (saved 14, skipped 1346, failed 0) elapsed 72s ETA 1 min
+2026-10-15 06:36:53,184 INFO backfill: progress 1380/2880 (saved 14, skipped 1366, failed 0) elapsed 72s ETA 1 min
+2026-10-15 06:37:02,115 INFO backfill: progress 1400/2880 (saved 15, skipped 1385, failed 0) elapsed 81s ETA 1 min
+2026-10-15 06:37:02,116 INFO backfill: progress 1420/2880 (saved 15, skipped 1405, failed 0) elapsed 81s ETA 1 min
+2026-10-15 06:37:02,116 INFO backfill: progress 1440/2880 (saved 15, skipped 1425, failed 0) elapsed 81s ETA 1 min
+2026-10-15 06:37:02,117 INFO backfill: progress 1460/2880 (saved 15, skipped 1445, failed 0) elapsed 81s ETA 1 min
+2026-10-15 06:37:02,117 INFO backfill: progress 1480/2880 (saved 15, skipped 1465, failed 0) elapsed 81s ETA 1 min
+2026-10-15 06:37:02,117 INFO backfill: progress 1500/2880 (saved 16, skipped 1484, failed 0) elapsed 81s ETA 1 min
+2026-10-15 06:37:02,118 INFO backfill: progress 1520/2880 (saved 16, skipped 1504, failed 0) elapsed 81s ETA 1 min
+2026-10-15 06:37:02,118 INFO backfill: progress 1540/2880 (saved 16, skipped 1524, failed 0) elapsed 81s ETA 1 min
+2026-10-15 06:37:02,119 INFO backfill: progress 1560/2880 (saved 16, skipped 1544, failed 0) elapsed 81s ETA 1 min
+2026-10-15 06:37:02,119 INFO backfill: progress 1580/2880 (saved 16, skipped 1564, failed 0) elapsed 81s ETA 1 min
+2026-10-15 06:37:12,407 INFO backfill: progress 1600/2880 (saved 17, skipped 1583, failed 0) elapsed 91s ETA 1 min
+2026-10-15 06:37:12,408 INFO backfill: progress 1620/2880 (saved 17, skipped 1603, failed 0) elapsed 91s ETA 1 min
+2026-10-15 06:37:12,409 INFO backfill: progress 1640/2880 (saved 17, skipped 1623, failed 0) elapsed 91s ETA 1 min
+2026-10-15 06:37:12,409 INFO backfill: progress 1660/2880 (saved 17, skipped 1643, failed 0) elapsed 91s ETA 1 min
+2026-10-15 06:37:12,409 INFO backfill: progress 1680/2880 (saved 17, skipped 1663, failed 0) elapsed 91s ETA 1 min
+2026-10-15 06:37:13,241 INFO backfill: progress 1700/2880 (saved 18, skipped 1682, failed 0) elapsed 92s ETA 1 min
+2026-10-15 06:37:13,241 INFO backfill: progress 1720/2880 (saved 18, skipped 1702, failed 0) elapsed 92s ETA 1 min
+2026-10-15 06:37:13,241 INFO backfill: progress 1740/2880 (saved 18, skipped 1722, failed 0) elapsed 92s ETA 1 min
+2026-10-15 06:37:13,241 INFO backfill: progress 1760/2880 (saved 18, skipped 1742, failed 0) elapsed 92s ETA 1 min
+2026-10-15 06:37:22,254 INFO backfill: progress 1780/2880 (saved 19, skipped 1761, failed 0) elapsed 101s ETA 1 min
+2026-10-15 06:37:22,255 INFO backfill: progress 1800/2880 (saved 19, skipped 1781, failed 0) elapsed 101s ETA 1 min
+2026-10-15 06:37:22,256 INFO backfill: progress 1820/2880 (saved 19, skipped 1801, failed 0) elapsed 101s ETA 1 min
+2026-10-15 06:37:22,256 INFO backfill: progress 1840/2880 (saved 19, skipped 1821, failed 0) elapsed 101s ETA 1 min
+2026-10-15 06:37:22,257 INFO backfill: progress 1860/2880 (saved 19, skipped 1841, failed 0) elapsed 101s ETA 1 min
+2026-10-15 06:37:22,257 INFO backfill: progress 1880/2880 (saved 20, skipped 1860, failed 0) elapsed 101s ETA 1 min
+2026-10-15 06:37:22,258 INFO backfill: progress 1900/2880 (saved 20, skipped 1880, failed 0) elapsed 101s ETA 1 min
+2026-10-15 06:37:22,260 INFO backfill: progress 1920/2880 (saved 20, skipped 1900, failed 0) elapsed 101s ETA 1 min
+2026-10-15 06:37:22,261 INFO backfill: progress 1940/2880 (saved 20, skipped 1920, failed 0) elapsed 101s ETA 1 min
+2026-10-15 06:37:22,261 INFO backfill: progress 1960/2880 (saved 20, skipped 1940, failed 0) elapsed 101s ETA 1 min
+2026-10-15 06:37:32,266 INFO backfill: progress 1980/2880 (saved 21, skipped 1959, failed 0) elapsed 111s ETA 1 min
+2026-10-15 06:37:32,266 INFO backfill: progress 2000/2880 (saved 21, skipped 1979, failed 0) elapsed 111s ETA 1 min
+2026-10-15 06:37:32,266 INFO backfill: progress 2020/2880 (saved 21, skipped 1999, failed 0) elapsed 111s ETA 1 min
+2026-10-15 06:37:32,267 INFO backfill: progress 2040/2880 (saved 21, skipped 2019, failed 0) elapsed 111s ETA 1 min
+2026-10-15 06:37:32,267 INFO backfill: progress 2060/2880 (saved 21, skipped 2039, failed 0) elapsed 111s ETA 1 min
+2026-10-15 06:37:33,264 INFO backfill: progress 2080/2880 (saved 22, skipped 2058, failed 0) elapsed 112s ETA 1 min
+2026-10-15 06:37:33,264 INFO backfill: progress 2100/2880 (saved 22, skipped 2078, failed 0) elapsed 112s ETA 1 min
+2026-10-15 06:37:33,264 INFO backfill: progress 2120/2880 (saved 22, skipped 2098, failed 0) elapsed 112s ETA 1 min
+2026-10-15 06:37:33,265 INFO backfill: progress 2140/2880 (saved 22, skipped 2118, failed 0) elapsed 112s ETA 1 min
+2026-10-15 06:37:33,265 INFO backfill: progress 2160/2880 (saved 22, skipped 2138, failed 0) elapsed 112s ETA 1 min
+2026-10-15 06:37:42,341 INFO backfill: progress 2180/2880 (saved 23, skipped 2157, failed 0) elapsed 121s ETA 1 min
+2026-10-15 06:37:42,343 INFO backfill: progress 2200/2880 (saved 23, skipped 2177, failed 0) elapsed 121s ETA 1 min
+2026-10-15 06:37:42,343 INFO backfill: progress 2220/2880 (saved 23, skipped 2197, failed 0) elapsed 121s ETA 1 min
+2026-10-15 06:37:42,344 INFO backfill: progress 2240/2880 (saved 23, skipped 2217, failed 0) elapsed 121s ETA 1 min
+2026-10-15 06:37:42,344 INFO backfill: progress 2260/2880 (saved 24, skipped 2236, failed 0) elapsed 121s ETA 1 min
+2026-10-15 06:37:42,345 INFO backfill: progress 2280/2880 (saved 24, skipped 2256, failed 0) elapsed 121s ETA 1 min
+2026-10-15 06:37:42,348 INFO backfill: progress 2300/2880 (saved 24, skipped 2276, failed 0) elapsed 121s ETA 1 min
+2026-10-15 06:37:42,348 INFO backfill: progress 2320/2880 (saved 24, skipped 2296, failed 0) elapsed 121s ETA 0 min
+2026-10-15 06:37:42,348 INFO backfill: progress 2340/2880 (saved 24, skipped 2316, failed 0) elapsed 121s ETA 0 min
+2026-10-15 06:37:52,359 INFO backfill: progress 2360/2880 (saved 25, skipped 2335, failed 0) elapsed 131s ETA 0 min
+2026-10-15 06:37:52,359 INFO backfill: progress 2380/2880 (saved 25, skipped 2355, failed 0) elapsed 131s ETA 0 min
+2026-10-15 06:37:52,360 INFO backfill: progress 2400/2880 (saved 25, skipped 2375, failed 0) elapsed 131s ETA 0 min
+2026-10-15 06:37:52,360 INFO backfill: progress 2420/2880 (saved 25, skipped 2395, failed 0) elapsed 131s ETA 0 min
+2026-10-15 06:37:52,361 INFO backfill: progress 2440/2880 (saved 25, skipped 2415, failed 0) elapsed 131s ETA 0 min
+2026-10-15 06:37:53,386 INFO backfill: progress 2460/2880 (saved 26, skipped 2434, failed 0) elapsed 132s ETA 0 min
+2026-10-15 06:37:53,387 INFO backfill: progress 2480/2880 (saved 26, skipped 2454, failed 0) elapsed 132s ETA 0 min
+2026-10-15 06:37:53,387 INFO backfill: progress 2500/2880 (saved 26, skipped 2474, failed 0) elapsed 132s ETA 0 min
+2026-10-15 06:37:53,388 INFO backfill: progress 2520/2880 (saved 26, skipped 2494, failed 0) elapsed 132s ETA 0 min
+2026-10-15 06:37:53,389 INFO backfill: progress 2540/2880 (saved 26, skipped 2514, failed 0) elapsed 132s ETA 0 min
+2026-10-15 06:38:02,378 INFO backfill: progress 2560/2880 (saved 27, skipped 2533, failed 0) elapsed 141s ETA 0 min
+2026-10-15 06:38:02,378 INFO backfill: progress 2580/2880 (saved 27, skipped 2553, failed 0) elapsed 141s ETA 0 min
+2026-10-15 06:38:02,379 INFO backfill: progress 2600/2880 (saved 27, skipped 2573, failed 0) elapsed 141s ETA 0 min
+2026-10-15 06:38:02,381 INFO backfill: progress 2620/2880 (saved 27, skipped 2593, failed 0) elapsed 141s ETA 0 min
+2026-10-15 06:38:02,382 INFO backfill: progress 2640/2880 (saved 27, skipped 2613, failed 0) elapsed 141s ETA 0 min
+2026-10-15 06:38:02,389 INFO backfill: progress 2660/2880 (saved 28, skipped 2632, failed 0) elapsed 141s ETA 0 min
+2026-10-15 06:38:02,390 INFO backfill: progress 2680/2880 (saved 28, skipped 2652, failed 0) elapsed 141s ETA 0 min
+2026-10-15 06:38:02,391 INFO backfill: progress 2700/2880 (saved 28, skipped 2672, failed 0) elapsed 141s ETA 0 min
+2026-10-15 06:38:02,392 INFO backfill: progress 2720/2880 (saved 28, skipped 2692, failed 0) elapsed 141s ETA 0 min
+2026-10-15 06:38:03,490 INFO backfill: progress 2740/2880 (saved 29, skipped 2711, failed 0) elapsed 142s ETA 0 min
+2026-10-15 06:38:03,490 INFO backfill: progress 2760/2880 (saved 29, skipped 2731, failed 0) elapsed 142s ETA 0 min
+2026-10-15 06:38:03,490 INFO backfill: progress 2780/2880 (saved 29, skipped 2751, failed 0) elapsed 142s ETA 0 min
+2026-10-15 06:38:03,490 INFO backfill: progress 2800/2880 (saved 29, skipped 2771, failed 0) elapsed 142s ETA 0 min
+2026-10-15 06:38:03,491 INFO backfill: progress 2820/2880 (saved 29, skipped 2791, failed 0) elapsed 142s ETA 0 min
+2026-10-15 06:38:04,965 INFO backfill: progress 2840/2880 (saved 30, skipped 2810, failed 0) elapsed 144s ETA 0 min
+2026-10-15 06:38:04,965 INFO backfill: progress 2860/2880 (saved 30, skipped 2830, failed 0) elapsed 144s ETA 0 min
+2026-10-15 06:38:04,965 INFO backfill: progress 2880/2880 (saved 30, skipped 2850, failed 0) elapsed 144s ETA 0 min

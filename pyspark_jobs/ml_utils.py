@@ -21,7 +21,7 @@ def split_boundaries(df, label_col):
     """Time split on the labelled timeline: first 70% train, next 15% validation, last 15% test.
     With >= 10 days the cut points are snapped to midnight SGT so whole days stay together."""
     d = df.filter(F.col(label_col).isNotNull())
-    days = sorted(r[0] for r in d.select("dt").distinct().collect())
+    days = sorted(str(r[0]) for r in d.select("dt").distinct().collect())  # dt is a date (partition discovery)
     if len(days) >= 10:
         n = len(days)
         tr, va = round(0.70 * n), round(0.85 * n)

@@ -72,8 +72,9 @@ hbase:
   history_ttl_days: 14
 
 spark:
-  master: local[*]
+  master: local[8]                # 8 threads: 16 concurrent tasks ran out of heap on 5.8M lines in WSL
   default_partitions: 8
+  rdd_partitions: 128             # partitions after coalescing the ~2,900 small snapshot files
   shuffle_partitions: 16
   driver_memory: 3500m          # WSL has 7.4 GB; Hadoop+HBase daemons use ~2.5 GB
 

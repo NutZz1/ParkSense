@@ -1,32 +1,32 @@
 {
   "carparks_per_snapshot": {
-    "min": 1899,
+    "min": 1620,
     "median": 1972.0,
-    "max": 1996,
-    "snapshots": 193
+    "max": 2000,
+    "snapshots": 3293
   },
-  "stale_share": 0.02062062062062062,
-  "staleness_median_min": 2.0166666666666666,
+  "stale_share": 0.020537651817409026,
+  "staleness_median_min": 2.35,
   "excluded": {
-    "never_changing": 182,
-    "always_zero": 30
+    "never_changing": 151,
+    "always_zero": 24
   },
-  "clipped": 193,
+  "clipped": 3293,
   "days": {
-    "first": "2026-10-13",
+    "first": "2026-09-15",
     "last": "2026-10-15",
-    "n": 3
+    "n": 31
   },
   "holidays_in_range": [],
   "class_balance_30": {
-    "positive_rate": 0.0459,
-    "rows": 319861,
-    "state_change_rate_30min": 0.0135
+    "positive_rate": 0.0547,
+    "rows": 5032634,
+    "state_change_rate_30min": 0.0139
   },
   "state_change_rate_by_horizon": {
-    "15min": 0.01,
-    "30min": 0.0135,
-    "60min": 0.0185
+    "15min": 0.0101,
+    "30min": 0.0139,
+    "60min": 0.0193
   },
-  "full_ratio_decision": "keep full_ratio = 0.1 (positives 4.59% >= 3%)"
+  "full_ratio_decision": "keep full_ratio = 0.1 (positives 5.47% >= 3%)"
 }

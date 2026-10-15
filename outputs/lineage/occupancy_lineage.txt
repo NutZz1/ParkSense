@@ -2,36 +2,36 @@ Lineage of: mean car-lot occupancy by carpark type and hour
 (parse -> flatMap lots -> filter -> map -> join metadata -> map -> reduceByKey -> mapValues)
 Each '+-' indentation is a stage boundary created by a shuffle; (n) is the partition count.
 
-(193) MapPartitionsRDD[83] at mapValues at SparkConcepts.scala:106 []   <-- narrow (map/filter/flatMap/mapValues, pipelined in one stage)
-  |   ShuffledRDD[82] at reduceByKey at SparkConcepts.scala:105 []   <== WIDE dependency (shuffle -> stage boundary)
-  +-(193) MapPartitionsRDD[81] at map at SparkConcepts.scala:104 []   <-- narrow (map/filter/flatMap/mapValues, pipelined in one stage)
-      |   MapPartitionsRDD[80] at join at SparkConcepts.scala:103 []   <-- narrow (map/filter/flatMap/mapValues, pipelined in one stage)
-      |   MapPartitionsRDD[79] at join at SparkConcepts.scala:103 []   <-- narrow (map/filter/flatMap/mapValues, pipelined in one stage)
-      |   CoGroupedRDD[78] at join at SparkConcepts.scala:103 []   <== WIDE dependency (shuffle -> stage boundary)
-      +-(193) MapPartitionsRDD[77] at map at SparkConcepts.scala:102 []   <-- narrow (map/filter/flatMap/mapValues, pipelined in one stage)
-      |   |   MapPartitionsRDD[76] at map at SparkConcepts.scala:20 []   <-- narrow (map/filter/flatMap/mapValues, pipelined in one stage)
-      |   |   MapPartitionsRDD[75] at filter at SparkConcepts.scala:19 []   <-- narrow (map/filter/flatMap/mapValues, pipelined in one stage)
-      |   |   MapPartitionsRDD[74] at map at SparkConcepts.scala:18 []   <-- narrow (map/filter/flatMap/mapValues, pipelined in one stage)
-      |   |   MapPartitionsRDD[73] at filter at SparkConcepts.scala:18 []   <-- narrow (map/filter/flatMap/mapValues, pipelined in one stage)
-      |   |   MapPartitionsRDD[72] at flatMap at SparkConcepts.scala:18 []   <-- narrow (map/filter/flatMap/mapValues, pipelined in one stage)
-      |   |   MapPartitionsRDD[71] at map at SparkConcepts.scala:17 []   <-- narrow (map/filter/flatMap/mapValues, pipelined in one stage)
-      |   |   MapPartitionsRDD[70] at filter at SparkConcepts.scala:17 []   <-- narrow (map/filter/flatMap/mapValues, pipelined in one stage)
-      |   |   MapPartitionsRDD[69] at map at SparkConcepts.scala:17 []   <-- narrow (map/filter/flatMap/mapValues, pipelined in one stage)
-      |   |   hdfs://localhost:9000/parksense/raw/flat/*/*.txt MapPartitionsRDD[68] at textFile at SparkConcepts.scala:101 []   <-- narrow (map/filter/flatMap/mapValues, pipelined in one stage)
-      |   |   hdfs://localhost:9000/parksense/raw/flat/*/*.txt HadoopRDD[67] at textFile at SparkConcepts.scala:101 []   <-- source (one split per file)
+(2880) MapPartitionsRDD[83] at mapValues at SparkConcepts.scala:106 []   <-- narrow (map/filter/flatMap/mapValues, pipelined in one stage)
+  |    ShuffledRDD[82] at reduceByKey at SparkConcepts.scala:105 []   <== WIDE dependency (shuffle -> stage boundary)
+  +-(2880) MapPartitionsRDD[81] at map at SparkConcepts.scala:104 []   <-- narrow (map/filter/flatMap/mapValues, pipelined in one stage)
+      |    MapPartitionsRDD[80] at join at SparkConcepts.scala:103 []   <-- narrow (map/filter/flatMap/mapValues, pipelined in one stage)
+      |    MapPartitionsRDD[79] at join at SparkConcepts.scala:103 []   <-- narrow (map/filter/flatMap/mapValues, pipelined in one stage)
+      |    CoGroupedRDD[78] at join at SparkConcepts.scala:103 []   <== WIDE dependency (shuffle -> stage boundary)
+      +-(2880) MapPartitionsRDD[77] at map at SparkConcepts.scala:102 []   <-- narrow (map/filter/flatMap/mapValues, pipelined in one stage)
+      |   |    MapPartitionsRDD[76] at map at SparkConcepts.scala:20 []   <-- narrow (map/filter/flatMap/mapValues, pipelined in one stage)
+      |   |    MapPartitionsRDD[75] at filter at SparkConcepts.scala:19 []   <-- narrow (map/filter/flatMap/mapValues, pipelined in one stage)
+      |   |    MapPartitionsRDD[74] at map at SparkConcepts.scala:18 []   <-- narrow (map/filter/flatMap/mapValues, pipelined in one stage)
+      |   |    MapPartitionsRDD[73] at filter at SparkConcepts.scala:18 []   <-- narrow (map/filter/flatMap/mapValues, pipelined in one stage)
+      |   |    MapPartitionsRDD[72] at flatMap at SparkConcepts.scala:18 []   <-- narrow (map/filter/flatMap/mapValues, pipelined in one stage)
+      |   |    MapPartitionsRDD[71] at map at SparkConcepts.scala:17 []   <-- narrow (map/filter/flatMap/mapValues, pipelined in one stage)
+      |   |    MapPartitionsRDD[70] at filter at SparkConcepts.scala:17 []   <-- narrow (map/filter/flatMap/mapValues, pipelined in one stage)
+      |   |    MapPartitionsRDD[69] at map at SparkConcepts.scala:17 []   <-- narrow (map/filter/flatMap/mapValues, pipelined in one stage)
+      |   |    hdfs://localhost:9000/parksense/raw/flat/*/*.txt MapPartitionsRDD[68] at textFile at SparkConcepts.scala:101 []   <-- narrow (map/filter/flatMap/mapValues, pipelined in one stage)
+      |   |    hdfs://localhost:9000/parksense/raw/flat/*/*.txt HadoopRDD[67] at textFile at SparkConcepts.scala:101 []   <-- source (one split per file)
       +-(2) MapPartitionsRDD[66] at map at SparkConcepts.scala:100 []   <-- narrow (map/filter/flatMap/mapValues, pipelined in one stage)
          |  MapPartitionsRDD[65] at flatMap at SparkConcepts.scala:100 []   <-- narrow (map/filter/flatMap/mapValues, pipelined in one stage)
          |  hdfs://localhost:9000/parksense/raw/meta/carpark_info.csv MapPartitionsRDD[64] at textFile at SparkConcepts.scala:100 []   <-- narrow (map/filter/flatMap/mapValues, pipelined in one stage)
          |  hdfs://localhost:9000/parksense/raw/meta/carpark_info.csv HadoopRDD[63] at textFile at SparkConcepts.scala:100 []   <-- source (one split per file)
 
 Result (first 10):
-  BASEMENT CAR PARK                  00:00 0.467
-  BASEMENT CAR PARK                  01:00 0.473
-  BASEMENT CAR PARK                  02:00 0.477
-  BASEMENT CAR PARK                  03:00 0.481
-  BASEMENT CAR PARK                  04:00 0.482
-  BASEMENT CAR PARK                  05:00 0.482
-  BASEMENT CAR PARK                  06:00 0.467
-  BASEMENT CAR PARK                  07:00 0.433
-  BASEMENT CAR PARK                  08:00 0.427
-  BASEMENT CAR PARK                  09:00 0.423
+  BASEMENT CAR PARK                  00:00 0.482
+  BASEMENT CAR PARK                  01:00 0.485
+  BASEMENT CAR PARK                  02:00 0.488
+  BASEMENT CAR PARK                  03:00 0.491
+  BASEMENT CAR PARK                  04:00 0.492
+  BASEMENT CAR PARK                  05:00 0.493
+  BASEMENT CAR PARK                  06:00 0.481
+  BASEMENT CAR PARK                  07:00 0.454
+  BASEMENT CAR PARK                  08:00 0.456
+  BASEMENT CAR PARK                  09:00 0.463

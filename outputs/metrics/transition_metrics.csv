@@ -1,9 +1,9 @@
 model,transition,n,correct_share,precision,recall,f1
-Persistence,becomes full (0->1),412,0.0,,,
-Persistence,frees up (1->0),356,0.0,,,
-Persistence,all transitions,768,0.0,,,
-Persistence,precision/recall/F1 on transition rows,768,,0.0,0.0,0.0
-Random Forest,becomes full (0->1),412,0.8835,,,
-Random Forest,frees up (1->0),356,0.0,,,
-Random Forest,all transitions,768,0.474,,,
-Random Forest,precision/recall/F1 on transition rows,768,,0.5056,0.8835,0.6431
+Persistence,becomes full (0->1),5357,0.0,,,
+Persistence,frees up (1->0),5400,0.0,,,
+Persistence,all transitions,10757,0.0,,,
+Persistence,precision/recall/F1 on transition rows,10757,,0.0,0.0,0.0
+Random Forest,becomes full (0->1),5357,0.4,,,
+Random Forest,frees up (1->0),5400,0.2374,,,
+Random Forest,all transitions,10757,0.3184,,,
+Random Forest,precision/recall/F1 on transition rows,10757,,0.3423,0.4,0.3689

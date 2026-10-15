@@ -1,65 +1,65 @@
-master=local[4,3] appId=local-1792039369966
+master=local[4,3] appId=local-1792078532392
 
 ================================================================================================
   1. PARTITIONS
 ================================================================================================
-  textFile (one split per small file)      -> 193 partitions
-  coalesce(32) (narrow, no shuffle)        -> 32 partitions
+  textFile (one split per small file)      -> 2880 partitions
+  coalesce(128) (narrow, no shuffle)       -> 128 partitions
   repartition(16) (wide, full shuffle)     -> 16 partitions
   coalesce(4) (narrow)                     -> 4 partitions
-  records per partition (coalesce 32): min 12,102  max 14,128  skew max/min 1.17
-  after repartition(16): min 24,347  max 24,354 (round-robin balances)
+  records per partition (after coalesce): min 44,406  max 46,517  skew max/min 1.05
+  after repartition(16): min 363,642  max 363,650 (round-robin balances)
   pairs.partitioner = None; partitioned.partitioner = Some(org.apache.spark.HashPartitioner@8)
   reduceByKey(samePartitioner): 1 stage(s), shuffle write 0 B
   toDebugString (no new ShuffledRDD above partitionBy):
 (8) MapPartitionsRDD[24] at reduceByKey at SparkConcepts.scala:70 []
  |  ShuffledRDD[23] at partitionBy at SparkConcepts.scala:65 []
- |      CachedPartitions: 8; MemorySize: 10.1 MiB; DiskSize: 0.0 B
- +-(32) MapPartitionsRDD[22] at map at SparkConcepts.scala:63 []
-    |   MapPartitionsRDD[21] at map at SparkConcepts.scala:20 []
-    |       CachedPartitions: 32; MemorySize: 17.2 MiB; DiskSize: 0.0 B
-    |   MapPartitionsRDD[20] at filter at SparkConcepts.scala:19 []
-    |   MapPartitionsRDD[19] at map at SparkConcepts.scala:18 []
-    |   MapPartitionsRDD[18] at filter at SparkConcepts.scala:18 []
-    |   MapPartitionsRDD[17] at flatMap at SparkConcepts.scala:18 []
-    |   MapPartitionsRDD[16] at map at SparkConcepts.scala:17 []
-    |   MapPartitionsRDD[15] at filter at SparkConcepts.scala:17 []
-    |   MapPartitionsRDD[14] at map at SparkConcepts.scala:17 []
-    |   CoalescedRDD[2] at coalesce at SparkConcepts.scala:48 []
-    |       CachedPartitions: 32; MemorySize: 21.0 MiB; DiskSize: 0.0 B
-    |   hdfs://localhost:9000/parksense/raw/flat/*/*.txt MapPartitionsRDD[1] at textFile at SparkConcepts.scala:47 []
-    |   hdfs://localhost:9000/parksense/raw/flat/*/*.txt HadoopRDD[0] at textFile at SparkConcepts.scala:47 []
+ |      CachedPartitions: 8; MemorySize: 150.1 MiB; DiskSize: 0.0 B
+ +-(128) MapPartitionsRDD[22] at map at SparkConcepts.scala:63 []
+     |   MapPartitionsRDD[21] at map at SparkConcepts.scala:20 []
+     |       CachedPartitions: 128; MemorySize: 256.2 MiB; DiskSize: 0.0 B
+     |   MapPartitionsRDD[20] at filter at SparkConcepts.scala:19 []
+     |   MapPartitionsRDD[19] at map at SparkConcepts.scala:18 []
+     |   MapPartitionsRDD[18] at filter at SparkConcepts.scala:18 []
+     |   MapPartitionsRDD[17] at flatMap at SparkConcepts.scala:18 []
+     |   MapPartitionsRDD[16] at map at SparkConcepts.scala:17 []
+     |   MapPartitionsRDD[15] at filter at SparkConcepts.scala:17 []
+     |   MapPartitionsRDD[14] at map at SparkConcepts.scala:17 []
+     |   CoalescedRDD[2] at coalesce at SparkConcepts.scala:48 []
+     |       CachedPartitions: 128; MemorySize: 313.6 MiB; DiskSize: 0.0 B
+     |   hdfs://localhost:9000/parksense/raw/flat/*/*.txt MapPartitionsRDD[1] at textFile at SparkConcepts.scala:47 []
+     |   hdfs://localhost:9000/parksense/raw/flat/*/*.txt HadoopRDD[0] at textFile at SparkConcepts.scala:47 []
   map drops the partitioner: None; mapValues keeps it: Some(org.apache.spark.HashPartitioner@8)
-    [time] partitions=1 mean occupancy per carpark-hour                       653 ms
-    [time] partitions=2 mean occupancy per carpark-hour                       435 ms
-    [time] partitions=4 mean occupancy per carpark-hour                       329 ms
-    [time] partitions=8 mean occupancy per carpark-hour                       529 ms
-    [time] partitions=16 mean occupancy per carpark-hour                      499 ms
-    [time] partitions=32 mean occupancy per carpark-hour                      611 ms
+    [time] partitions=1 mean occupancy per carpark-hour                      4801 ms
+    [time] partitions=2 mean occupancy per carpark-hour                      2908 ms
+    [time] partitions=4 mean occupancy per carpark-hour                      1791 ms
+    [time] partitions=8 mean occupancy per carpark-hour                      2002 ms
+    [time] partitions=16 mean occupancy per carpark-hour                     2644 ms
+    [time] partitions=32 mean occupancy per carpark-hour                     3993 ms
     -> /home/hduser/parksense-sg/outputs/metrics/concepts_partitions.csv (6 rows)
-    -> /home/hduser/parksense-sg/outputs/metrics/concepts_partition_sizes.csv (32 rows)
+    -> /home/hduser/parksense-sg/outputs/metrics/concepts_partition_sizes.csv (128 rows)
     -> /home/hduser/parksense-sg/outputs/metrics/concepts_partition_ops.csv (7 rows)
 
 ================================================================================================
   2. LINEAGE & DAG
 ================================================================================================
-(193) MapPartitionsRDD[83] at mapValues at SparkConcepts.scala:106 []
-  |   ShuffledRDD[82] at reduceByKey at SparkConcepts.scala:105 []
-  +-(193) MapPartitionsRDD[81] at map at SparkConcepts.scala:104 []
-      |   MapPartitionsRDD[80] at join at SparkConcepts.scala:103 []
-      |   MapPartitionsRDD[79] at join at SparkConcepts.scala:103 []
-      |   CoGroupedRDD[78] at join at SparkConcepts.scala:103 []
-      +-(193) MapPartitionsRDD[77] at map at SparkConcepts.scala:102 []
-      |   |   MapPartitionsRDD[76] at map at SparkConcepts.scala:20 []
-      |   |   MapPartitionsRDD[75] at filter at SparkConcepts.scala:19 []
-      |   |   MapPartitionsRDD[74] at map at SparkConcepts.scala:18 []
-      |   |   MapPartitionsRDD[73] at filter at SparkConcepts.scala:18 []
-      |   |   MapPartitionsRDD[72] at flatMap at SparkConcepts.scala:18 []
-      |   |   MapPartitionsRDD[71] at map at SparkConcepts.scala:17 []
-      |   |   MapPartitionsRDD[70] at filter at SparkConcepts.scala:17 []
-      |   |   MapPartitionsRDD[69] at map at SparkConcepts.scala:17 []
-      |   |   hdfs://localhost:9000/parksense/raw/flat/*/*.txt MapPartitionsRDD[68] at textFile at SparkConcepts.scala:101 []
-      |   |   hdfs://localhost:9000/parksense/raw/flat/*/*.txt HadoopRDD[67] at textFile at SparkConcepts.scala:101 []
+(2880) MapPartitionsRDD[83] at mapValues at SparkConcepts.scala:106 []
+  |    ShuffledRDD[82] at reduceByKey at SparkConcepts.scala:105 []
+  +-(2880) MapPartitionsRDD[81] at map at SparkConcepts.scala:104 []
+      |    MapPartitionsRDD[80] at join at SparkConcepts.scala:103 []
+      |    MapPartitionsRDD[79] at join at SparkConcepts.scala:103 []
+      |    CoGroupedRDD[78] at join at SparkConcepts.scala:103 []
+      +-(2880) MapPartitionsRDD[77] at map at SparkConcepts.scala:102 []
+      |   |    MapPartitionsRDD[76] at map at SparkConcepts.scala:20 []
+      |   |    MapPartitionsRDD[75] at filter at SparkConcepts.scala:19 []
+      |   |    MapPartitionsRDD[74] at map at SparkConcepts.scala:18 []
+      |   |    MapPartitionsRDD[73] at filter at SparkConcepts.scala:18 []
+      |   |    MapPartitionsRDD[72] at flatMap at SparkConcepts.scala:18 []
+      |   |    MapPartitionsRDD[71] at map at SparkConcepts.scala:17 []
+      |   |    MapPartitionsRDD[70] at filter at SparkConcepts.scala:17 []
+      |   |    MapPartitionsRDD[69] at map at SparkConcepts.scala:17 []
+      |   |    hdfs://localhost:9000/parksense/raw/flat/*/*.txt MapPartitionsRDD[68] at textFile at SparkConcepts.scala:101 []
+      |   |    hdfs://localhost:9000/parksense/raw/flat/*/*.txt HadoopRDD[67] at textFile at SparkConcepts.scala:101 []
       +-(2) MapPartitionsRDD[66] at map at SparkConcepts.scala:100 []
          |  MapPartitionsRDD[65] at flatMap at SparkConcepts.scala:100 []
          |  hdfs://localhost:9000/parksense/raw/meta/carpark_info.csv MapPartitionsRDD[64] at textFile at SparkConcepts.scala:100 []
@@ -71,38 +71,38 @@ master=local[4,3] appId=local-1792039369966
   3. PERSISTENCE
 ================================================================================================
   no_cache: getStorageLevel = NONE
-    [time] no_cache action 1 (count)                                          730 ms
-    [time] no_cache action 2 (mean occupancy)                                 734 ms
-    [time] no_cache action 3 (count again)                                    557 ms
+    [time] no_cache action 1 (count)                                         9650 ms
+    [time] no_cache action 2 (mean occupancy)                                6859 ms
+    [time] no_cache action 3 (count again)                                   8169 ms
     after unpersist(): NONE
   cache_MEMORY_ONLY: getStorageLevel = Memory Deserialized 1x Replicated
-    [time] cache_MEMORY_ONLY action 1 (count)                                 943 ms
-    [time] cache_MEMORY_ONLY action 2 (mean occupancy)                         34 ms
-    [time] cache_MEMORY_ONLY action 3 (count again)                            29 ms
+    [time] cache_MEMORY_ONLY action 1 (count)                               11279 ms
+    [time] cache_MEMORY_ONLY action 2 (mean occupancy)                        222 ms
+    [time] cache_MEMORY_ONLY action 3 (count again)                           127 ms
     after unpersist(): NONE
   persist_MEMORY_AND_DISK: getStorageLevel = Disk Memory Deserialized 1x Replicated
-    [time] persist_MEMORY_AND_DISK action 1 (count)                           944 ms
-    [time] persist_MEMORY_AND_DISK action 2 (mean occupancy)                   32 ms
-    [time] persist_MEMORY_AND_DISK action 3 (count again)                      25 ms
+    [time] persist_MEMORY_AND_DISK action 1 (count)                         11173 ms
+    [time] persist_MEMORY_AND_DISK action 2 (mean occupancy)                  165 ms
+    [time] persist_MEMORY_AND_DISK action 3 (count again)                     100 ms
     after unpersist(): NONE
   persist_MEMORY_ONLY_SER: getStorageLevel = Memory Serialized 1x Replicated
-    [time] persist_MEMORY_ONLY_SER action 1 (count)                           779 ms
-    [time] persist_MEMORY_ONLY_SER action 2 (mean occupancy)                   82 ms
-    [time] persist_MEMORY_ONLY_SER action 3 (count again)                      78 ms
+    [time] persist_MEMORY_ONLY_SER action 1 (count)                         10684 ms
+    [time] persist_MEMORY_ONLY_SER action 2 (mean occupancy)                 1074 ms
+    [time] persist_MEMORY_ONLY_SER action 3 (count again)                    1048 ms
     after unpersist(): NONE
     -> /home/hduser/parksense-sg/outputs/metrics/concepts_cache.csv (4 rows)
 
 ================================================================================================
   4. SHUFFLE: reduceByKey vs groupByKey, shuffle join vs broadcast join
 ================================================================================================
-    [time] shuffle: reduceByKey                                               295 ms
-    [time] shuffle: groupByKey                                                436 ms
-    [time] shuffle: shuffle join                                              476 ms
-    [time] shuffle: broadcast join                                            136 ms
-  reduceByKey         295 ms  shuffle write     1,208,995 B       63,851 records
-  groupByKey          436 ms  shuffle write     3,880,428 B      379,780 records
-  shuffle join        476 ms  shuffle write     4,129,033 B      382,053 records
-  broadcast join      136 ms  shuffle write             0 B            0 records
+    [time] shuffle: reduceByKey                                              2102 ms
+    [time] shuffle: groupByKey                                               4561 ms
+    [time] shuffle: shuffle join                                             3882 ms
+    [time] shuffle: broadcast join                                           1338 ms
+  reduceByKey        2102 ms  shuffle write     7,286,062 B      255,970 records
+  groupByKey         4561 ms  shuffle write    50,562,481 B    5,662,821 records
+  shuffle join       3882 ms  shuffle write    51,450,401 B    5,665,094 records
+  broadcast join     1338 ms  shuffle write             0 B            0 records
   identical results: reduceByKey vs groupByKey true; joins true
     -> /home/hduser/parksense-sg/outputs/metrics/concepts_shuffle.csv (4 rows)
 
@@ -110,7 +110,7 @@ master=local[4,3] appId=local-1792039369966
   5. FAULT TOLERANCE
 ================================================================================================
   master=local[4,3]: each task may be attempted up to 3 times
-26/10/15 04:43:14 ERROR Executor: Exception in task 2.0 in stage 64.0 (TID 1768)
+26/10/15 15:39:36 ERROR Executor: Exception in task 2.0 in stage 64.0 (TID 12709)
 java.lang.RuntimeException: SIMULATED executor failure in partition 2, attempt 0
 	at parksense.SparkConcepts$.$anonfun$main$70(SparkConcepts.scala:211) ~[parksense_2.12-0.1.jar:0.1]
 	at parksense.SparkConcepts$.$anonfun$main$70$adapted(SparkConcepts.scala:208) ~[parksense_2.12-0.1.jar:0.1]
@@ -143,9 +143,9 @@ Task attempts for partition 2:
   stage 64 partition 2 attempt 0 -> FAILED SIMULATED executor failure in partition 2, attempt 0
   stage 64 partition 2 attempt 1 -> SUCCESS 
 
-Tasks in the job: 33 (1 failed, 32 succeeded)
-Expected sum(occupancy) without failure: 172094.606523
-Result with a failed + retried task:     172094.606523
+Tasks in the job: 129 (1 failed, 128 succeeded)
+Expected sum(occupancy) without failure: 2641943.813548
+Result with a failed + retried task:     2641943.813548
 Identical: true
 
 Partition 2 was recomputed from its lineage (cached blocks of `car`, or the textFile split if evicted), so the job succeeded with the same result.
@@ -154,35 +154,35 @@ Partition 2 was recomputed from its lineage (cached blocks of `car`, or the text
 isCheckpointed = true
 
 BEFORE (17 lines):
-(32) MapPartitionsRDD[155] at filter at SparkConcepts.scala:226 []
- |   MapPartitionsRDD[154] at mapValues at SparkConcepts.scala:226 []
- |   ShuffledRDD[153] at reduceByKey at SparkConcepts.scala:226 []
- +-(32) MapPartitionsRDD[152] at map at SparkConcepts.scala:226 []
-    |   MapPartitionsRDD[21] at map at SparkConcepts.scala:20 []
-    |       CachedPartitions: 32; MemorySize: 17.2 MiB; DiskSize: 0.0 B
-    |   MapPartitionsRDD[20] at filter at SparkConcepts.scala:19 []
-    |   MapPartitionsRDD[19] at map at SparkConcepts.scala:18 []
-    |   MapPartitionsRDD[18] at filter at SparkConcepts.scala:18 []
-    |   MapPartitionsRDD[17] at flatMap at SparkConcepts.scala:18 []
-    |   MapPartitionsRDD[16] at map at SparkConcepts.scala:17 []
-    |   MapPartitionsRDD[15] at filter at SparkConcepts.scala:17 []
-    |   MapPartitionsRDD[14] at map at SparkConcepts.scala:17 []
-    |   CoalescedRDD[2] at coalesce at SparkConcepts.scala:48 []
-    |       CachedPartitions: 32; MemorySize: 21.0 MiB; DiskSize: 0.0 B
-    |   hdfs://localhost:9000/parksense/raw/flat/*/*.txt MapPartitionsRDD[1] at textFile at SparkConcepts.scala:47 []
-    |   hdfs://localhost:9000/parksense/raw/flat/*/*.txt HadoopRDD[0] at textFile at SparkConcepts.scala:47 []
+(128) MapPartitionsRDD[155] at filter at SparkConcepts.scala:226 []
+  |   MapPartitionsRDD[154] at mapValues at SparkConcepts.scala:226 []
+  |   ShuffledRDD[153] at reduceByKey at SparkConcepts.scala:226 []
+  +-(128) MapPartitionsRDD[152] at map at SparkConcepts.scala:226 []
+      |   MapPartitionsRDD[21] at map at SparkConcepts.scala:20 []
+      |       CachedPartitions: 128; MemorySize: 256.2 MiB; DiskSize: 0.0 B
+      |   MapPartitionsRDD[20] at filter at SparkConcepts.scala:19 []
+      |   MapPartitionsRDD[19] at map at SparkConcepts.scala:18 []
+      |   MapPartitionsRDD[18] at filter at SparkConcepts.scala:18 []
+      |   MapPartitionsRDD[17] at flatMap at SparkConcepts.scala:18 []
+      |   MapPartitionsRDD[16] at map at SparkConcepts.scala:17 []
+      |   MapPartitionsRDD[15] at filter at SparkConcepts.scala:17 []
+      |   MapPartitionsRDD[14] at map at SparkConcepts.scala:17 []
+      |   CoalescedRDD[2] at coalesce at SparkConcepts.scala:48 []
+      |       CachedPartitions: 128; MemorySize: 313.6 MiB; DiskSize: 0.0 B
+      |   hdfs://localhost:9000/parksense/raw/flat/*/*.txt MapPartitionsRDD[1] at textFile at SparkConcepts.scala:47 []
+      |   hdfs://localhost:9000/parksense/raw/flat/*/*.txt HadoopRDD[0] at textFile at SparkConcepts.scala:47 []
 
 AFTER (2 lines):
-(32) MapPartitionsRDD[155] at filter at SparkConcepts.scala:226 []
- |   ReliableCheckpointRDD[156] at count at SparkConcepts.scala:229 []
+(128) MapPartitionsRDD[155] at filter at SparkConcepts.scala:226 []
+  |   ReliableCheckpointRDD[156] at count at SparkConcepts.scala:229 []
 
     -> /home/hduser/parksense-sg/outputs/metrics/concepts_fault_tolerance.txt
 
 ================================================================================================
   6. ACCUMULATORS & BROADCAST
 ================================================================================================
-  accumulator nearlyFullSnapshots = 26904; broadcast entries = 2273
+  accumulator nearlyFullSnapshots = 420462; broadcast entries = 2273
     -> /home/hduser/parksense-sg/outputs/metrics/concepts_broadcast_accumulator.csv (10 rows)
     -> /home/hduser/parksense-sg/outputs/metrics/concepts_stage_metrics.csv (63 rows)
     -> /home/hduser/parksense-sg/outputs/metrics/concepts_app_id.txt
-Application id for the History Server: local-1792039369966
+Application id for the History Server: local-1792078532392

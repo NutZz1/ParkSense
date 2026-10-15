@@ -1,2 +1,3 @@
 day_type,n,positive_rate,precision,recall,f1,persistence_f1
-weekday,49039,0.0438,0.5393,0.9776,0.6952,0.8187
+weekday,642056,0.0497,0.849,0.8672,0.858,0.8707
+weekend,165581,0.0633,0.8725,0.8612,0.8668,0.8812

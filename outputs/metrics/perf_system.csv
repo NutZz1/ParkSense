@@ -1,0 +1,58 @@
+experiment,setting,rows,features_s,train_score_s,total_s,notes
+scalability,25% of carparks,1335661.0,16.29,66.94,83.23,local[*]
+scalability,50% of carparks,2554076.0,15.84,85.81,101.65,local[*]
+scalability,100% of carparks,5032634.0,21.86,331.51,353.37,local[*]
+parallelism,local[1],1335661.0,44.12,156.65,200.77,25% of carparks
+parallelism,local[2],1335661.0,24.72,91.87,116.59,25% of carparks
+parallelism,local[4],1335661.0,16.23,62.23,78.46,25% of carparks
+parallelism,local[*],1335661.0,12.92,54.0,66.92,25% of carparks
+shuffle_partitions,8,1335661.0,13.67,106.47,120.14,"25% of carparks, local[*]"
+shuffle_partitions,16,1335661.0,12.84,45.07,57.91,"25% of carparks, local[*]"
+shuffle_partitions,32,1335661.0,13.34,56.34,69.69,"25% of carparks, local[*]"
+shuffle_partitions,64,1335661.0,13.93,54.96,68.9,"25% of carparks, local[*]"
+shuffle_partitions,200,1335661.0,26.73,161.79,188.52,"25% of carparks, local[*]"
+caching,not cached,1335661.0,14.19,148.27,162.46,3 x RF fit+score
+caching,cached,1335661.0,23.54,34.65,58.19,3 x RF fit+score
+scala_RddPipeline,count input lines,,,,2.7,Timer.scala
+scala_RddPipeline,count exploded lot records (materialises lots cache),,,,8.046,Timer.scala
+scala_RddPipeline,count clean lot records (materialises cleaned cache),,,,3.921,Timer.scala
+scala_RddPipeline,join: shuffle leftOuterJoin with metadata,,,,9.179,Timer.scala
+scala_RddPipeline,join: broadcast map-side join with metadata,,,,1.831,Timer.scala
+scala_RddPipeline,materialise joined records (DISK_ONLY persist),,,,6.114,Timer.scala
+scala_RddPipeline,write occupancy Parquet (partitioned by dt),,,,106.747,Timer.scala
+scala_RddPipeline,write aggregate Parquet files,,,,18.823,Timer.scala
+scala_SparkConcepts,partitions=1 mean occupancy per carpark-hour,,,,4.801,Timer.scala
+scala_SparkConcepts,partitions=2 mean occupancy per carpark-hour,,,,2.908,Timer.scala
+scala_SparkConcepts,partitions=4 mean occupancy per carpark-hour,,,,1.791,Timer.scala
+scala_SparkConcepts,partitions=8 mean occupancy per carpark-hour,,,,2.002,Timer.scala
+scala_SparkConcepts,partitions=16 mean occupancy per carpark-hour,,,,2.644,Timer.scala
+scala_SparkConcepts,partitions=32 mean occupancy per carpark-hour,,,,3.993,Timer.scala
+scala_SparkConcepts,no_cache action 1 (count),,,,9.65,Timer.scala
+scala_SparkConcepts,no_cache action 2 (mean occupancy),,,,6.859,Timer.scala
+scala_SparkConcepts,no_cache action 3 (count again),,,,8.169,Timer.scala
+scala_SparkConcepts,cache_MEMORY_ONLY action 1 (count),,,,11.279,Timer.scala
+scala_SparkConcepts,cache_MEMORY_ONLY action 2 (mean occupancy),,,,0.222,Timer.scala
+scala_SparkConcepts,cache_MEMORY_ONLY action 3 (count again),,,,0.127,Timer.scala
+scala_SparkConcepts,persist_MEMORY_AND_DISK action 1 (count),,,,11.173,Timer.scala
+scala_SparkConcepts,persist_MEMORY_AND_DISK action 2 (mean occupancy),,,,0.165,Timer.scala
+scala_SparkConcepts,persist_MEMORY_AND_DISK action 3 (count again),,,,0.1,Timer.scala
+scala_SparkConcepts,persist_MEMORY_ONLY_SER action 1 (count),,,,10.684,Timer.scala
+scala_SparkConcepts,persist_MEMORY_ONLY_SER action 2 (mean occupancy),,,,1.074,Timer.scala
+scala_SparkConcepts,persist_MEMORY_ONLY_SER action 3 (count again),,,,1.048,Timer.scala
+scala_SparkConcepts,shuffle: reduceByKey,,,,2.102,Timer.scala
+scala_SparkConcepts,shuffle: groupByKey,,,,4.561,Timer.scala
+scala_SparkConcepts,shuffle: shuffle join,,,,3.882,Timer.scala
+scala_SparkConcepts,shuffle: broadcast join,,,,1.338,Timer.scala
+spark_sql,q1_occupancy_by_hour_weekday_weekend,48.0,,,11.71,analytics.py
+spark_sql,q2_top20_most_often_full,20.0,,,6.66,analytics.py
+spark_sql,q3_full_rate_by_type_and_system,10.0,,,4.46,analytics.py
+spark_sql,q4_policy_effect_evening,5.0,,,3.17,analytics.py
+spark_sql,q5_busiest_day_per_type,8.0,,,3.67,analytics.py
+spark_sql,q6_daily_citywide_full_rate,31.0,,,3.45,analytics.py
+spark_sql,q7_evening_vs_morning_swing,30.0,,,3.66,analytics.py
+spark_sql,q8_data_quality_per_day,31.0,,,7.73,analytics.py
+hbase,"poller write throughput (median rows/s, HappyBase batch)",773930.0,,,20782.0,193 polls
+api,API lag: response time - snapshot timestamp (median s),193.0,,,51.0,poller_stats.csv
+streaming,poll file written -> micro-batch processed (median s),721564.0,,,33.0,366 steady-state batches
+streaming,micro-batch RDD processing time (median s),366.0,,,0.26,StreamingJob.scala
+live,score_live run time (median s),1687.0,,,13.1,features + model for all carparks

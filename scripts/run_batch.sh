@@ -1,20 +1,23 @@
 #!/usr/bin/env bash
 # End-to-end batch rerun: HDFS upload -> Scala RDD -> Spark concepts -> Spark SQL analytics -> features -> EDA ->
 # train -> evaluate -> perf -> publish metrics -> figures -> report. Stops on the first error.
-# Usage: scripts/run_batch.sh [--skip-perf] [--skip-horizons]
+# Usage: scripts/run_batch.sh [--skip-perf] [--skip-horizons] [--from "6 train"]   (--from resumes at that step)
 set -euo pipefail
 cd "$(dirname "$0")/.." && source scripts/env.sh
-SKIP_PERF=""; EVAL_ARGS=""
-for a in "$@"; do case $a in --skip-perf) SKIP_PERF=1 ;; --skip-horizons) EVAL_ARGS="--skip-horizons" ;; esac; done
+SKIP_PERF=""; EVAL_ARGS=""; FROM=""
+while [ $# -gt 0 ]; do case $1 in --skip-perf) SKIP_PERF=1 ;; --skip-horizons) EVAL_ARGS="--skip-horizons" ;; --from) FROM=$2; shift ;; esac; shift; done
 LOG=outputs/logs/run_batch.log; mkdir -p outputs/logs
 T0=$(date +%s); declare -a DONE=()
-step() { local n=$1; shift; local t=$(date +%s); echo -e "\n>>> [$n] $*" | tee -a $LOG
+step() { local n=$1; shift
+  if [ -n "$FROM" ] && [ "$n" != "$FROM" ] && [ "$n" != "services" ]; then echo "skip [$n] (resuming at $FROM)"; return; fi
+  [ "$n" = "$FROM" ] && FROM=""
+  local t=$(date +%s); echo -e "\n>>> [$n] $*" | tee -a $LOG
   if ! "$@" >> $LOG 2>&1; then echo "FAILED at: $n (see $LOG)"; tail -30 $LOG; exit 1; fi
   DONE+=("$(printf '%-30s %6ss' "$n" $(( $(date +%s) - t )))"); }
 step "services" scripts/02_start_services.sh
 step "hdfs upload" scripts/03_hdfs_layout.sh --archive
 step "build jar" scripts/build_scala.sh
-mv -f outputs/metrics/timings.csv outputs/logs/timings_previous.csv 2>/dev/null || true
+[ -z "$FROM" ] && { mv -f outputs/metrics/timings.csv outputs/logs/timings_previous.csv 2>/dev/null || true; }
 step "2 RddPipeline" scripts/run_scala.sh RddPipeline
 step "3 SparkConcepts" scripts/run_scala.sh SparkConcepts "local[4,3]"
 step "4 analytics (Spark SQL)" python pyspark_jobs/analytics.py

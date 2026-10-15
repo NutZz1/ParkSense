@@ -1,7 +1,7 @@
 {
-  "parquet_rows": 460643,
-  "scala_clean_records": 460643,
-  "parquet_car_rows": 379780,
-  "scala_car_lot_records": 379780,
+  "parquet_rows": 7851051,
+  "scala_clean_records": 7851051,
+  "parquet_car_rows": 6472654,
+  "scala_car_lot_records": 6472654,
   "match": true
 }

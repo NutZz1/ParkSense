@@ -152,7 +152,7 @@ lines, counting malformed), **`flatMap`** (one record per lot type), `filter` (t
 
 **Join strategies**: shuffle join {S.get('shuffle_join_ms', 'TBD')} ms vs broadcast join {S.get('broadcast_join_ms', 'TBD')} ms (identical row counts).
 
-**Partitions** (`SparkConcepts.scala` §1): records per partition after coalesce: skew {po.get('coalesce32 skew max/min', 'TBD')};
+**Partitions** (`SparkConcepts.scala` §1): records per partition after coalesce: skew {po.get('coalesce skew max/min', 'TBD')};
 `partitionBy(HashPartitioner(8))` followed by `reduceByKey` with the same partitioner ran {po.get('reduceByKey(samePartitioner) stages', 'TBD')} stage
 with {po.get('reduceByKey(samePartitioner) shuffle_write_bytes', 'TBD')} B of shuffle. Aggregation time vs partitions:
 

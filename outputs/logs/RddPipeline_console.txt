@@ -2,11 +2,11 @@
 ================================================================================================
   STEP 1  SparkSession + RDD creation
 ================================================================================================
-  master=local[*] appId=local-1792039254199 defaultParallelism=16 Spark 3.5.9
+  master=local[8] appId=local-1792078318538 defaultParallelism=8 Spark 3.5.9
   backfill RDD: hdfs://localhost:9000/parksense/raw/flat/*/*.txt
-  getNumPartitions after textFile = 193  (one split per small file)
-  no live archive at hdfs://localhost:9000/parksense/stream/archive/*/*.txt yet (union skipped)
-  getNumPartitions after coalesce(32) = 32
+  getNumPartitions after textFile = 2880  (one split per small file)
+  live archive RDD: hdfs://localhost:9000/parksense/stream/archive/*/*.txt (413 partitions) -> union
+  getNumPartitions after coalesce(128) = 128
   metadata RDD: hdfs://localhost:9000/parksense/raw/meta/carpark_info.csv (2 partitions)
 
 ================================================================================================
@@ -27,82 +27,83 @@
 ================================================================================================
   STEP 4  Actions
 ================================================================================================
-    [time] count input lines                                                  657 ms
-    [time] count exploded lot records (materialises lots cache)              1364 ms
-    [time] count clean lot records (materialises cleaned cache)               421 ms
-  [A1 count       ] lines=389,610  lot records=468,604  clean=460,643
-  [A2 first       ] LotRec(HE12,C,1791864000000,1791863945000,0,105,102,0.02857142857142858,0.9714285714285714,12,720,2,false,false,2026-10-13)
+    [time] count input lines                                                 2700 ms
+    [time] count exploded lot records (materialises lots cache)              8046 ms
+    [time] count clean lot records (materialises cleaned cache)              3921 ms
+  [A1 count       ] lines=6,652,105  lot records=7,991,116  clean=7,851,051
+  [A2 first       ] LotRec(HE12,C,1789447500000,1789447438000,1,105,31,0.7047619047619047,0.29523809523809524,12,765,2,false,false,2026-09-15)
   [A3 take(5)     ]
-      HE12   C 2026-10-13T12:00 avail  102/105  occ 0.03
-      HLM    C 2026-10-13T12:00 avail   13/583  occ 0.98
-      RHM    C 2026-10-13T12:00 avail  131/329  occ 0.60
-      BM29   C 2026-10-13T12:00 avail    0/96   occ 1.00
-      Q81    C 2026-10-13T12:00 avail    0/97   occ 1.00
-  [A4 countByValue] lot types: C=379,780, H=40,528, Y=40,335
-  [T  distinct + A5 collect] 1997 carparks; lot types C,H,Y
-    [time] join: shuffle leftOuterJoin with metadata                         2073 ms
-    [time] join: broadcast map-side join with metadata                        968 ms
-  join rows 460,643: shuffle join 2073 ms vs broadcast join 968 ms; unmatched meta 1,344
+      HE12   C 2026-09-15T12:45 avail   31/105  occ 0.70
+      HLM    C 2026-09-15T12:45 avail   14/583  occ 0.98
+      RHM    C 2026-09-15T12:45 avail  147/329  occ 0.55
+      BM29   C 2026-09-15T12:45 avail   11/96   occ 0.89
+      Q81    C 2026-09-15T12:45 avail    6/97   occ 0.94
+  [A4 countByValue] lot types: C=6,472,654, H=690,802, Y=687,595
+  [T  distinct + A5 collect] 2000 carparks; lot types C,H,Y
+    -> /home/hduser/parksense-sg/outputs/metrics/rdd_stale_rate_carpark.csv (2007 rows)
+    [time] join: shuffle leftOuterJoin with metadata                         9179 ms
+    [time] join: broadcast map-side join with metadata                       1831 ms
+    [time] materialise joined records (DISK_ONLY persist)                    6114 ms
+  join rows 7,851,051: shuffle join 9179 ms vs broadcast join 1831 ms; unmatched meta 19,300
   [A6 countByKey  ] records per carpark type:
-      MULTI-STOREY CAR PARK                     236,686
-      SURFACE CAR PARK                          208,373
-      BASEMENT CAR PARK                           9,222
-      COVERED CAR PARK                            2,316
-      SURFACE/MULTI-STOREY CAR PARK               2,123
-      UNKNOWN                                     1,344
-      MECHANISED AND SURFACE CAR PARK               386
-      MECHANISED CAR PARK                           193
-  [A7 reduce      ] citywide busiest moment: 2026-10-15T04:00 SGT, occupancy 49.9% of 705,319 car lots
+      MULTI-STOREY CAR PARK                   4,029,342
+      SURFACE CAR PARK                        3,559,842
+      BASEMENT CAR PARK                         157,169
+      COVERED CAR PARK                           39,390
+      SURFACE/MULTI-STOREY CAR PARK              36,155
+      UNKNOWN                                    19,300
+      MECHANISED AND SURFACE CAR PARK             6,573
+      MECHANISED CAR PARK                         3,280
+  [A7 reduce      ] citywide busiest moment: 2026-09-23T04:00 SGT, occupancy 50.5% of 703,907 car lots
 
 ================================================================================================
   STEP 5  Key-value analytics (car lots, outputs/metrics/rdd_*.csv + Parquet agg_*)
 ================================================================================================
-    -> /home/hduser/parksense-sg/outputs/metrics/rdd_carpark_stats.csv (1997 rows)
-    -> /home/hduser/parksense-sg/outputs/metrics/rdd_excluded_carparks.csv (212 rows)
+    -> /home/hduser/parksense-sg/outputs/metrics/rdd_carpark_stats.csv (2000 rows)
+    -> /home/hduser/parksense-sg/outputs/metrics/rdd_excluded_carparks.csv (175 rows)
     -> /home/hduser/parksense-sg/outputs/metrics/rdd_top20_full.csv (20 rows)
   Top 5 most-often-full carparks:
-      UA2    full  98.2% of snapshots, mean occupancy  99.5%  BLK 3 TO 5 UPPER ALJUNIED LANE
-      M38    full  97.9% of snapshots, mean occupancy  99.2%  BLK 63 TO 64 CIRCUIT ROAD
-      PL34   full  97.9% of snapshots, mean occupancy  99.3%  BLK 603 PUNGGOL ROAD
-      TP30   full  97.4% of snapshots, mean occupancy  98.7%  BLK 116/122 LORONG 1 TOA PAYOH
-      WCGL   full  92.7% of snapshots, mean occupancy  99.0%  BLK 568A TO 568C CHAMPIONS WAY
-    -> /home/hduser/parksense-sg/outputs/metrics/rdd_type_hour.csv (192 rows)
-    -> /home/hduser/parksense-sg/outputs/metrics/rdd_daily_full_rate.csv (3 rows)
-    -> /home/hduser/parksense-sg/outputs/metrics/rdd_stale_rate_carpark.csv (2007 rows)
+      JB1    full  97.1% of snapshots, mean occupancy  98.9%  BLK 3-5,7,8,4A JALAN BATU
+      PL34   full  95.8% of snapshots, mean occupancy  98.9%  BLK 603 PUNGGOL ROAD
+      UA2    full  95.5% of snapshots, mean occupancy  98.7%  BLK 3 TO 5 UPPER ALJUNIED LANE
+      GE1G   full  93.9% of snapshots, mean occupancy  95.7%  BLK 95 & 113 ALJUNIED CRESCENT
+      TP30   full  93.7% of snapshots, mean occupancy  97.8%  BLK 116/122 LORONG 1 TOA PAYOH
+    -> /home/hduser/parksense-sg/outputs/metrics/rdd_type_hour.csv (384 rows)
+    -> /home/hduser/parksense-sg/outputs/metrics/rdd_daily_full_rate.csv (31 rows)
   [A8 saveAsTextFile] hdfs://localhost:9000/parksense/processed/agg_type_hour_txt
 
 ================================================================================================
   STEP 6  Output: RDD -> DataFrame -> Parquet
 ================================================================================================
-26/10/15 04:41:10 WARN SparkStringUtils: Truncated the string representation of a plan since it was too large. This behavior can be adjusted by setting 'spark.sql.debug.maxToStringFields'.
-    [time] write occupancy Parquet (partitioned by dt)                       8297 ms
-  hdfs://localhost:9000/parksense/processed/occupancy (8297 ms)
-    [time] write aggregate Parquet files                                     3973 ms
+26/10/15 15:33:20 WARN SparkStringUtils: Truncated the string representation of a plan since it was too large. This behavior can be adjusted by setting 'spark.sql.debug.maxToStringFields'.
+    [time] write occupancy Parquet (partitioned by dt)                     106747 ms
+  hdfs://localhost:9000/parksense/processed/occupancy (106747 ms)
+    [time] write aggregate Parquet files                                    18823 ms
 
 ================================================================================================
   STEP 7  Summary
 ================================================================================================
-  input_lines                  389610
+  input_lines                  6652105
   malformed_lines              0
-  lot_records_exploded         468604
+  lot_records_exploded         7991116
   bad_lot_items                0
-  non_positive_total           772
-  stale_dropped                7189
-  clipped_available            193
-  clean_records                460643
-  unmatched_meta_records       1344
-  car_lot_records              379780
-  carparks                     1997
-  sensor_updates_distinct      456002
-  always_zero_carparks         30
-  never_changing_carparks      210
-  snapshots                    193
-  input_partitions_textFile    193
-  partitions_after_coalesce    32
-  shuffle_join_ms              2073
-  broadcast_join_ms            968
-  busiest_moment_sgt           2026-10-15T04:00
-  busiest_citywide_occupancy   0.4992
-  runtime_ms                   26797
+  non_positive_total           13586
+  stale_dropped                126479
+  clipped_available            3293
+  clean_records                7851051
+  unmatched_meta_records       19300
+  car_lot_records              6472654
+  carparks                     2000
+  sensor_updates_distinct      7388828
+  always_zero_carparks         24
+  never_changing_carparks      172
+  snapshots                    3293
+  input_partitions_textFile    2880
+  partitions_after_coalesce    128
+  shuffle_join_ms              9179
+  broadcast_join_ms            1831
+  busiest_moment_sgt           2026-09-23T04:00
+  busiest_citywide_occupancy   0.5048
+  runtime_ms                   205617
     -> /home/hduser/parksense-sg/outputs/metrics/rdd_summary.csv (22 rows)
   Accumulators are read after actions on persisted RDDs, so each update is counted once.

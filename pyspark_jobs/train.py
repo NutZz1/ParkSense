@@ -92,7 +92,7 @@ for algo, b in best.items():
                       "model_path": str(out), "refit_seconds": round(time.time() - ts, 1)}
     log.info("refit %s on train+val in %.0fs -> %s", algo, time.time() - ts, out)
 with open(MD / f"models_meta_{h}.json", "w") as f:
-    json.dump(meta_all, f, indent=2)
+    json.dump(meta_all, f, indent=2, default=str)
 
 # target-encoding tables for live scoring (computed on TRAIN only)
 te_chd.write.mode("overwrite").parquet(f"file://{MD / f'te_chd_{h}'}")
@@ -111,7 +111,7 @@ if h == CFG["thresholds"]["horizon_min"]:
             "trained_at_utc": datetime.now(timezone.utc).isoformat(),
             "model_version": f"{winner}-h{h}-{datetime.now(timezone.utc):%Y%m%d%H%M}"}
     with open(MD / "best_model_meta.json", "w") as f:
-        json.dump(meta, f, indent=2)
+        json.dump(meta, f, indent=2, default=str)
 
 print("\n=== train summary ===")
 for r in split_rows:

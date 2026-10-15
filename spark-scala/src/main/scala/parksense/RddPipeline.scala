@@ -55,7 +55,7 @@ object RddPipeline {
       println(s"  live archive RDD: $archiveGlob (${live.getNumPartitions} partitions) -> union")
       backfill.union(live) // RUBRIC: transformation union (backfill + live archive)
     } else { println(s"  no live archive at $archiveGlob yet (union skipped)"); backfill }
-    val nParts = cfg.int("spark.default_partitions") * 4
+    val nParts = cfg.int("spark.rdd_partitions")
     val lines = all.coalesce(nParts) // narrow: merges the small-file partitions without a shuffle
     println(s"  getNumPartitions after coalesce($nParts) = ${lines.getNumPartitions}")
     val metaUri = cfg.lake("raw/meta/carpark_info.csv")
@@ -116,19 +116,34 @@ object RddPipeline {
     val distinctTypes = cleaned.map(_.lotType).distinct().collect().sorted // RUBRIC: action collect (small)
     println(s"  [T  distinct + A5 collect] $nCarparks carparks; lot types ${distinctTypes.mkString(",")}")
 
+    // stale rate per carpark (before the stale filter, from the raw lot records) — computed early so `lots` can be released
+    val staleRate = lots.filter(_.lotType == "C").map(l => (l.carpark, (if (Records.stalenessMin(l) > staleMax) 1L else 0L, 1L)))
+      .reduceByKey((a, b) => (a._1 + b._1, a._2 + b._2)).mapValues { case (s, n) => (s.toDouble / n, n) }
+      .sortBy(x => -x._2._1).collect()
+    Out.csv(s"$M/rdd_stale_rate_carpark.csv", Seq("carpark_no", "stale_rate", "records"), staleRate.map { case (c, (r, n)) => Seq(c, r, n) })
+
+    // sensor-level dedupe: an unchanged sensor repeats across snapshots
+    val sensorUpdates = cleaned.map(r => (r.carpark, r.lotType, r.updateTs)).distinct().count()
+
+    lots.unpersist() // memory: only one large RDD is cached at a time from here on
+
     // join with metadata: shuffle join vs broadcast (map-side) join
     val keyed = cleaned.keyBy(_.carpark)
     val (nShuffleJoin, shuffleMs) = Timer.time("join: shuffle leftOuterJoin with metadata") {
       keyed.leftOuterJoin(meta).count() // RUBRIC: key-value join (shuffle)
     }
     val bMeta = sc.broadcast(meta.collectAsMap()) // RUBRIC: broadcast variable
+    val (nBcast, bcastMs) = Timer.time("join: broadcast map-side join with metadata") { // same work as above: join + count
+      cleaned.map(r => Records.toOccupancy(r, bMeta.value.get(r.carpark))).count()
+    }
     val occ: RDD[Occupancy] = cleaned.map { r => // map-side join: no shuffle of the big RDD
       val m = bMeta.value.get(r.carpark)
       if (m.isEmpty) unmatchedMeta.add(1)
       Records.toOccupancy(r, m)
-    }.persist(StorageLevel.MEMORY_AND_DISK_SER)
-    val (nOcc, bcastMs) = Timer.time("join: broadcast map-side join with metadata")(occ.count())
-    require(nOcc == nShuffleJoin, s"broadcast join rows $nOcc != shuffle join rows $nShuffleJoin")
+    }.persist(StorageLevel.DISK_ONLY) // wide records: keep them off the heap
+    val (nOcc, _) = Timer.time("materialise joined records (DISK_ONLY persist)")(occ.count())
+    require(nBcast == nShuffleJoin, s"broadcast join rows $nBcast != shuffle join rows $nShuffleJoin")
+    cleaned.unpersist()
     println(f"  join rows $nOcc%,d: shuffle join $shuffleMs ms vs broadcast join $bcastMs ms; unmatched meta ${unmatchedMeta.value}%,d")
     val byType = occ.map(o => (Option(o.car_park_type).getOrElse("UNKNOWN"), 1)).countByKey() // RUBRIC: action countByKey
     println(s"  [A6 countByKey  ] records per carpark type:")
@@ -195,16 +210,6 @@ object RddPipeline {
       .mapValues { case (f, n, s) => (f.toDouble / n, s / n, n) }.sortByKey().collect()
     Out.csv(s"$M/rdd_daily_full_rate.csv", Seq("dt", "full_rate", "mean_occupancy", "records"),
       daily.map { case (d, (f, m, n)) => Seq(d, f, m, n) })
-
-    // 5.6 stale rate per carpark (before the stale filter, from the raw lot records)
-    val staleRate = lots.filter(_.lotType == "C").map(l => (l.carpark, (if (Records.stalenessMin(l) > staleMax) 1L else 0L, 1L)))
-      .reduceByKey((a, b) => (a._1 + b._1, a._2 + b._2)).mapValues { case (s, n) => (s.toDouble / n, n) }
-      .sortBy(x => -x._2._1).collect()
-    lots.unpersist()
-    Out.csv(s"$M/rdd_stale_rate_carpark.csv", Seq("carpark_no", "stale_rate", "records"), staleRate.map { case (c, (r, n)) => Seq(c, r, n) })
-
-    // sensor-level dedupe: an unchanged sensor repeats across snapshots
-    val sensorUpdates = cleaned.map(r => (r.carpark, r.lotType, r.updateTs)).distinct().count()
 
     // saveAsTextFile: type x hour aggregates as plain text
     val txt = cfg.lake("processed/agg_type_hour_txt")

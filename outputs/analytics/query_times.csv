@@ -1,9 +1,9 @@
 query,rows,seconds
-q1_occupancy_by_hour_weekday_weekend,24,2.77
-q2_top20_most_often_full,20,1.73
-q3_full_rate_by_type_and_system,10,1.43
-q4_policy_effect_evening,5,0.99
-q5_busiest_day_per_type,8,0.95
-q6_daily_citywide_full_rate,3,0.85
-q7_evening_vs_morning_swing,30,0.78
-q8_data_quality_per_day,3,1.43
+q1_occupancy_by_hour_weekday_weekend,48,11.71
+q2_top20_most_often_full,20,6.66
+q3_full_rate_by_type_and_system,10,4.46
+q4_policy_effect_evening,5,3.17
+q5_busiest_day_per_type,8,3.67
+q6_daily_citywide_full_rate,31,3.45
+q7_evening_vs_morning_swing,30,3.66
+q8_data_quality_per_day,31,7.73

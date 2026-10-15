@@ -45,17 +45,17 @@ object SparkConcepts {
     Out.banner("1. PARTITIONS")
     sc.setJobDescription("1 partitions")
     val raw = sc.textFile(glob, 8)
-    val lines = raw.coalesce(32).persist(StorageLevel.MEMORY_AND_DISK_SER)
+    val lines = raw.coalesce(cfg.int("spark.rdd_partitions")).persist(StorageLevel.MEMORY_AND_DISK_SER)
     lines.count()
     val ops = Seq(
       Seq("textFile (one split per small file)", raw.getNumPartitions),
-      Seq("coalesce(32) (narrow, no shuffle)", lines.getNumPartitions),
+      Seq(s"coalesce(${cfg.int("spark.rdd_partitions")}) (narrow, no shuffle)", lines.getNumPartitions),
       Seq("repartition(16) (wide, full shuffle)", lines.repartition(16).getNumPartitions), // RUBRIC: repartition (wide)
       Seq("coalesce(4) (narrow)", lines.coalesce(4).getNumPartitions)) // RUBRIC: coalesce (narrow)
     ops.foreach(o => println(f"  ${o(0)}%-40s -> ${o(1)} partitions"))
     val perPart = lines.mapPartitionsWithIndex((i, it) => Iterator((i, it.size))).collect() // RUBRIC: records per partition (mapPartitionsWithIndex)
     val sizes = perPart.map(_._2)
-    println(f"  records per partition (coalesce 32): min ${sizes.min}%,d  max ${sizes.max}%,d  skew max/min ${sizes.max.toDouble / sizes.min}%.2f")
+    println(f"  records per partition (after coalesce): min ${sizes.min}%,d  max ${sizes.max}%,d  skew max/min ${sizes.max.toDouble / sizes.min}%.2f")
     val rep16 = lines.repartition(16).mapPartitionsWithIndex((i, it) => Iterator((i, it.size))).collect()
     println(f"  after repartition(16): min ${rep16.map(_._2).min}%,d  max ${rep16.map(_._2).max}%,d (round-robin balances)")
 
@@ -92,7 +92,7 @@ object SparkConcepts {
     Out.csv(s"$M/concepts_partition_sizes.csv", Seq("partition", "records"), perPart.map(p => Seq(p._1, p._2)))
     Out.csv(s"$M/concepts_partition_ops.csv", Seq("operation", "value"),
       ops ++ Seq(Seq("reduceByKey(samePartitioner) stages", st.size), Seq("reduceByKey(samePartitioner) shuffle_write_bytes", noShuffleBytes),
-        Seq("coalesce32 skew max/min", f"${sizes.max.toDouble / sizes.min}%.3f")))
+        Seq("coalesce skew max/min", f"${sizes.max.toDouble / sizes.min}%.3f")))
 
     // =========================================================================================
     Out.banner("2. LINEAGE & DAG")
@@ -153,7 +153,7 @@ object SparkConcepts {
     for ((name, lvl) <- Seq("no_cache" -> None, "cache_MEMORY_ONLY" -> Some(StorageLevel.MEMORY_ONLY),
       "persist_MEMORY_AND_DISK" -> Some(StorageLevel.MEMORY_AND_DISK), "persist_MEMORY_ONLY_SER" -> Some(StorageLevel.MEMORY_ONLY_SER))) {
       sc.setJobDescription(s"3 persistence $name")
-      val r = carLots(sc.textFile(glob, 8).coalesce(32), staleMax)
+      val r = carLots(sc.textFile(glob, 8).coalesce(cfg.int("spark.rdd_partitions")), staleMax)
       lvl.foreach(l => if (l == StorageLevel.MEMORY_ONLY) r.cache() else r.persist(l)) // RUBRIC: cache()/persist(level)
       def level = if (r.getStorageLevel == StorageLevel.NONE) "NONE" else r.getStorageLevel.description
       println(s"  $name: getStorageLevel = $level")

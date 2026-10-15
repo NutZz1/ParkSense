@@ -47,19 +47,19 @@
     "excluded": "always-zero / never-changing carparks (RddPipeline)"
   },
   "counts": {
-    "occupancy_rows": 460643,
-    "car_rows": 379780,
-    "excluded_carparks": 212,
-    "slot_rows": 329836,
-    "feature_rows": 329836,
-    "carparks": 1739,
-    "rows_with_label_15": 322368,
-    "positive_rate_15": 0.0461,
-    "rows_with_label_30": 319861,
-    "positive_rate_30": 0.0459,
-    "rows_with_label_60": 317295,
-    "positive_rate_60": 0.0459,
-    "dropped_no_future_30": 9975
+    "occupancy_rows": 7851051,
+    "car_rows": 6472654,
+    "excluded_carparks": 175,
+    "slot_rows": 5086867,
+    "feature_rows": 5086867,
+    "carparks": 1780,
+    "rows_with_label_15": 5048585,
+    "positive_rate_15": 0.0548,
+    "rows_with_label_30": 5032634,
+    "positive_rate_30": 0.0547,
+    "rows_with_label_60": 5035117,
+    "positive_rate_60": 0.0548,
+    "dropped_no_future_30": 54233
   },
-  "elapsed_s": 26.2
+  "elapsed_s": 250.3
 }

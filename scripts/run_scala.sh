@@ -3,7 +3,7 @@
 # HBase client jars (shaded) + hbase-site.xml are added for jobs that write to HBase.
 set -euo pipefail
 cd "$(dirname "$0")/.." && source scripts/env.sh
-CLASS=$1; MASTER=${2:-local[*]}
+CLASS=$1; MASTER=${2:-local[8]}
 JAR=spark-scala/target/scala-2.12/parksense_2.12-0.1.jar
 [ -f "$JAR" ] || scripts/build_scala.sh
 HBJARS=$(hbase mapredcp 2>/dev/null | tr ':' '\n' | grep -E "hbase-shaded-mapreduce|opentelemetry|htrace|audience-annotations" | paste -sd,)

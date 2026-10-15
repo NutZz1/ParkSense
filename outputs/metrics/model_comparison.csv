@@ -1,5 +1,5 @@
 model,type,threshold,n,accuracy,precision,recall,f1,macro_f1,tp,fp,tn,fn,roc_auc,pr_auc,beats_persistence_f1,beats_persistence_recall
-Persistence,baseline,full_now,49039,0.9843,0.8297,0.808,0.8187,0.9053,1734,356,46537,412,0.9002,0.6941,False,False
-Historical,baseline,carpark-hour-dow rate > 0.5,49039,0.9573,0.8971,0.0284,0.0551,0.5166,61,7,46886,2085,0.9221,0.7105,False,False
-Random Forest,model,0.06,49039,0.9625,0.5393,0.9776,0.6952,0.8376,2098,1792,45101,48,0.9922,0.9031,False,True
-Gradient-Boosted Trees,model,0.1,49039,0.968,0.583,0.9408,0.7199,0.8515,2019,1444,45449,127,0.9828,0.8582,False,True
+Persistence,baseline,full_now,807637,0.9867,0.8728,0.8737,0.8733,0.9331,37058,5400,759822,5357,0.9333,0.7783,False,False
+Historical,baseline,carpark-hour-dow rate > 0.5,807637,0.9734,0.7539,0.733,0.7433,0.8646,31089,10147,755075,11326,0.9634,0.7834,False,False
+Random Forest,model,0.89,807637,0.9852,0.8547,0.8657,0.8602,0.9262,36720,6244,758978,5695,0.9962,0.9428,False,False
+Gradient-Boosted Trees,model,0.93,807637,0.9847,0.8659,0.8396,0.8525,0.9222,35610,5515,759707,6805,0.9947,0.9315,False,False

@@ -32,7 +32,7 @@ judged against a persistence baseline and on the rows where the state actually c
 
 ## 4. Objectives
 
-1. Build a resumable, rate-limited ingestion of TBD days of 15-minute history plus a 1-minute live feed into HDFS and HBase.
+1. Build a resumable, rate-limited ingestion of 30 days of 15-minute history plus a 1-minute live feed into HDFS and HBase.
 2. Implement the processing in **Scala + Spark RDDs** (transformations, actions, key-value aggregation, joins) and
    demonstrate partitions, lineage/DAG, persistence, shuffle optimisation and lineage-based fault tolerance.
 3. Train and evaluate PySpark Random Forest and GBT classifiers with leakage-free features and a time-based split,
@@ -45,19 +45,19 @@ judged against a persistence baseline and on the rows where the state actually c
 |---|---|
 | Source | data.gov.sg `GET /v1/transport/carpark-availability?date_time=…` (HDB), Singapore Open Data Licence v1.0 |
 | Metadata | HDB Carpark Information (`d_23f946fa557947f93a8043bbef41dd09`), 2,273 carparks, SVY21 → WGS84 |
-| Backfill window | TBD → TBD SGT, every TBD min |
-| Snapshots | TBD requested · TBD failed · HTTP 429s: TBD |
-| Carparks per snapshot | min TBD · median TBD · max TBD |
-| Flat lines (one per snapshot × carpark) | 389,610 |
-| Lot-type records after flatMap | 468,604 |
-| Clean records / car-lot records | 460,643 / 379,780 |
-| ML rows (carpark × 15-min slot, car lots, reliable sensors) | 329,836 over 1,739 carparks |
-| Target | `full_30`: available/total ≤ 0.10 at t + 30 min — positive rate 4.59% |
+| Backfill window | 2026-09-15T12:45:00 → 2026-10-15T12:30:00 SGT, every 15 min |
+| Snapshots | 2880 requested · 0 failed · HTTP 429s: 0 |
+| Carparks per snapshot | min 2010 · median 2020.0 · max 2047 |
+| Flat lines (one per snapshot × carpark) | 6,652,105 |
+| Lot-type records after flatMap | 7,991,116 |
+| Clean records / car-lot records | 7,851,051 / 6,472,654 |
+| ML rows (carpark × 15-min slot, car lots, reliable sensors) | 5,086,867 over 1,780 carparks |
+| Target | `full_30`: available/total ≤ 0.10 at t + 30 min — positive rate 5.47% |
 
-Attributes are listed in `docs/data_dictionary.md`. Data-quality findings (`docs/data_quality_report.md`): 7,189
-stale readings (> 30 min since the sensor update) dropped, 772 records with total ≤ 0,
-193 availability values clipped, 30 always-zero and
-210 never-changing carparks excluded from ML, 1,344 records without metadata,
+Attributes are listed in `docs/data_dictionary.md`. Data-quality findings (`docs/data_quality_report.md`): 126,479
+stale readings (> 30 min since the sensor update) dropped, 13,586 records with total ≤ 0,
+3,293 availability values clipped, 24 always-zero and
+172 never-changing carparks excluded from ML, 19,300 records without metadata,
 and the API returns an empty snapshot for exactly 00:00:00 (retried at +1 min).
 
 ## 6. Methodology
@@ -77,8 +77,8 @@ and the API returns an empty snapshot for exactly 00:00:00 (retried at +1 min).
 ## 7. Scala + Spark Implementation
 
 **RDD creation and partitions.** `sc.textFile(hdfs:///parksense/raw/flat/*/*.txt, minPartitions = 8)` created
-193 partitions — one per small 15-minute file (the small-files effect) — so the pipeline
-`coalesce`s to 32 partitions (a narrow transformation, no shuffle) before heavy work; live archive files
+2,880 partitions — one per small 15-minute file (the small-files effect) — so the pipeline
+`coalesce`s to 128 partitions (a narrow transformation, no shuffle) before heavy work; live archive files
 are added with `union`.
 
 **Transformations** (`RddPipeline.scala`, rubric table in PROGRESS.md): `map` (parseLine → Either), `filter` (valid
@@ -87,24 +87,24 @@ lines, counting malformed), **`flatMap`** (one record per lot type), `filter` (t
 **`reduceByKey`** (citywide occupancy per snapshot), `aggregateByKey` (carpark × hour × dow means), `combineByKey`
 (per-carpark min/max/mean/full-rate in one pass), `mapValues`, `distinct`, `sortBy`, `union`.
 
-**Actions**: `count` (389,610 lines), `first`, `take(5)`, `collect` (small aggregates), **`reduce`**
-(citywide busiest moment: 2026-10-15T04:00 SGT at 49.92% occupancy),
+**Actions**: `count` (6,652,105 lines), `first`, `take(5)`, `collect` (small aggregates), **`reduce`**
+(citywide busiest moment: 2026-09-23T04:00 SGT at 50.48% occupancy),
 `countByKey` (records per carpark type), `countByValue` (lot-type distribution), `saveAsTextFile`.
 
-**Join strategies**: shuffle join 2073 ms vs broadcast join 968 ms (identical row counts).
+**Join strategies**: shuffle join 9179 ms vs broadcast join 1831 ms (identical row counts).
 
-**Partitions** (`SparkConcepts.scala` §1): records per partition after coalesce: skew 1.167;
+**Partitions** (`SparkConcepts.scala` §1): records per partition after coalesce: skew 1.048;
 `partitionBy(HashPartitioner(8))` followed by `reduceByKey` with the same partitioner ran 1.0 stage
 with 0.0 B of shuffle. Aggregation time vs partitions:
 
 | partitions | ms |
 |---|---|
-| 1 | 653 |
-| 2 | 435 |
-| 4 | 329 |
-| 8 | 529 |
-| 16 | 499 |
-| 32 | 611 |
+| 1 | 4801 |
+| 2 | 2908 |
+| 4 | 1791 |
+| 8 | 2002 |
+| 16 | 2644 |
+| 32 | 3993 |
 
 **Lineage & DAG** — `outputs/lineage/occupancy_lineage.txt` (annotated narrow vs wide), `docs/dag_explanation.md`
 (stages of the join + reduceByKey job and a History Server screenshot checklist).
@@ -113,19 +113,19 @@ with 0.0 B of shuffle. Aggregation time vs partitions:
 
 | mode | storage_level | action1_ms | action2_ms | action3_ms | mem_bytes |
 |---|---|---|---|---|---|
-| no_cache | NONE | 730 | 734 | 557 | 0 |
-| cache_MEMORY_ONLY | Memory Deserialized 1x Replicated | 943 | 34 | 29 | 49932272 |
-| persist_MEMORY_AND_DISK | Disk Memory Deserialized 1x Replicated | 944 | 32 | 25 | 49932272 |
-| persist_MEMORY_ONLY_SER | Memory Serialized 1x Replicated | 779 | 82 | 78 | 18021502 |
+| no_cache | NONE | 9650 | 6859 | 8169 | 0 |
+| cache_MEMORY_ONLY | Memory Deserialized 1x Replicated | 11279 | 222 | 127 | 746825520 |
+| persist_MEMORY_AND_DISK | Disk Memory Deserialized 1x Replicated | 11173 | 165 | 100 | 746825520 |
+| persist_MEMORY_ONLY_SER | Memory Serialized 1x Replicated | 10684 | 1074 | 1048 | 268675566 |
 
 **Shuffle** (`concepts_shuffle.csv`, bytes from a SparkListener on `onStageCompleted`):
 
 | method | ms | shuffle_write_bytes | shuffle_write_records | results_identical |
 |---|---|---|---|---|
-| reduceByKey | 295 | 1208995 | 63851 | True |
-| groupByKey | 436 | 3880428 | 379780 | True |
-| shuffle join | 476 | 4129033 | 382053 | True |
-| broadcast join | 136 | 0 | 0 | True |
+| reduceByKey | 2102 | 7286062 | 255970 | True |
+| groupByKey | 4561 | 50562481 | 5662821 | True |
+| shuffle join | 3882 | 51450401 | 5665094 | True |
+| broadcast join | 1338 | 0 | 0 | True |
 
 **Fault tolerance** (`concepts_fault_tolerance.txt`): a `map` throws when `TaskContext.attemptNumber == 0 &&
 partitionId == 2`; with `local[4,3]` Spark re-runs the task and recomputes the partition from lineage:
@@ -144,7 +144,7 @@ writes KPIs to HBase with `BufferedMutator` inside `foreachPartition` (connectio
 
 ## 8. PySpark ML Implementation
 
-* **Unit**: carpark × 15-minute slot, car lots, total ≥ 10, reliable sensors (329,836 rows).
+* **Unit**: carpark × 15-minute slot, car lots, total ≥ 10, reliable sensors (5,086,867 rows).
 * **Features** (30 numeric + 2 categorical): availability now; lags at 15/30/60/120 min and
   deltas (self-joins on the slot); rolling 1 h / 3 h mean and std; same time yesterday and last week; calendar;
   metadata; **target encoding of the carpark × hour × weekday full-rate computed on the training period only**.
@@ -153,47 +153,47 @@ writes KPIs to HBase with `BufferedMutator` inside `foreachPartition` (connectio
 
 | split | rows | positive_rate | days | weekend_share | start | end |
 |---|---|---|---|---|---|---|
-| train | 219101 | 0.0453 | 2 | 0.0000 | 2026-10-13 04:00 UTC | 2026-10-14 12:45 UTC |
-| val | 44866 | 0.0509 | 2 | 0.0000 | 2026-10-14 13:30 UTC | 2026-10-14 20:15 UTC |
-| test | 49039 | 0.0438 | 1 | 0.0000 | 2026-10-14 21:00 UTC | 2026-10-15 04:00 UTC |
+| train | 3556401 | 0.0552 | 22 | 0.2800 | 2026-09-15 04:45 UTC | 2026-10-06 15:15 UTC |
+| val | 661556 | 0.0548 | 4 | 0.2460 | 2026-10-06 16:00 UTC | 2026-10-10 15:15 UTC |
+| test | 807637 | 0.0525 | 5 | 0.2050 | 2026-10-10 16:00 UTC | 2026-10-15 15:00 UTC |
 
 * **Models**: persistence (full_now), historical (carpark-hour-dow rate > 0.5), Random Forest, GBT; inverse-frequency
   `weightCol`; grid on a max validation F1 (grid on a training sample; refit on train+val); threshold = max F1 on validation.
-* **Selected**: Random Forest {"numTrees": 60, "maxDepth": 10}, threshold 0.06.
+* **Selected**: Random Forest {"numTrees": 60, "maxDepth": 10}, threshold 0.89.
 
 **Evaluation on the test days** (`model_comparison.csv`):
 
 | model | threshold | accuracy | precision | recall | f1 | roc_auc | pr_auc |
 |---|---|---|---|---|---|---|---|
-| Persistence | full_now | 0.9843 | 0.8297 | 0.8080 | 0.8187 | 0.9002 | 0.6941 |
-| Historical | carpark-hour-dow rate > 0.5 | 0.9573 | 0.8971 | 0.0284 | 0.0551 | 0.9221 | 0.7105 |
-| Random Forest | 0.06 | 0.9625 | 0.5393 | 0.9776 | 0.6952 | 0.9922 | 0.9031 |
-| Gradient-Boosted Trees | 0.1 | 0.9680 | 0.5830 | 0.9408 | 0.7199 | 0.9828 | 0.8582 |
+| Persistence | full_now | 0.9867 | 0.8728 | 0.8737 | 0.8733 | 0.9333 | 0.7783 |
+| Historical | carpark-hour-dow rate > 0.5 | 0.9734 | 0.7539 | 0.7330 | 0.7433 | 0.9634 | 0.7834 |
+| Random Forest | 0.89 | 0.9852 | 0.8547 | 0.8657 | 0.8602 | 0.9962 | 0.9428 |
+| Gradient-Boosted Trees | 0.93 | 0.9847 | 0.8659 | 0.8396 | 0.8525 | 0.9947 | 0.9315 |
 
 **Transition metrics** (rows whose state changes between t and t + 30 min):
 
 | model | transition | n | correct_share | precision | recall | f1 |
 |---|---|---|---|---|---|---|
-| Persistence | becomes full (0->1) | 412 | 0.0000 | nan | nan | nan |
-| Persistence | frees up (1->0) | 356 | 0.0000 | nan | nan | nan |
-| Persistence | all transitions | 768 | 0.0000 | nan | nan | nan |
-| Persistence | precision/recall/F1 on transition rows | 768 | nan | 0.0000 | 0.0000 | 0.0000 |
-| Random Forest | becomes full (0->1) | 412 | 0.8835 | nan | nan | nan |
-| Random Forest | frees up (1->0) | 356 | 0.0000 | nan | nan | nan |
-| Random Forest | all transitions | 768 | 0.4740 | nan | nan | nan |
-| Random Forest | precision/recall/F1 on transition rows | 768 | nan | 0.5056 | 0.8835 | 0.6431 |
+| Persistence | becomes full (0->1) | 5357 | 0.0000 | nan | nan | nan |
+| Persistence | frees up (1->0) | 5400 | 0.0000 | nan | nan | nan |
+| Persistence | all transitions | 10757 | 0.0000 | nan | nan | nan |
+| Persistence | precision/recall/F1 on transition rows | 10757 | nan | 0.0000 | 0.0000 | 0.0000 |
+| Random Forest | becomes full (0->1) | 5357 | 0.4000 | nan | nan | nan |
+| Random Forest | frees up (1->0) | 5400 | 0.2374 | nan | nan | nan |
+| Random Forest | all transitions | 10757 | 0.3184 | nan | nan | nan |
+| Random Forest | precision/recall/F1 on transition rows | 10757 | nan | 0.3423 | 0.4000 | 0.3689 |
 
 **Horizon sensitivity**:
 
 TBD
 
-_Generated by `evaluate.py`. Test period: 2026-10-14 21:00 UTC → 2026-10-15 04:00 UTC, 49,039 carpark-slots, positive rate 4.38% (nearly full = ≤ 10% of car lots free in 30 min)._
+_Generated by `evaluate.py`. Test period: 2026-10-10 16:00 UTC → 2026-10-15 15:00 UTC, 807,637 carpark-slots, positive rate 5.25% (nearly full = ≤ 10% of car lots free in 30 min)._
 
-The selected model is **Random Forest** ({"numTrees": 60, "maxDepth": 10}, threshold 0.06 chosen on validation). On test: accuracy 0.9625, precision 0.539, recall 0.978, F1 0.695, PR-AUC 0.903. Persistence ("full in 30 min if full now"): precision 0.830, recall 0.808, F1 0.819. Historical baseline F1 0.055. The model **beats persistence** (ΔF1 -0.124, Δrecall +0.170).
+The selected model is **Random Forest** ({"numTrees": 60, "maxDepth": 10}, threshold 0.89 chosen on validation). On test: accuracy 0.9852, precision 0.855, recall 0.866, F1 0.860, PR-AUC 0.943. Persistence ("full in 30 min if full now"): precision 0.873, recall 0.874, F1 0.873. Historical baseline F1 0.743. The model **does not beat persistence overall** (ΔF1 -0.013, Δrecall -0.008): the state rarely changes within 30 minutes, so persistence is almost always right.
 
-Only 1.6% of test rows change state within 30 min. On exactly those transition rows persistence is always wrong (0% correct), while the model gets 47.4% right — this is where prediction adds value over a live count.
+Only 1.3% of test rows change state within 30 min. On exactly those transition rows persistence is always wrong (0% correct), while the model gets 31.8% right — this is where prediction adds value over a live count.
 
-Most important features: te_chd, avail_ratio, te_ch, ratio_lag30, ratio_lag15.
+Most important features: te_chd, avail_ratio, ratio_lag30, ratio_lag15, te_ch.
 
 
 ## 9. Visualization
@@ -216,41 +216,41 @@ Most important features: te_chd, avail_ratio, te_ch, ratio_lag30, ratio_lag15.
 
 | rank | carpark_no | address | car_park_type | full_rate |
 |---|---|---|---|---|
-| 1 | UA2 | BLK 3 TO 5 UPPER ALJUNIED LANE | SURFACE CAR PARK | 0.9823 |
-| 2 | M38 | BLK 63 TO 64 CIRCUIT ROAD | SURFACE CAR PARK | 0.9793 |
-| 3 | PL34 | BLK 603 PUNGGOL ROAD | MULTI-STOREY CAR PARK | 0.9793 |
-| 4 | TP30 | BLK 116/122 LORONG 1 TOA PAYOH | SURFACE CAR PARK | 0.9744 |
-| 5 | WCGL | BLK 568A TO 568C CHAMPIONS WAY | SURFACE CAR PARK | 0.9275 |
-| 6 | TP48 | BLK 8 LORONG 7 TOA PAYOH | SURFACE CAR PARK | 0.8994 |
-| 7 | B65L | BLK 152A BEDOK SOUTH ROAD | SURFACE CAR PARK | 0.8705 |
-| 8 | A20 | BLK 304/307/319 ANG MO KIO STREET 31 | SURFACE CAR PARK | 0.8601 |
-| 9 | M36 | BLK 43 CIRCUIT ROAD | SURFACE CAR PARK | 0.8562 |
-| 10 | KU9 | BLK 302,304 UBI AVENUE 1 | SURFACE CAR PARK | 0.8446 |
+| 1 | JB1 | BLK 3-5,7,8,4A JALAN BATU | SURFACE CAR PARK | 0.9715 |
+| 2 | PL34 | BLK 603 PUNGGOL ROAD | MULTI-STOREY CAR PARK | 0.9578 |
+| 3 | UA2 | BLK 3 TO 5 UPPER ALJUNIED LANE | SURFACE CAR PARK | 0.9547 |
+| 4 | GE1G | BLK 95 & 113 ALJUNIED CRESCENT | SURFACE CAR PARK | 0.9386 |
+| 5 | TP30 | BLK 116/122 LORONG 1 TOA PAYOH | SURFACE CAR PARK | 0.9368 |
+| 6 | BM5 | BLKS 8/10 JALAN RUMAH TINGGI | SURFACE CAR PARK | 0.8964 |
+| 7 | TP48 | BLK 8 LORONG 7 TOA PAYOH | SURFACE CAR PARK | 0.8945 |
+| 8 | WCGL | BLK 568A TO 568C CHAMPIONS WAY | SURFACE CAR PARK | 0.8901 |
+| 9 | BM28 | BLK 117, 161 BUKIT MERAH CENTRAL | SURFACE CAR PARK | 0.8848 |
+| 10 | B65L | BLK 152A BEDOK SOUTH ROAD | SURFACE CAR PARK | 0.8835 |
 
 Nearly-full rate by carpark type and parking system (Q3):
 
 | car_park_type | parking_system | carparks | nearly_full_rate | mean_occupancy |
 |---|---|---|---|---|
-| UNKNOWN | UNKNOWN | 7 | 0.2269 | 0.4310 |
-| SURFACE CAR PARK | ELECTRONIC PARKING | 798 | 0.1039 | 0.5419 |
-| BASEMENT CAR PARK | ELECTRONIC PARKING | 36 | 0.0527 | 0.4775 |
-| SURFACE/MULTI-STOREY CAR PARK | ELECTRONIC PARKING | 11 | 0.0358 | 0.2914 |
-| SURFACE CAR PARK | COUPON PARKING | 3 | 0.0260 | 0.3471 |
-| MULTI-STOREY CAR PARK | ELECTRONIC PARKING | 910 | 0.0089 | 0.3741 |
-| MECHANISED AND SURFACE CAR PARK | ELECTRONIC PARKING | 2 | 0.0000 | 0.3857 |
-| COVERED CAR PARK | ELECTRONIC PARKING | 9 | 0.0000 | 0.5267 |
+| SURFACE CAR PARK | COUPON PARKING | 4 | 0.1706 | 0.4533 |
+| UNKNOWN | UNKNOWN | 7 | 0.1637 | 0.3341 |
+| SURFACE CAR PARK | ELECTRONIC PARKING | 824 | 0.1185 | 0.5579 |
+| SURFACE/MULTI-STOREY CAR PARK | ELECTRONIC PARKING | 11 | 0.0872 | 0.3290 |
+| BASEMENT CAR PARK | ELECTRONIC PARKING | 37 | 0.0598 | 0.4961 |
+| MULTI-STOREY CAR PARK | ELECTRONIC PARKING | 922 | 0.0110 | 0.3819 |
+| COVERED CAR PARK | ELECTRONIC PARKING | 9 | 0.0058 | 0.5429 |
+| MECHANISED AND SURFACE CAR PARK | ELECTRONIC PARKING | 2 | 0.0040 | 0.4143 |
 
-**Prediction.** See Section 8. The state changes within 30 minutes for only 1.35% of rows,
+**Prediction.** See Section 8. The state changes within 30 minutes for only 1.39% of rows,
 which is why persistence is strong overall; the value of the model is on those transitions and at longer horizons.
 
 **Live evaluation.** TBD (run `pyspark_jobs/verify_live.py (after the live layer has run ≥ 30 min)`)
 
-**System performance** (`perf_system.csv`): TBD (run `pyspark_jobs/perf_system.py`)
+**System performance** (`perf_system.csv`): Scalability: 25% of carparks → 100% of carparks is 3.8x the rows and 4.2x the time (super-linear). Cores: local[*] fastest (66.9 s vs 200.8 s on 1 core, 3.00x speed-up). Shuffle partitions: 16 fastest (57.9 s); the default 200 took 188.5 s. Caching the feature DataFrame changed the 3-model loop from 148.3 s to 34.6 s (4.3x). poller write throughput (median rows/s, HappyBase batch): 20782.0. API lag: response time - snapshot timestamp (median s): 51.0. poll file written -> micro-batch processed (median s): 33.0. micro-batch RDD processing time (median s): 0.26. score_live run time (median s): 13.1.
 
 ## 11. Conclusion and Future Work
 
 The project turns an official live feed into a forward-looking decision: will this carpark have space when I arrive?
-The Scala RDD pipeline processes 389,610 snapshot lines with measured evidence for every Spark concept in
+The Scala RDD pipeline processes 6,652,105 snapshot lines with measured evidence for every Spark concept in
 the rubric; a leakage-safe PySpark model is evaluated honestly against persistence, with transition metrics showing
 where prediction adds value; and the whole system runs live with HBase as the serving store. Future work: event and
 weather features, longer history (holidays, school terms), more cities with open feeds, a mobile app with push alerts,
@@ -260,7 +260,7 @@ and running on a YARN cluster with more executors.
 
 1. data.gov.sg — Carpark Availability (HDB) API, `https://api.data.gov.sg/v1/transport/carpark-availability`.
 2. data.gov.sg — HDB Carpark Information, dataset `d_23f946fa557947f93a8043bbef41dd09`.
-3. "Contains information from Carpark Availability and HDB Carpark Information accessed on TBD from data.gov.sg which is made available under the terms of the Singapore Open Data Licence version 1.0." (verify wording on data.gov.sg)
+3. "Contains information from Carpark Availability and HDB Carpark Information accessed on 2026-10-15 from data.gov.sg which is made available under the terms of the Singapore Open Data Licence version 1.0." (verify wording on data.gov.sg)
 4. data.gov.sg API documentation and rate limits.
 5. Apache Spark 3.5 documentation — RDD Programming Guide, Structured Streaming, MLlib.
 6. Zaharia, M. et al. (2012). Resilient Distributed Datasets. NSDI'12.

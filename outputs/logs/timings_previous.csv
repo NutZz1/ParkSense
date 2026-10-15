@@ -1,0 +1,8 @@
+job,label,ms,recorded_at_utc
+RddPipeline,"count input lines",2982,2026-10-15T15:23:24.103926Z
+RddPipeline,"count exploded lot records (materialises lots cache)",9852,2026-10-15T15:23:33.957349Z
+RddPipeline,"count clean lot records (materialises cleaned cache)",3671,2026-10-15T15:23:37.629825Z
+RddPipeline,"join: shuffle leftOuterJoin with metadata",9826,2026-10-15T15:24:06.758562Z
+RddPipeline,"join: broadcast map-side join with metadata",58142,2026-10-15T15:25:04.977239Z
+RddPipeline,"write occupancy Parquet (partitioned by dt)",127586,2026-10-15T15:28:14.017374Z
+RddPipeline,"write aggregate Parquet files",17455,2026-10-15T15:28:31.475315Z

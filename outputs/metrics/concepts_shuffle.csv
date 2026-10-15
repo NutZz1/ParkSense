@@ -1,5 +1,5 @@
 method,ms,shuffle_write_bytes,shuffle_write_records,results_identical
-reduceByKey,295,1208995,63851,true
-groupByKey,436,3880428,379780,true
-shuffle join,476,4129033,382053,true
-broadcast join,136,0,0,true
+reduceByKey,2102,7286062,255970,true
+groupByKey,4561,50562481,5662821,true
+shuffle join,3882,51450401,5665094,true
+broadcast join,1338,0,0,true
