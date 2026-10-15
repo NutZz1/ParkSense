@@ -75,7 +75,7 @@ spark:
   master: local[*]
   default_partitions: 8
   shuffle_partitions: 16
-  driver_memory: 4g
+  driver_memory: 3500m          # WSL has 7.4 GB; Hadoop+HBase daemons use ~2.5 GB
 
 ui:
   server_port: 5000

@@ -7,7 +7,7 @@ for i in $(seq 1 30); do hdfs dfsadmin -safemode get 2>/dev/null | grep -q OFF &
 up HMaster || start-hbase.sh
 for i in $(seq 1 30); do echo status | hbase shell -n 2>/dev/null | grep -q "1 active master" && break; sleep 3; done
 (echo > /dev/tcp/127.0.0.1/9090) 2>/dev/null || hbase-daemon.sh start thrift
-curl -s -m 3 localhost:8085/version/cluster >/dev/null || hbase-daemon.sh start rest -p 8085
+curl -s -m 3 localhost:8085/version/cluster >/dev/null || hbase-daemon.sh start rest -p 8085 --infoport 8086  # info UI defaults to 8085 too
 for i in $(seq 1 30); do curl -s -m 3 localhost:8085/version/cluster >/dev/null && break; sleep 2; done
 echo "jps: $(jps | grep -v Jps | awk '{print $2}' | sort | tr '\n' ' ')"
 echo "HDFS: $(hdfs dfsadmin -safemode get 2>/dev/null)"

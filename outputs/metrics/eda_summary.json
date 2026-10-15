@@ -1,0 +1,32 @@
+{
+  "carparks_per_snapshot": {
+    "min": 1899,
+    "median": 1972.0,
+    "max": 1996,
+    "snapshots": 193
+  },
+  "stale_share": 0.02062062062062062,
+  "staleness_median_min": 2.0166666666666666,
+  "excluded": {
+    "never_changing": 182,
+    "always_zero": 30
+  },
+  "clipped": 193,
+  "days": {
+    "first": "2026-10-13",
+    "last": "2026-10-15",
+    "n": 3
+  },
+  "holidays_in_range": [],
+  "class_balance_30": {
+    "positive_rate": 0.0459,
+    "rows": 319861,
+    "state_change_rate_30min": 0.0135
+  },
+  "state_change_rate_by_horizon": {
+    "15min": 0.01,
+    "30min": 0.0135,
+    "60min": 0.0185
+  },
+  "full_ratio_decision": "keep full_ratio = 0.1 (positives 4.59% >= 3%)"
+}

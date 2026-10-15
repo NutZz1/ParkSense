@@ -28,3 +28,24 @@
 2026-10-15 04:50:12,608 INFO backfill: progress 440/2880 (saved 435, skipped 0, failed 5) elapsed 1111s ETA 103 min
 2026-10-15 04:51:14,797 INFO backfill: progress 460/2880 (saved 455, skipped 0, failed 5) elapsed 1173s ETA 103 min
 2026-10-15 04:51:54,993 INFO backfill: progress 480/2880 (saved 475, skipped 0, failed 5) elapsed 1214s ETA 101 min
+2026-10-15 04:52:40,951 INFO backfill: progress 500/2880 (saved 495, skipped 0, failed 5) elapsed 1260s ETA 100 min
+2026-10-15 04:53:31,196 INFO backfill: progress 520/2880 (saved 515, skipped 0, failed 5) elapsed 1310s ETA 99 min
+2026-10-15 04:53:59,986 ERROR backfill: snapshot 2026-10-10T00:00:00 failed: snapshot without items[0].timestamp
+2026-10-15 04:54:21,447 INFO backfill: progress 540/2880 (saved 534, skipped 0, failed 6) elapsed 1360s ETA 98 min
+2026-10-15 04:55:15,993 INFO backfill: progress 560/2880 (saved 554, skipped 0, failed 6) elapsed 1415s ETA 98 min
+2026-10-15 04:56:06,294 INFO backfill: progress 580/2880 (saved 574, skipped 0, failed 6) elapsed 1465s ETA 97 min
+2026-10-15 04:56:56,499 INFO backfill: progress 600/2880 (saved 594, skipped 0, failed 6) elapsed 1515s ETA 96 min
+2026-10-15 04:57:46,753 INFO backfill: progress 620/2880 (saved 614, skipped 0, failed 6) elapsed 1565s ETA 95 min
+2026-10-15 04:58:01,202 ERROR backfill: snapshot 2026-10-09T00:00:00 failed: snapshot without items[0].timestamp
+2026-10-15 04:58:37,003 INFO backfill: progress 640/2880 (saved 633, skipped 0, failed 7) elapsed 1616s ETA 94 min
+2026-10-15 04:59:27,253 INFO backfill: progress 660/2880 (saved 653, skipped 0, failed 7) elapsed 1666s ETA 93 min
+2026-10-15 05:00:17,502 INFO backfill: progress 680/2880 (saved 673, skipped 0, failed 7) elapsed 1716s ETA 93 min
+2026-10-15 05:01:07,777 INFO backfill: progress 700/2880 (saved 693, skipped 0, failed 7) elapsed 1766s ETA 92 min
+2026-10-15 05:01:58,007 INFO backfill: progress 720/2880 (saved 713, skipped 0, failed 7) elapsed 1817s ETA 91 min
+2026-10-15 05:02:02,401 ERROR backfill: snapshot 2026-10-08T00:00:00 failed: snapshot without items[0].timestamp
+2026-10-15 05:02:48,254 INFO backfill: progress 740/2880 (saved 732, skipped 0, failed 8) elapsed 1867s ETA 90 min
+2026-10-15 05:03:38,505 INFO backfill: progress 760/2880 (saved 752, skipped 0, failed 8) elapsed 1917s ETA 89 min
+2026-10-15 05:04:28,765 INFO backfill: progress 780/2880 (saved 772, skipped 0, failed 8) elapsed 1967s ETA 88 min
+2026-10-15 05:05:19,004 INFO backfill: progress 800/2880 (saved 792, skipped 0, failed 8) elapsed 2018s ETA 87 min
+2026-10-15 05:06:04,898 ERROR backfill: snapshot 2026-10-07T00:00:00 failed: snapshot without items[0].timestamp
+2026-10-15 05:06:09,256 INFO backfill: progress 820/2880 (saved 811, skipped 0, failed 9) elapsed 2068s ETA 87 min

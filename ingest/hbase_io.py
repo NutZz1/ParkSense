@@ -141,6 +141,20 @@ def get_history(carpark, hours=24, now_ms=None):
     return out
 
 
+@retry
+def get_reading_near(carpark, target_ms, tol_ms=120000):
+    """The carpark_history reading closest to target_ms within ±tol (rows are newest-first)."""
+    start = history_key(carpark, target_ms + tol_ms)
+    stop = history_key(carpark, target_ms - tol_ms - 1)
+    best = None
+    with conn() as c:
+        for k, v in c.table(t("carpark_history")).scan(row_start=start, row_stop=stop):
+            ms = LONG_MAX - int(k.decode().split("#")[1])
+            if best is None or abs(ms - target_ms) < abs(best["epoch_ms"] - target_ms):
+                best = {"epoch_ms": ms, "available": int(v[b"s:available"]), "total": int(v[b"s:total"])}
+    return best
+
+
 def scan_predictions_log(only_unverified=True):
     with conn() as c:
         for k, v in c.table(t("predictions_log")).scan():
