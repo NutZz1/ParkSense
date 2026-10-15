@@ -1,2 +1,11 @@
 2026-10-15 04:56:11,523 INFO verify_live: nothing verifiable yet
 2026-10-15 19:07:31,959 INFO verify_live: nothing verifiable yet
+2026-10-15 19:12:34,229 INFO verify_live: nothing verifiable yet
+2026-10-15 19:17:38,673 INFO verify_live: nothing verifiable yet
+2026-10-15 19:22:43,765 INFO verify_live: nothing verifiable yet
+2026-10-15 19:27:45,519 INFO verify_live: nothing verifiable yet
+2026-10-15 19:32:47,181 INFO verify_live: nothing verifiable yet
+2026-10-15 19:37:51,655 INFO verify_live: nothing verifiable yet
+2026-10-15 19:43:03,181 INFO verify_live: verified 1773 (+1773): acc 0.9904 P 0.958 R 0.876 F1 0.915 | persistence F1 0.951 | transitions 10
+2026-10-15 19:48:09,556 INFO verify_live: verified 3547 (+1774): acc 0.9924 P 0.974 R 0.895 F1 0.933 | persistence F1 0.964 | transitions 15
+2026-10-15 19:53:18,230 INFO verify_live: verified 5321 (+1774): acc 0.9923 P 0.972 R 0.895 F1 0.932 | persistence F1 0.964 | transitions 22

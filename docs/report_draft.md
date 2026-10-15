@@ -243,9 +243,9 @@ Nearly-full rate by carpark type and parking system (Q3):
 **Prediction.** See Section 8. The state changes within 30 minutes for only 1.39% of rows,
 which is why persistence is strong overall; the value of the model is on those transitions and at longer horizons.
 
-**Live evaluation.** TBD (run `pyspark_jobs/verify_live.py (after the live layer has run ≥ 30 min)`)
+**Live evaluation.** 5,321 live predictions verified against the readings that arrived 30 minutes later: accuracy 0.9923, precision 0.972, recall 0.895, F1 0.932 (persistence F1 0.964); transitions in the live window: 22.
 
-**System performance** (`perf_system.csv`): Scalability: 25% of carparks → 100% of carparks is 3.8x the rows and 4.2x the time (super-linear). Cores: local[*] fastest (66.9 s vs 200.8 s on 1 core, 3.00x speed-up). Shuffle partitions: 16 fastest (57.9 s); the default 200 took 188.5 s. Caching the feature DataFrame changed the 3-model loop from 148.3 s to 34.6 s (4.3x). poller write throughput (median rows/s, HappyBase batch): 20782.0. API lag: response time - snapshot timestamp (median s): 51.0. poll file written -> micro-batch processed (median s): 33.0. micro-batch RDD processing time (median s): 0.26. score_live run time (median s): 13.1.
+**System performance** (`perf_system.csv`): Scalability: 25% of carparks → 100% of carparks is 3.8x the rows and 4.2x the time (super-linear). Cores: local[*] fastest (66.9 s vs 200.8 s on 1 core, 3.00x speed-up). Shuffle partitions: 16 fastest (57.9 s); the default 200 took 188.5 s. Caching the feature DataFrame changed the 3-model loop from 148.3 s to 34.6 s (4.3x). poller write throughput (median rows/s, HappyBase batch): 23460.0. API lag: response time - snapshot timestamp (median s): 35.0. poll file written -> micro-batch processed (median s): 33.0. micro-batch RDD processing time (median s): 0.25. score_live run time (median s): 16.8.
 
 ## 11. Conclusion and Future Work
 

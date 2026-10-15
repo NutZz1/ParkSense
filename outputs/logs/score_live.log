@@ -1,2 +1,10 @@
 2026-10-15 04:56:09,616 INFO score_live: scored 1687 carparks for slot 2026-10-15T05:00:00+00:00 (target 2026-10-15T05:30:00+00:00): 155 predicted nearly full; 13.1s
 2026-10-15 19:08:11,033 INFO score_live: scored 1773 carparks for slot 2026-10-15T19:00:00+00:00 (targets = reading time + 30 min): 96 predicted nearly full; 24.4s
+2026-10-15 19:13:29,300 INFO score_live: scored 1774 carparks for slot 2026-10-15T19:15:00+00:00 (targets = reading time + 30 min): 96 predicted nearly full; 16.6s
+2026-10-15 19:18:51,721 INFO score_live: scored 1774 carparks for slot 2026-10-15T19:15:00+00:00 (targets = reading time + 30 min): 96 predicted nearly full; 16.8s
+2026-10-15 19:24:12,148 INFO score_live: scored 1772 carparks for slot 2026-10-15T19:30:00+00:00 (targets = reading time + 30 min): 99 predicted nearly full; 16.3s
+2026-10-15 19:29:31,447 INFO score_live: scored 1772 carparks for slot 2026-10-15T19:30:00+00:00 (targets = reading time + 30 min): 98 predicted nearly full; 17.3s
+2026-10-15 19:34:49,152 INFO score_live: scored 1772 carparks for slot 2026-10-15T19:30:00+00:00 (targets = reading time + 30 min): 98 predicted nearly full; 16.2s
+2026-10-15 19:40:11,411 INFO score_live: scored 1772 carparks for slot 2026-10-15T19:45:00+00:00 (targets = reading time + 30 min): 98 predicted nearly full; 17.0s
+2026-10-15 19:45:32,953 INFO score_live: scored 1772 carparks for slot 2026-10-15T19:45:00+00:00 (targets = reading time + 30 min): 95 predicted nearly full; 16.9s
+2026-10-15 19:50:53,330 INFO score_live: scored 1772 carparks for slot 2026-10-15T19:45:00+00:00 (targets = reading time + 30 min): 96 predicted nearly full; 16.1s

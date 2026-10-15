@@ -51,8 +51,8 @@ spark_sql,q5_busiest_day_per_type,8.0,,,3.67,analytics.py
 spark_sql,q6_daily_citywide_full_rate,31.0,,,3.45,analytics.py
 spark_sql,q7_evening_vs_morning_swing,30.0,,,3.66,analytics.py
 spark_sql,q8_data_quality_per_day,31.0,,,7.73,analytics.py
-hbase,"poller write throughput (median rows/s, HappyBase batch)",773930.0,,,20782.0,193 polls
-api,API lag: response time - snapshot timestamp (median s),193.0,,,51.0,poller_stats.csv
-streaming,poll file written -> micro-batch processed (median s),721564.0,,,33.0,366 steady-state batches
-streaming,micro-batch RDD processing time (median s),366.0,,,0.26,StreamingJob.scala
-live,score_live run time (median s),1687.0,,,13.1,features + model for all carparks
+hbase,"poller write throughput (median rows/s, HappyBase batch)",958390.0,,,23460.0,239 polls
+api,API lag: response time - snapshot timestamp (median s),239.0,,,35.0,poller_stats.csv
+streaming,poll file written -> micro-batch processed (median s),781414.0,,,33.0,395 steady-state batches
+streaming,micro-batch RDD processing time (median s),395.0,,,0.25,StreamingJob.scala
+live,score_live run time (median s),15953.0,,,16.8,features + model for all carparks
