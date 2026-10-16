@@ -45,7 +45,7 @@ export default function Model() {
         <ResponsiveContainer width="100%" height={300}>
           <BarChart data={imp} layout="vertical" margin={{ left: 90 }}><CartesianGrid strokeDasharray="3 3" />
             <XAxis type="number" /><YAxis type="category" dataKey="feature" width={110} /><Tooltip /><Legend />
-            <Bar dataKey="importance" fill="#1f6fb2" /></BarChart>
+            <Bar isAnimationActive={false} dataKey="importance" fill="#1f6fb2" /></BarChart>
         </ResponsiveContainer>
       </div>
     </div>

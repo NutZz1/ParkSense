@@ -1,8 +1,7 @@
 # ParkSense SG
 
 Real-time carpark availability analytics and a **"will it be full in 30 minutes?"** prediction for ~2,000 Singapore
-HDB carparks. Apache Spark (Scala RDD + PySpark ML) · HDFS · HBase · (Express + React UI on hold until the design is
-approved). Course: 23CSE352 Big Data Analytics — Project Review 3.
+HDB carparks. Apache Spark (Scala RDD + PySpark ML) · HDFS · HBase · (Express + React UI). Course: 23CSE352 Big Data Analytics — Project Review 3.
 
 Data: data.gov.sg Carpark Availability and HDB Carpark Information, Singapore Open Data Licence v1.0.
 
@@ -58,6 +57,13 @@ scripts/start_live.sh               # poller + StreamingJob + score_live (5 min)
 scripts/stop_live.sh
 scripts/watchdog.sh start      # auto-restarts HDFS/HBase/Thrift/REST and the live jobs if they fail (log: outputs/logs/watchdog.log)
 python pyspark_jobs/verify_live.py && python viz/make_figures.py && python viz/fill_report.py   # refresh live results
+```
+
+## UI
+
+```bash
+scripts/build_ui.sh              # once (npm install + vite build)
+scripts/start_live.sh ui         # http://localhost:5000  (deep link: http://localhost:5000/#carpark/AM20)
 ```
 
 `PROGRESS.md` is the phase log; `docs/demo_script.md` is the review demo.

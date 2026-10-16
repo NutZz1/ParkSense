@@ -25,11 +25,11 @@ export default function Pipeline() {
       <div className="two">
         <div className="panel"><h3>RDD aggregation time vs partitions</h3>
           <ResponsiveContainer width="100%" height={220}><LineChart data={s.partitions || []}><CartesianGrid strokeDasharray="3 3" />
-            <XAxis dataKey="partitions" /><YAxis unit=" ms" /><Tooltip /><Line dataKey="ms" stroke="#1f6fb2" /></LineChart></ResponsiveContainer></div>
+            <XAxis dataKey="partitions" /><YAxis unit=" ms" /><Tooltip /><Line isAnimationActive={false} dataKey="ms" stroke="#1f6fb2" /></LineChart></ResponsiveContainer></div>
         <div className="panel"><h3>Persistence benchmark (ms)</h3>
           <ResponsiveContainer width="100%" height={220}><BarChart data={s.cache || []}><CartesianGrid strokeDasharray="3 3" />
             <XAxis dataKey="mode" fontSize={10} /><YAxis /><Tooltip /><Legend />
-            <Bar dataKey="action1_ms" name="1st" fill="#9bbbd8" /><Bar dataKey="action2_ms" name="2nd" fill="#1f6fb2" /></BarChart></ResponsiveContainer></div>
+            <Bar isAnimationActive={false} dataKey="action1_ms" name="1st" fill="#9bbbd8" /><Bar isAnimationActive={false} dataKey="action2_ms" name="2nd" fill="#1f6fb2" /></BarChart></ResponsiveContainer></div>
       </div>
       <div className="two">
         <div className="panel"><h3>Shuffle: reduceByKey vs groupByKey, joins</h3><MetricTable rows={s.shuffle} cols={['method', 'ms', 'shuffle_write_bytes', 'shuffle_write_records']} /></div>

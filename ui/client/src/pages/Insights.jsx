@@ -22,7 +22,7 @@ export default function Insights({ onOpen }) {
         <ResponsiveContainer width="100%" height={260}>
           <LineChart data={hours}><CartesianGrid strokeDasharray="3 3" /><XAxis dataKey="hour" /><YAxis tickFormatter={(v) => pct(v)} />
             <Tooltip formatter={(v) => pct(v, 1)} /><Legend />
-            <Line dataKey="weekday" stroke="#1f6fb2" dot={false} /><Line dataKey="weekend" stroke="#e8a33d" dot={false} /></LineChart>
+            <Line isAnimationActive={false} dataKey="weekday" stroke="#1f6fb2" dot={false} /><Line isAnimationActive={false} dataKey="weekend" stroke="#e8a33d" dot={false} /></LineChart>
         </ResponsiveContainer>
       </div>
       <div className="two">

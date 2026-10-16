@@ -3891,3 +3891,5 @@ utc,url,status,latency_ms,note
 2026-10-16T02:46:36.183115+00:00,https://api.data.gov.sg/v1/transport/carpark-availability?date_time=2026-10-16T10%3A46%3A35,200,959,
 2026-10-16T02:47:37.001397+00:00,https://api.data.gov.sg/v1/transport/carpark-availability?date_time=2026-10-16T10%3A47%3A35,200,1013,
 2026-10-16T02:48:38.907074+00:00,https://api.data.gov.sg/v1/transport/carpark-availability?date_time=2026-10-16T10%3A48%3A37,200,1081,
+2026-10-16T02:49:38.856189+00:00,https://api.data.gov.sg/v1/transport/carpark-availability?date_time=2026-10-16T10%3A49%3A37,200,1030,
+2026-10-16T02:50:39.529297+00:00,https://api.data.gov.sg/v1/transport/carpark-availability?date_time=2026-10-16T10%3A50%3A38,200,889,

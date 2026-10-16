@@ -61,7 +61,7 @@ export default function CarparkDetail({ id, setId }) {
                 <BarChart data={profile}>
                   <CartesianGrid strokeDasharray="3 3" /><XAxis dataKey="hour" /><YAxis tickFormatter={(v) => pct(v)} domain={[0, 1]} />
                   <Tooltip formatter={(v) => pct(v, 1)} /><Legend />
-                  <Bar dataKey="weekday" name="weekday occupancy" fill="#1f6fb2" /><Bar dataKey="weekend" name="weekend occupancy" fill="#9bbbd8" />
+                  <Bar isAnimationActive={false} dataKey="weekday" name="weekday occupancy" fill="#1f6fb2" /><Bar isAnimationActive={false} dataKey="weekend" name="weekend occupancy" fill="#9bbbd8" />
                 </BarChart>
               </ResponsiveContainer>
               <p className="muted">Mean occupancy by hour over 30 days (Scala RDD aggregate). Lower = easier to park.</p>
