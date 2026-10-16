@@ -1241,3 +1241,9 @@
 2026-10-16 03:02:53,338 INFO poller: snapshot 2026-10-16T11:02:36+08:00: 2017 carparks, lag 17s, stale 0.8%, HBase 4010 rows in 0.1s
 2026-10-16 03:03:54,157 INFO poller: snapshot 2026-10-16T11:03:36+08:00: 2017 carparks, lag 17s, stale 0.9%, HBase 4010 rows in 0.1s
 2026-10-16 03:04:54,586 INFO poller: snapshot 2026-10-16T11:04:36+08:00: 2017 carparks, lag 18s, stale 0.8%, HBase 4010 rows in 0.1s
+2026-10-16 03:05:56,743 INFO poller: snapshot 2026-10-16T11:05:36+08:00: 2017 carparks, lag 20s, stale 0.8%, HBase 4010 rows in 0.2s
+2026-10-16 03:06:58,145 INFO poller: snapshot 2026-10-16T11:06:36+08:00: 2018 carparks, lag 21s, stale 0.9%, HBase 4010 rows in 0.1s
+2026-10-16 03:07:58,894 INFO poller: snapshot 2026-10-16T11:07:36+08:00: 2017 carparks, lag 22s, stale 0.9%, HBase 4008 rows in 0.2s
+2026-10-16 03:08:58,961 INFO poller: snapshot 2026-10-16T11:08:36+08:00: 2018 carparks, lag 22s, stale 0.9%, HBase 4008 rows in 0.2s
+2026-10-16 03:10:00,777 INFO poller: snapshot 2026-10-16T11:09:36+08:00: 2017 carparks, lag 24s, stale 0.9%, HBase 4010 rows in 0.2s
+2026-10-16 03:11:01,677 INFO poller: snapshot 2026-10-16T11:10:36+08:00: 2015 carparks, lag 25s, stale 0.7%, HBase 4010 rows in 0.2s

@@ -60,3 +60,16 @@ pre.sql { background: #0f2236; color: #d6e6f5; padding: 10px 12px; border-radius
 @media (max-width: 900px) { .charts.two { grid-template-columns: 1fr; } }
 .chart-title { margin: 10px 0 4px; font-size: 13px; color: #34495e; font-weight: 600; }
 .result-details { margin-top: 8px; } .result-details summary { cursor: pointer; font-size: 13px; color: #1f6fb2; margin-bottom: 6px; }
+.analytics-layout { display: grid; grid-template-columns: 230px 1fr; gap: 18px; align-items: start; }
+@media (max-width: 900px) { .analytics-layout { grid-template-columns: 1fr; } }
+.side { position: sticky; top: 12px; background: #fff; border-radius: 8px; box-shadow: 0 1px 2px #0002; padding: 10px; display: flex; flex-direction: column; gap: 4px; }
+.side button { text-align: left; border: none; background: transparent; padding: 8px 10px; border-radius: 6px; cursor: pointer; font-size: 14px; display: flex; gap: 8px; align-items: center; color: #1d2b36; }
+.side button:hover { background: #f0f5fb; } .side button.on { background: #13324f; color: #fff; }
+.side .num { display: inline-flex; width: 22px; height: 22px; border-radius: 50%; background: #e6edf5; color: #13324f; font-size: 12px; font-weight: 700; align-items: center; justify-content: center; flex: none; }
+.side button.on .num { background: #fff; }
+.side-label { font-size: 11px; text-transform: uppercase; letter-spacing: 0.06em; color: #8a96a3; margin: 10px 10px 2px; }
+.section-title { font-size: 20px; margin: 0 0 10px; display: flex; align-items: center; gap: 10px; }
+.question { color: #34495e; margin: -4px 0 12px; }
+.reveal-box { background: #eef6ff; border-left: 4px solid #1f6fb2; padding: 10px 14px; border-radius: 6px; margin-bottom: 14px; font-size: 14px; }
+.reveals li { margin-bottom: 8px; font-size: 14px; line-height: 1.45; }
+button.link { background: none; border: none; color: #1f6fb2; cursor: pointer; padding: 0; font-weight: 600; font-size: 14px; }

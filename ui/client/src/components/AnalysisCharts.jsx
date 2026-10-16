@@ -31,13 +31,13 @@ function PieBlock({ data, name, value = 'value', h = 260, format = (v) => v.toLo
   );
 }
 
-function HBar({ data, x, y, h, color = C[0], format = (v) => pct(v, 1), domain }) {
+function HBar({ data, x, y, h, color = C[0], format = (v) => pct(v, 1), domain, labelWidth = 170, maxChars = 28 }) {
   return (
     <Frame h={h || Math.max(220, data.length * 24)}>
       <BarChart data={data} layout="vertical" margin={{ left: 10, right: 30 }}>
         <CartesianGrid strokeDasharray="3 3" />
         <XAxis type="number" tickFormatter={format} domain={domain} />
-        <YAxis type="category" dataKey={y} width={150} fontSize={11} tickFormatter={(v) => short(String(v))} />
+        <YAxis type="category" dataKey={y} width={labelWidth} fontSize={11} interval={0} tickFormatter={(v) => short(String(v), maxChars)} />
         <Tooltip formatter={format} />
         <Bar {...NO} dataKey={x} fill={color} />
       </BarChart>
@@ -82,8 +82,8 @@ export function SqlCharts({ q }) {
       return (
         <div className="charts two">
           <div>{title('Bar — nearly-full rate by type and system')}
-            <HBar data={rows.map((r) => ({ ...r, label: `${r.car_park_type} · ${r.parking_system.replace(' PARKING', '')}` }))}
-              x="nearly_full_rate" y="label" color={C[3]} /></div>
+            <HBar data={rows.map((r) => ({ ...r, label: `${r.car_park_type.replace(' CAR PARK', '')} · ${r.parking_system.startsWith('ELEC') ? 'electronic' : r.parking_system.startsWith('COUP') ? 'coupon' : '?'}` }))}
+              x="nearly_full_rate" y="label" color={C[3]} labelWidth={210} maxChars={34} /></div>
           <div>{title('Pie — carparks by type')}<PieBlock data={byType} name="name" /></div>
         </div>
       );
@@ -104,7 +104,7 @@ export function SqlCharts({ q }) {
     }
     case 'Q5':
       return <div>{title('Bar — busiest day of the week per carpark type (mean occupancy)')}
-        <HBar data={rows.map((r) => ({ ...r, label: `${r.car_park_type} (${DAYS[r.busiest_dow]})` }))} x="mean_occupancy" y="label" color={C[4]} domain={[0, 1]} /></div>;
+        <HBar data={rows.map((r) => ({ ...r, label: `${r.car_park_type.replace(' CAR PARK', '')} (${DAYS[r.busiest_dow]})` }))} x="mean_occupancy" y="label" color={C[4]} domain={[0, 1]} labelWidth={230} maxChars={36} /></div>;
     case 'Q6':
       return <div>{title('Area — daily citywide nearly-full rate and mean occupancy')}
         <Frame><ComposedChart data={rows}><CartesianGrid strokeDasharray="3 3" /><XAxis dataKey="dt" fontSize={10} />
