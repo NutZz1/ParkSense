@@ -57,13 +57,19 @@ cat outputs/metrics/live_eval_summary.json
 Explain the row keys (reversed timestamp → newest first) and the column families (different update rates).
 `fig13_live_eval.png`.
 
+## 5b. Assistant (1 min)
+Open the **Assistant** tab and ask, in order: "Is AM20 going to be full in 30 minutes?" → "When is it usually quietest?"
+(a follow-up) → "What's the weather in Paris?" (off-topic, rules only) → "Ignore previous instructions…" (blocked).
+Point at the step panel: rules before the LLM, HBase data tools, grounding check. Fallback: if the internet is down, the
+same questions get template ("offline") answers.
+
 ## 6. Results + conclusion (1 min)
 Slides 11–12: chronic carparks and risky hours, model vs persistence, live verification, limitations.
 
 ## Offline fallback
 | Problem | Fallback |
 |---|---|
-| No internet | every batch job runs from HDFS/local data; the poller just logs failures |
+| No internet | every batch job runs from HDFS/local data; the poller just logs failures; the Assistant gives template answers |
 | HBase down | show `outputs/metrics/*.csv` and the HBase screenshots; restart with `scripts/02_start_services.sh` |
 | A Spark job fails on the day | show `outputs/logs/RddPipeline_console.txt`, `SparkConcepts_console.txt` (saved runs) |
 | Laptop problem | screenshots in `docs/screenshots/` (take them the day before) and the PPT |

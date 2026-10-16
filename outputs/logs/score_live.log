@@ -924,3 +924,7 @@ ConnectionRefusedError: [Errno 111] Connection refused
 2026-10-16 02:55:13,830 INFO score_live: scored 1772 carparks for slot 2026-10-16T03:00:00+00:00 (targets = reading time + 30 min): 125 predicted nearly full; 76.9s
 2026-10-16 03:00:38,350 INFO score_live: scored 1772 carparks for slot 2026-10-16T03:00:00+00:00 (targets = reading time + 30 min): 122 predicted nearly full; 18.5s
 2026-10-16 03:05:59,884 INFO score_live: scored 1773 carparks for slot 2026-10-16T03:00:00+00:00 (targets = reading time + 30 min): 118 predicted nearly full; 17.2s
+2026-10-16 03:11:26,481 INFO score_live: scored 1771 carparks for slot 2026-10-16T03:15:00+00:00 (targets = reading time + 30 min): 121 predicted nearly full; 20.7s
+2026-10-16 03:16:53,925 INFO score_live: scored 1772 carparks for slot 2026-10-16T03:15:00+00:00 (targets = reading time + 30 min): 121 predicted nearly full; 22.8s
+2026-10-16 03:22:20,261 INFO score_live: scored 1772 carparks for slot 2026-10-16T03:15:00+00:00 (targets = reading time + 30 min): 123 predicted nearly full; 21.8s
+2026-10-16 03:27:48,526 INFO score_live: scored 1737 carparks for slot 2026-10-16T03:30:00+00:00 (targets = reading time + 30 min): 122 predicted nearly full; 23.6s

@@ -6,15 +6,17 @@ import Insights from './pages/Insights.jsx';
 import Analytics from './pages/Analytics.jsx';
 import Model from './pages/Model.jsx';
 import Pipeline from './pages/Pipeline.jsx';
+import Chat from './pages/Chat.jsx';
 import Attribution from './components/Attribution.jsx';
 
-const TABS = ['Live Map', 'Find Parking', 'Carpark Detail', 'Insights', 'Analytics', 'Model', 'Pipeline'];
+const TABS = ['Live Map', 'Find Parking', 'Carpark Detail', 'Insights', 'Analytics', 'Model', 'Pipeline', 'Assistant'];
 
 const SLUG = Object.fromEntries(TABS.map((t) => [t.toLowerCase().replace(/ /g, '-'), t]));
 // deep links: #carpark/AM20 or #insights, #model, ...
 function fromHash() {
   const [page, id] = window.location.hash.replace(/^#\/?/, '').split('/');
   if (page === 'carpark' && id) return { tab: 'Carpark Detail', id: decodeURIComponent(id) };
+  if (page === 'assistant') return { tab: 'Assistant', id: null };
   return { tab: SLUG[page] || 'Live Map', id: null };
 }
 
@@ -39,6 +41,7 @@ export default function App() {
         {tab === 'Analytics' && <Analytics />}
         {tab === 'Model' && <Model />}
         {tab === 'Pipeline' && <Pipeline />}
+        {tab === 'Assistant' && <Chat onOpen={open} />}
       </main>
       <Attribution />
     </div>

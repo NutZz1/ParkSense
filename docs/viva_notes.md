@@ -159,3 +159,18 @@ servers with pre-split regions by carpark prefix, and Kafka instead of the file 
 **30. Limitations?**
 One month of history (no holidays in the window), HDB carparks only, sensor staleness, live verification over hours,
 not weeks.
+
+**31. How does the Assistant stop the LLM from making things up?**
+Code, not the model, decides what data is read (deterministic router + HBase tools). The model sees only that fact
+sheet, is told to use nothing else, and every number in its answer is checked against the facts. If any number isn't there,
+the user gets a template answer built from the same facts.
+
+**32. What rules run before anything is sent to the LLM?**
+Length and character clean-up, a rate limit, a prompt-injection and personal-data screen, intent routing and a relevance
+gate. Off-topic questions, tasks like poems or code, and unknown carpark numbers are answered by rules and never reach the API.
+
+**33. What if the Claude API fails?**
+Each error class is handled: invalid key, rate limit, timeout or network, server error and refusal. The user gets a template
+answer, and after repeated failures a circuit breaker skips the API for a while. If HBase itself is down, the
+assistant says so instead of guessing.
+

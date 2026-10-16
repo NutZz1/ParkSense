@@ -116,3 +116,6 @@ TimeoutError: timed out
 2026-10-16 02:57:10,587 INFO verify_live: verified 100420 (+0): acc 0.9859 P 0.875 R 0.845 F1 0.860 | persistence F1 0.875 | transitions 1286
 2026-10-16 03:02:23,972 INFO verify_live: verified 100420 (+0): acc 0.9859 P 0.875 R 0.845 F1 0.860 | persistence F1 0.875 | transitions 1286
 2026-10-16 03:07:42,507 INFO verify_live: verified 100420 (+0): acc 0.9859 P 0.875 R 0.845 F1 0.860 | persistence F1 0.875 | transitions 1286
+2026-10-16 03:12:59,112 INFO verify_live: verified 100420 (+0): acc 0.9859 P 0.875 R 0.845 F1 0.860 | persistence F1 0.875 | transitions 1286
+2026-10-16 03:18:18,948 INFO verify_live: verified 100422 (+2): acc 0.9859 P 0.875 R 0.845 F1 0.860 | persistence F1 0.875 | transitions 1286
+2026-10-16 03:23:40,903 INFO verify_live: verified 102193 (+1771): acc 0.9859 P 0.875 R 0.846 F1 0.860 | persistence F1 0.875 | transitions 1318

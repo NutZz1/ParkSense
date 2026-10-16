@@ -7,7 +7,7 @@
 | Ingestion | `download_metadata.py` (SVY21→WGS84), `backfill_history.py` (15-min grid, resumable, ≤ 4 req/10 s, 3 workers), `live_poller.py` (60 s), `flatten.py` (shared line format) |
 | Batch | HDFS `/parksense/raw/...` → `RddPipeline.scala` (RDD API) → Parquet `/parksense/processed/occupancy` + `agg_*`; `SparkConcepts.scala`; `analytics.py` (Spark SQL temp views, no Hive); PySpark EDA/features/train/evaluate |
 | Speed | `StreamingJob.scala` (file stream → `foreachBatch` → RDD ops → HBase via `BufferedMutator` in `foreachPartition`); `score_live.py`; `verify_live.py` |
-| Serving | HBase tables below; Thrift :9090 (HappyBase, Python), REST :8085 (Express); React UI on hold until the design is approved |
+| Serving | HBase tables below; Thrift :9090 (HappyBase, Python), REST :8085 (Express); React UI on :5000; Assistant (`ui/server/agent/`: rules → router → HBase tools → Claude → grounding check, see `chatbot.md`) |
 
 ## Why each technology
 | Tech | Role | Why |

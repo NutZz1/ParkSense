@@ -8,4 +8,6 @@
 | Spark → HBase classpath errors (NoSuchMethodError, Jackson/Guava) | pass only the shaded `hbase-shaded-mapreduce` + its small deps from `hbase mapredcp` (as `run_scala.sh` does); if it still fails, the Python HappyBase writers (`ingest/hbase_io.py`) cover every table |
 | HBase unusable on review day | MongoDB 8.0 is installed in `~/tools/mongodb`: start `mongod --dbpath ~/mongo-data`, and write the same documents (one collection per HBase table, `_id` = row key) — not implemented by default because HBase is the primary design |
 | API 429 / network | the backfill is resumable (re-run skips saved files); the poller retries with backoff; the demo runs from saved data |
+| Assistant: Claude API key missing / rejected, rate limit, timeout, refusal, ungrounded answer | template answer built from the same HBase facts, labelled "offline answer"; circuit breaker + hourly budget (`docs/chatbot.md`) |
+| Assistant: off-topic question, prompt injection, personal data | answered by rules; the LLM is never called |
 | Empty snapshot at exactly 00:00:00 | the API returns `{"items": []}`; the backfill retries at +1 and +2 minutes |

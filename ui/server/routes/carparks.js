@@ -3,7 +3,7 @@ import { getRow, scanPrefix, scanRange, revTs, getMetric } from '../hbaseRest.js
 const r = Router();
 const num = (v) => (v === undefined || v === '' ? null : Number(v));
 
-function shape(row) {
+export function shape(row) {
   const c = row.cols;
   return {
     id: row.key, address: c['m:address'] || null, lat: num(c['m:lat']), lon: num(c['m:lon']),
@@ -18,7 +18,7 @@ function shape(row) {
 }
 
 let cache = { at: 0, rows: [] };
-async function allCarparks() {
+export async function allCarparks() {
   if (Date.now() - cache.at < 30000) return cache.rows;
   const rows = (await scanPrefix('carpark_live')).map(shape).filter((x) => x.total !== null);
   cache = { at: Date.now(), rows };

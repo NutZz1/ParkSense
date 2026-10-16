@@ -66,4 +66,7 @@ scripts/build_ui.sh              # once (npm install + vite build)
 scripts/start_live.sh ui         # http://localhost:5000  (deep link: http://localhost:5000/#carpark/AM20)
 ```
 
+The **Assistant** tab answers questions from the live HBase data. It needs `ANTHROPIC_API_KEY` in `.env` (without it, it
+gives template answers). Design: `docs/chatbot.md`.
+
 `PROGRESS.md` is the phase log; `docs/demo_script.md` is the review demo.
