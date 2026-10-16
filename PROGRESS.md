@@ -88,7 +88,7 @@ fault tolerance: partition 2 attempt 0 FAILED → attempt 1 SUCCESS, identical r
 Screenshot checklist: `docs/dag_explanation.md` (History Server: `scripts/start_history_server.sh`).
 
 ## Phase 4 — Spark SQL analytics (DONE)
-8 queries → `outputs/analytics/q1…q8` + `query_times.csv` (3.2–11.7 s each); Parquet row counts equal the Scala output
+8 queries → `outputs/analytics/q1…q8` + `query_times.csv` (3.8–13.6 s each; Q2 took 69 s on the latest re-run because it ran alongside the live layer); Parquet row counts equal the Scala output
 (`consistency_check.json`); results pushed to HBase `analytics:q1…q8`.
 
 ## Phase 5 — EDA & data quality (DONE)
@@ -117,7 +117,9 @@ final model went live so the live evaluation only contains final-model predictio
 `scripts/build_ui.sh` then `scripts/start_live.sh ui` → **http://localhost:5000** (Express API reading HBase via REST,
 serving the React build; the watchdog also restarts the UI). Pages: Live Map (all live carparks coloured by occupancy, ring =
 predicted full in 30 min, filter by template), Find Parking (click a destination → nearby carparks ranked by predicted
-space), Carpark Detail (zoomed view), Insights (Spark SQL), Model (test + live metrics), Pipeline (Spark stats, stream).
+space), Carpark Detail (zoomed view), Insights (key findings), **Analytics** (every analysis performed: Spark SQL Q1–Q8 with
+the question, the exact SQL, runtime, row count and result, plus the 7 Scala RDD analyses with their RDD operation chains),
+Model (test + live metrics), Pipeline (Spark stats, stream).
 **Zoomed carpark view** (user's design): every carpark is mapped to one template — multi-storey and basement (100 slots per
 level, L1…/B1… tabs), surface lot (one level) and roadside (< 60 lots, bays along a street). Each bay is a rectangle, green
 when available and red with a car icon when occupied; the red/green counts equal the live HBase totals, positions are

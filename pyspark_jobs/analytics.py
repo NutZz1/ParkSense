@@ -9,6 +9,7 @@ import time
 
 import pandas as pd
 
+from analytics_queries import Q, Q8_SQL, QUESTIONS, VIEW_SQL
 from spark_session import CFG, ROOT, get_logger, get_spark, lake, path
 
 log = get_logger("analytics")
@@ -19,54 +20,8 @@ spark.read.parquet(lake("processed/occupancy")).createOrReplaceTempView("occupan
 spark.read.option("header", True).option("inferSchema", True).csv(lake("raw/meta/carpark_info.csv")).createOrReplaceTempView("carpark_info")
 spark.read.parquet(lake("processed/excluded_carparks")).createOrReplaceTempView("excluded")
 # car lots of reliable sensors only (always-zero / never-changing carparks excluded, as in the ML)
-spark.sql("""CREATE OR REPLACE TEMP VIEW car AS
-             SELECT o.* FROM occupancy o LEFT ANTI JOIN excluded e ON o.carpark_no = e.carpark_no
-             WHERE o.lot_type = 'C'""")
+spark.sql(VIEW_SQL)
 
-Q = {
-    "q1_occupancy_by_hour_weekday_weekend": """
-        SELECT hour, CASE WHEN is_weekend THEN 'weekend' ELSE 'weekday' END AS day_type,
-               ROUND(AVG(occupancy), 4) AS mean_occupancy,
-               ROUND(AVG(CASE WHEN avail_ratio <= {f} THEN 1 ELSE 0 END), 4) AS nearly_full_rate, COUNT(*) AS records
-        FROM car GROUP BY hour, is_weekend ORDER BY day_type, hour""",
-    "q2_top20_most_often_full": """
-        SELECT carpark_no, FIRST(address) AS address, FIRST(car_park_type) AS car_park_type,
-               ROUND(AVG(CASE WHEN avail_ratio <= {f} THEN 1 ELSE 0 END), 4) AS nearly_full_rate,
-               ROUND(AVG(occupancy), 4) AS mean_occupancy, MAX(total_lots) AS total_lots, COUNT(*) AS records
-        FROM car GROUP BY carpark_no ORDER BY nearly_full_rate DESC, mean_occupancy DESC LIMIT 20""",
-    "q3_full_rate_by_type_and_system": """
-        SELECT COALESCE(car_park_type, 'UNKNOWN') AS car_park_type, COALESCE(type_of_parking_system, 'UNKNOWN') AS parking_system,
-               COUNT(DISTINCT carpark_no) AS carparks,
-               ROUND(AVG(CASE WHEN avail_ratio <= {f} THEN 1 ELSE 0 END), 4) AS nearly_full_rate,
-               ROUND(AVG(occupancy), 4) AS mean_occupancy
-        FROM car GROUP BY 1, 2 ORDER BY nearly_full_rate DESC""",
-    "q4_policy_effect_evening": """
-        SELECT free_parking, night_parking, COUNT(DISTINCT carpark_no) AS carparks,
-               ROUND(AVG(occupancy), 4) AS evening_mean_occupancy,
-               ROUND(AVG(CASE WHEN avail_ratio <= {f} THEN 1 ELSE 0 END), 4) AS evening_nearly_full_rate
-        FROM car WHERE hour BETWEEN 18 AND 23 AND free_parking IS NOT NULL
-        GROUP BY free_parking, night_parking ORDER BY evening_mean_occupancy DESC""",
-    "q5_busiest_day_per_type": """
-        WITH d AS (SELECT COALESCE(car_park_type,'UNKNOWN') AS car_park_type, dow, AVG(occupancy) AS mean_occupancy
-                   FROM car GROUP BY 1, 2),
-             r AS (SELECT *, ROW_NUMBER() OVER (PARTITION BY car_park_type ORDER BY mean_occupancy DESC) AS rk FROM d)
-        SELECT car_park_type, dow AS busiest_dow, ROUND(mean_occupancy, 4) AS mean_occupancy FROM r WHERE rk = 1
-        ORDER BY mean_occupancy DESC""",
-    "q6_daily_citywide_full_rate": """
-        SELECT dt, ROUND(AVG(CASE WHEN avail_ratio <= {f} THEN 1 ELSE 0 END), 4) AS nearly_full_rate,
-               ROUND(AVG(occupancy), 4) AS mean_occupancy, COUNT(DISTINCT snapshot_ms) AS snapshots, COUNT(*) AS records
-        FROM car GROUP BY dt ORDER BY dt""",
-    "q7_evening_vs_morning_swing": """
-        WITH p AS (SELECT carpark_no, FIRST(address) AS address, FIRST(car_park_type) AS car_park_type,
-                          AVG(CASE WHEN hour BETWEEN 19 AND 22 THEN occupancy END) AS evening,
-                          AVG(CASE WHEN hour BETWEEN 9 AND 12 THEN occupancy END) AS morning
-                   FROM car WHERE NOT is_weekend GROUP BY carpark_no)
-        SELECT carpark_no, address, car_park_type, ROUND(evening, 4) AS evening_occ, ROUND(morning, 4) AS morning_occ,
-               ROUND(evening - morning, 4) AS swing,
-               CASE WHEN evening - morning > 0 THEN 'residential (fills at night)' ELSE 'commercial (fills by day)' END AS behaviour
-        FROM p WHERE evening IS NOT NULL AND morning IS NOT NULL ORDER BY ABS(evening - morning) DESC LIMIT 30""",
-    "q8_data_quality_per_day": None,  # built below: raw lines vs cleaned rows
-}
 
 times = []
 results = {}
@@ -108,7 +63,10 @@ pushed = 0
 try:
     import hbase_io
     for name, df in results.items():
-        hbase_io.put_metric(f"analytics:{name.split('_')[0]}", {"name": name, "rows": json.loads(df.to_json(orient="records"))})
+        t = next(x for x in times if x["query"] == name)
+        hbase_io.put_metric(f"analytics:{name.split('_')[0]}", {
+            "name": name, "question": QUESTIONS[name], "sql": (Q8_SQL if Q[name] is None else Q[name].format(f=full)).strip(),
+            "seconds": t["seconds"], "row_count": t["rows"], "rows": json.loads(df.to_json(orient="records"))})
         pushed += 1
 except Exception as e:  # noqa: BLE001
     log.warning("HBase push skipped: %s", e)

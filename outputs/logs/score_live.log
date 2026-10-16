@@ -921,3 +921,4 @@ Traceback (most recent call last):
     self.socket.connect((self.java_address, self.java_port))
 ConnectionRefusedError: [Errno 111] Connection refused
 2026-10-16 02:48:51,537 INFO score_live: scored 1773 carparks for slot 2026-10-16T02:45:00+00:00 (targets = reading time + 30 min): 114 predicted nearly full; 46.5s
+2026-10-16 02:55:13,830 INFO score_live: scored 1772 carparks for slot 2026-10-16T03:00:00+00:00 (targets = reading time + 30 min): 125 predicted nearly full; 76.9s

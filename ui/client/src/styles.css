@@ -48,3 +48,11 @@ footer { font-size: 12px; color: #5b6772; text-align: center; padding: 14px 20px
 .lot { display: block; max-width: 900px; margin: 0 auto; }
 .note { font-size: 12px; color: #5b6772; margin: 8px 0 0; }
 .arch { width: 100%; max-width: 1100px; display: block; margin: 0 auto 14px; border-radius: 8px; background: #fff; }
+.analysis-head { display: flex; flex-wrap: wrap; align-items: center; gap: 10px; }
+.analysis-head h3 { margin: 0; flex: 1; }
+.qid { background: #13324f; color: #fff; border-radius: 4px; padding: 3px 8px; font-weight: 700; font-size: 13px; }
+.qid.rdd { background: #7a3e9d; }
+.sql-toggle { margin: 8px 0; border: 1px solid #c9d1d9; background: #fff; border-radius: 6px; padding: 3px 10px; cursor: pointer; font-size: 12px; }
+pre.sql { background: #0f2236; color: #d6e6f5; padding: 10px 12px; border-radius: 6px; font-size: 12px; overflow-x: auto; white-space: pre-wrap; }
+.ops { font-family: ui-monospace, Consolas, monospace; font-size: 12px; background: #f3eef8; color: #4b2766; padding: 8px 10px; border-radius: 6px; margin: 8px 0; }
+.result { max-height: 360px; overflow: auto; }

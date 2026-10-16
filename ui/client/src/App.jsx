@@ -3,11 +3,12 @@ import LiveMap from './pages/LiveMap.jsx';
 import FindParking from './pages/FindParking.jsx';
 import CarparkDetail from './pages/CarparkDetail.jsx';
 import Insights from './pages/Insights.jsx';
+import Analytics from './pages/Analytics.jsx';
 import Model from './pages/Model.jsx';
 import Pipeline from './pages/Pipeline.jsx';
 import Attribution from './components/Attribution.jsx';
 
-const TABS = ['Live Map', 'Find Parking', 'Carpark Detail', 'Insights', 'Model', 'Pipeline'];
+const TABS = ['Live Map', 'Find Parking', 'Carpark Detail', 'Insights', 'Analytics', 'Model', 'Pipeline'];
 
 const SLUG = Object.fromEntries(TABS.map((t) => [t.toLowerCase().replace(/ /g, '-'), t]));
 // deep links: #carpark/AM20 or #insights, #model, ...
@@ -35,6 +36,7 @@ export default function App() {
         {tab === 'Find Parking' && <FindParking onOpen={open} />}
         {tab === 'Carpark Detail' && <CarparkDetail id={carpark} setId={setCarpark} />}
         {tab === 'Insights' && <Insights onOpen={open} />}
+        {tab === 'Analytics' && <Analytics />}
         {tab === 'Model' && <Model />}
         {tab === 'Pipeline' && <Pipeline />}
       </main>

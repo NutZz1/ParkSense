@@ -43,6 +43,33 @@ if (MD / "best_model_meta.json").exists():
     m = json.load(open(MD / "best_model_meta.json"))
     put("model:best", {k: m[k] for k in ("algorithm", "params", "threshold", "model_version", "horizon_min", "full_ratio", "label", "split")})
 
+# catalogue of the Scala RDD key-value analytics (RddPipeline.scala): question, RDD operations, result rows
+RDD_CATALOGUE = [
+    ("rdd_summary.csv", "Pipeline summary: lines read, records after flatMap, accumulator counts, partitions, runtime",
+     "textFile → map(parse) → filter → flatMap(explodeLots) → filter(stale, total) → map(clean) + accumulators", None),
+    ("rdd_top20_full.csv", "Top 20 carparks most often nearly full (always-zero / frozen sensors excluded)",
+     "map((carpark, record)) → combineByKey(min, max, mean, full-rate) → filter → sortBy(-full_rate) → take(20)", None),
+    ("rdd_type_hour.csv", "Mean occupancy and nearly-full rate by carpark type × hour × weekend",
+     "map(((type, hour, weekend), (occ, 1, full))) → reduceByKey → mapValues(mean, rate) → collect", None),
+    ("rdd_daily_full_rate.csv", "Daily citywide nearly-full rate",
+     "map((dt, (full, 1, occ))) → reduceByKey → mapValues → sortByKey → collect", None),
+    ("rdd_carpark_stats.csv", "Per-carpark min/max available, mean occupancy, full rate, zero share (one pass)",
+     "combineByKey(createCombiner, mergeValue, mergeCombiners) → mapValues → collect", "full_rate"),
+    ("rdd_stale_rate_carpark.csv", "Carparks with the most stale readings (> 30 min since the sensor update)",
+     "filter(lot C) → map((carpark, (stale, 1))) → reduceByKey → mapValues(rate) → sortBy(-rate)", "stale_rate"),
+    ("rdd_excluded_carparks.csv", "Carparks excluded from ML as unreliable sensors",
+     "combineByKey results → filter(zero_share > 0.95 or min == max)", None),
+]
+cat = []
+for f, question, ops, sort_col in RDD_CATALOGUE:
+    if (M / f).exists():
+        df = pd.read_csv(M / f)
+        if sort_col:
+            df = df.sort_values(sort_col, ascending=False)
+        cat.append({"name": f.replace(".csv", ""), "question": question, "rdd_ops": ops, "source": f"outputs/metrics/{f}",
+                    "row_count": len(df), "rows": json.loads(df.head(30).to_json(orient="records"))})
+put("analytics:rdd", cat)
+
 # per-carpark "best time to arrive" profiles from the Scala aggregate (carpark x hour x dow)
 spark = get_spark("ParkSense-Publish", master="local[4]")
 prof = spark.read.parquet(lake("processed/agg_carpark_hour_dow")).toPandas()
