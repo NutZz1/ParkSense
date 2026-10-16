@@ -60,14 +60,31 @@ RDD_CATALOGUE = [
     ("rdd_excluded_carparks.csv", "Carparks excluded from ML as unreliable sensors",
      "combineByKey results → filter(zero_share > 0.95 or min == max)", None),
 ]
+def bands(series, edges, labels):
+    """Pie data: how many carparks fall in each band of a rate."""
+    b = pd.cut(series, edges, labels=labels, include_lowest=True).value_counts().reindex(labels).fillna(0)
+    return [{"name": k, "value": int(v)} for k, v in b.items()]
+
+
 cat = []
 for f, question, ops, sort_col in RDD_CATALOGUE:
     if (M / f).exists():
         df = pd.read_csv(M / f)
         if sort_col:
             df = df.sort_values(sort_col, ascending=False)
-        cat.append({"name": f.replace(".csv", ""), "question": question, "rdd_ops": ops, "source": f"outputs/metrics/{f}",
-                    "row_count": len(df), "rows": json.loads(df.head(30).to_json(orient="records"))})
+        entry = {"name": f.replace(".csv", ""), "question": question, "rdd_ops": ops, "source": f"outputs/metrics/{f}",
+                 "row_count": len(df), "rows": json.loads(df.head(500 if len(df) <= 500 else 30).to_json(orient="records"))}
+        # chart data computed over ALL rows (the table shows only the top rows of large results)
+        if f == "rdd_carpark_stats.csv":
+            entry["pie"] = bands(df.full_rate, [0, 0.01, 0.05, 0.2, 0.5, 1], ["< 1% of time", "1–5%", "5–20%", "20–50%", "> 50%"])
+            entry["pie_title"] = "Carparks by how often they are nearly full"
+        elif f == "rdd_stale_rate_carpark.csv":
+            entry["pie"] = bands(df.stale_rate, [0, 0.001, 0.01, 0.05, 0.2, 1], ["< 0.1%", "0.1–1%", "1–5%", "5–20%", "> 20%"])
+            entry["pie_title"] = "Carparks by share of stale readings"
+        elif f == "rdd_excluded_carparks.csv":
+            entry["pie"] = [{"name": k.replace("_", " "), "value": int(v)} for k, v in df.reason.value_counts().items()]
+            entry["pie_title"] = "Why carparks were excluded from ML"
+        cat.append(entry)
 put("analytics:rdd", cat)
 
 # per-carpark "best time to arrive" profiles from the Scala aggregate (carpark x hour x dow)
