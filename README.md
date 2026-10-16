@@ -345,6 +345,7 @@ scripts/run_batch.sh --skip-perf    # faster (skips the performance experiments)
 scripts/run_batch.sh --from "6 train"   # resume from a numbered step after a failure
 scripts/run_scala.sh RddPipeline    # run one Scala job on its own
 scripts/start_history_server.sh     # Spark History Server at http://localhost:18080 (DAGs, stages)
+scripts/demo_rdd.sh                 # ~20 s read-only RDD demo (creation, transformations, actions, key/value) for one day
 ```
 
 ### 7.5 Start the live layer and the dashboard
