@@ -12,3 +12,13 @@ ui/client/dist/
 __pycache__/
 *.pyc
 outputs/logs/chat.log
+# live-layer files that grow every minute (kept on disk, not in git; live_eval_summary.json holds the live numbers)
+outputs/logs/poller.log
+outputs/logs/score_live.log
+outputs/logs/verify_live.log
+outputs/logs/watchdog.log
+outputs/logs/api_calls.csv
+outputs/metrics/live_predictions.csv
+outputs/metrics/live_eval.csv
+outputs/metrics/stream_batches.csv
+outputs/metrics/poller_stats.csv

@@ -27,7 +27,7 @@ source scripts/env.sh               # Java 11 + Spark 3.5.9 (Scala 2.12.18), Had
 scripts/02_start_services.sh        # HDFS, HBase, Thrift :9090, REST :8085 (info UI :8086)
 scripts/00_check_env.sh             # outputs/logs/env.txt + compat.md
 scripts/04_hbase_create_tables.sh   # namespace parksense + 4 tables
-cp -n .env.example .env             # optional DATAGOV_API_KEY
+cp -n .env.example .env             # optional DATAGOV_API_KEY; ANTHROPIC_API_KEY for the Assistant
 ```
 
 ## Data
