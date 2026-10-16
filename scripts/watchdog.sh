@@ -5,7 +5,7 @@
 cd "$(dirname "$0")/.." && source scripts/env.sh
 LOG=$PARKSENSE_HOME/outputs/logs/watchdog.log
 PID=$PARKSENSE_HOME/outputs/logs/watchdog.pid
-COMPONENTS=${WATCHDOG_COMPONENTS:-"poller stream score verify"}
+COMPONENTS=${WATCHDOG_COMPONENTS:-"poller stream score verify ui"}
 MIN_FREE_MB=${WATCHDOG_MIN_FREE_MB:-800}   # do not (re)start heavy Spark jobs when memory is this low
 
 log() { echo "$(date -u +%FT%TZ) $*" >> $LOG; }
@@ -22,7 +22,7 @@ check_once() {
   port 8085 || { log "REST down -> start rest"; hbase-daemon.sh start rest -p 8085 --infoport 8086 >> $LOG 2>&1; sleep 5; }
   for c in $COMPONENTS; do
     alive $c && continue
-    if [ "$c" != poller ] && [ "$(free_mb)" -lt "$MIN_FREE_MB" ]; then
+    if [ "$c" != poller ] && [ "$c" != ui ] && [ "$(free_mb)" -lt "$MIN_FREE_MB" ]; then
       log "$c down but only $(free_mb) MB free -> waiting"; continue
     fi
     log "$c down -> restart"; scripts/start_live.sh $c >> $LOG 2>&1

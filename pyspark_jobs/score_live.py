@@ -98,11 +98,17 @@ def score_once():
              t_slot.isoformat(), h, sum(r["pred"] for r in rows), time.time() - t0)
 
 
+failures = 0
 while True:
     try:
         score_once()
+        failures = 0
     except Exception as e:  # noqa: BLE001 - keep the loop alive
-        log.exception("scoring failed: %s", e)
+        failures += 1
+        log.exception("scoring failed (%d in a row): %s", failures, e)
+        if failures >= 3:  # e.g. the Spark JVM died: exit so the watchdog restarts a fresh process
+            log.error("exiting after %d consecutive failures", failures)
+            sys.exit(1)
     if not args.loop:
         break
     time.sleep(args.loop)

@@ -90,7 +90,9 @@ def put_meta_batch(rows):
             for r in rows:
                 bt.put(r["car_park_no"].encode(), {b"m:address": b(r["address"]), b"m:lat": b(r["lat"]), b"m:lon": b(r["lon"]),
                                                    b"m:type": b(r["car_park_type"]), b"m:system": b(r["type_of_parking_system"]),
-                                                   b"m:free_parking": b(r["free_parking"]), b"m:night_parking": b(r["night_parking"])})
+                                                   b"m:free_parking": b(r["free_parking"]), b"m:night_parking": b(r["night_parking"]),
+                                                   b"m:decks": b(r.get("car_park_decks")), b"m:gantry": b(r.get("gantry_height")),
+                                                   b"m:basement": b(r.get("car_park_basement")), b"m:short_term": b(r.get("short_term_parking"))})
     return len(rows)
 
 

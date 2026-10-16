@@ -16,4 +16,5 @@ for c in ${*:-poller stream score verify}; do case $c in
   stream) if [ -n "$JAR" ]; then start stream scripts/run_scala.sh StreamingJob "local[2]" --stream; else echo "skip stream: build the jar first"; fi ;;
   score)  if [ -d models/best_model ]; then start score python pyspark_jobs/score_live.py --loop ${SCORE_SECONDS:-300}; else echo "skip score: no models/best_model"; fi ;;
   verify) if [ -d models/best_model ]; then start verify python pyspark_jobs/verify_live.py --loop ${VERIFY_SECONDS:-300}; else echo "skip verify: no models/best_model"; fi ;;
+  ui)     if [ -d ui/client/dist ]; then start ui node ui/server/server.js; else echo "skip ui: run scripts/build_ui.sh first"; fi ;;
 esac; done
