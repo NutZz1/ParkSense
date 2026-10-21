@@ -1,0 +1,32 @@
+{
+  "rf": {
+    "algorithm": "Random Forest",
+    "params": {
+      "numTrees": 60,
+      "maxDepth": 10
+    },
+    "threshold": 0.89,
+    "val_at_threshold": {
+      "precision": 0.8589270672979175,
+      "recall": 0.8158243213418671,
+      "f1": 0.836821030886993
+    },
+    "model_path": "/home/hduser/parksense-sg/models/rf_30",
+    "refit_seconds": 136.5
+  },
+  "gbt": {
+    "algorithm": "Gradient-Boosted Trees",
+    "params": {
+      "maxIter": 40,
+      "maxDepth": 6
+    },
+    "threshold": 0.93,
+    "val_at_threshold": {
+      "precision": 0.8594844329350833,
+      "recall": 0.8057548002648423,
+      "f1": 0.8317528121885235
+    },
+    "model_path": "/home/hduser/parksense-sg/models/gbt_30",
+    "refit_seconds": 125.4
+  }
+}
